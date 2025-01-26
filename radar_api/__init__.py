@@ -30,8 +30,8 @@ import contextlib
 import os
 from importlib.metadata import PackageNotFoundError, version
 
-from radar_api._config import config  # noqa
-from radar_api.configs import (  # noqa
+from radar_api._config import config
+from radar_api.configs import ( 
     define_configs,
     read_configs,
 )
@@ -52,6 +52,9 @@ _root_path = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
 __all__ = [
     "available_radars",
     "available_networks",
+    "config",
+    "define_configs",
+    "read_configs",
     "find_files",
     "group_filepaths",
     "open_datatree",

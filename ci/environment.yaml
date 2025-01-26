@@ -1,36 +1,20 @@
 name: radar_api
 channels: [conda-forge]
 dependencies:
-  - cartopy>=0.22.0
-  - click
-  - dask
-  - deepdiff
-  - distributed
+  - fsspec
+  - s3fs
+  - pyyaml
   - donfig
-  - h5py
   - jupyter
-  - matplotlib>=3.8.3
+  - xradar
+  - numpy
+  - pandas
+  - arm_pyart
   - netcdf4
-  - numpy<=1.26.4
-  - polars
-  - pyarrow
-  - pycolorbar
-  - pyproj
-  - pyresample
   - pytest
   - pytest-cov
   - pytest-mock
   - pytest-sugar
-  - pyvista
-  - pyvista
-  - scipy
-  - scikit-learn
-  - shapely
   - tqdm
-  - trame
-  - trame-vtk
-  - trame-vuetify
   - trollsift
-  - xarray>=2025.01.0
-  - xoak
-  - ximage
+  - xarray

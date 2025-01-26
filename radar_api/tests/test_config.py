@@ -86,7 +86,6 @@ def test_update_radar_api_configs(tmp_path, mocker):
     # Update
     radar_api.configs.define_configs(
         base_dir="new_test_base_dir",
-
     )
     assert os.path.exists(config_filepath)
     config_dict = read_yaml(config_filepath)

@@ -212,7 +212,7 @@ To read and process ground and spaceborne radar data, install
 `xradar <https://docs.openradarscience.org/projects/xradar/en/stable/>`_,
 `wradlib <https://docs.wradlib.org/en/latest/>`_.
 `pyart <https://arm-doe.github.io/pyart/>`_ and
-`gpm-api` <https://gpm-api.readthedocs.io/>`_.
+`gpm-api <https://gpm-api.readthedocs.io/>`_.
 
 .. code-block:: bash
 
