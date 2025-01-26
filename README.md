@@ -23,7 +23,7 @@ read weather radar data from several meteorological services.
 Data are retrieved directly from cloud buckets.
 Current radar networks supported are: NEXRAD, SIDEAM and FMI.
 
-The list of available radar networks and radars can be retrieved using:
+The list of available radars can be retrieved using:
 
 ```python
 import radar_api
@@ -151,9 +151,6 @@ In case conda-forge is not set up for your system yet, see the easy to follow in
 
 RADAR-API can be installed also via [pip][pip_link] on Linux, Mac, and Windows.
 On Windows you can install [WinPython][winpy_link] to get Python and pip running.
-Prior installation of RADAR-API, try to install to `cartopy>=0.21.0` package to ensure there are not [GEOS](https://libgeos.org/) library version incompatibilities.
-If you can't solve the problems and install cartopy with pip, you should install at least cartopy with conda using `conda install cartopy>=0.21.0`.
-
 Then, install the RADAR-API package by typing the following command in the terminal:
 
 ```bash
@@ -165,7 +162,7 @@ To install the latest development version via pip, see the [documentation][dev_i
 ## 💭 Feedback and Contributing Guidelines
 
 If you aim to contribute your data or discuss the future development of RADAR-API,
-we highly suggest to join the [**Open Radar Science Discourse Group**](https://openradar.discourse.group/)
+we suggest to join the [**Open Radar Science Discourse Group**](https://openradar.discourse.group/).
 
 Feel free to also open a [GitHub Issue](https://github.com/ghiggi/radar_api/issues) or a [GitHub Discussion](https://github.com/ghiggi/radar_api/discussions) specific to your questions or ideas.
 
