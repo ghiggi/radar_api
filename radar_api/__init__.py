@@ -31,7 +31,7 @@ import os
 from importlib.metadata import PackageNotFoundError, version
 
 from radar_api._config import config
-from radar_api.configs import ( 
+from radar_api.configs import (
     define_configs,
     read_configs,
 )

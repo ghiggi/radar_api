@@ -58,8 +58,7 @@ ______________________________________________________________________
 You can start to download radar data using the following code snippet:
 
 ```python
-import radar_data
-import datetime
+import radar_api
 
 start_time = "2021-02-01 12:00:00"
 end_time = "2021-02-01 13:00:00"
@@ -86,6 +85,9 @@ RADAR-API make use of pyart and xradar readers to open the files.
 import radar_api
 import pyart
 
+# Select the file to open
+filepath = filepaths[0]
+
 # Open xradar datatree
 dt = radar_api.open_datatree(filepath, network=network)
 dt = radar_api.open_datatree(filepath, network=network, chunks={})
@@ -99,7 +101,7 @@ radar_obj = radar_api.open_pyart(filepath, network=network)
 
 # Display data with pyart
 display = pyart.graph.RadarDisplay(radar_obj)
-display.plot("reflectivity")  # title="{} {}".format(scan.radar_id,scan.scan_time))
+display.plot("reflectivity")
 display.set_limits((-150, 150), (-150, 150))
 ```
 

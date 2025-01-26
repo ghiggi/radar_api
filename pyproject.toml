@@ -46,7 +46,6 @@ dependencies = [
     "pandas",
 ]
 requires-python = ">=3.10"
-# version = "0.0.1"
 dynamic = ["version"]
 
 [tool.setuptools]
@@ -263,4 +262,3 @@ push = true
     "{version}",
     "{pep440_version}",
 ]
-
