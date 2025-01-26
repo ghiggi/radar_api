@@ -1,0 +1,11 @@
+radar_name: EGLIN AFB
+icao: KEVX
+rda_location: MOBILE
+wfo_name: MOBILE, AL
+wfo_sid: MOB
+radar_operator: DOD
+latitude: 30.565033
+longitude: -85.921667
+altitude: 67.3608
+start_time: '1995-06-05 12:18:45'
+end_time: ''

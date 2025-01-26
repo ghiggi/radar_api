@@ -1,0 +1,11 @@
+radar_name: BISMARCK
+icao: KBIS
+rda_location: BISMARCK
+wfo_name: BISMARCK, ND
+wfo_sid: BIS
+radar_operator: NWS Central Region
+start_time: '1995-04-25 20:33:28'
+end_time: ''
+latitude: 46.770833
+longitude: -100.76055
+altitude: 534.924

@@ -1,0 +1,11 @@
+radar_name: FT NOVOSEL
+icao: KEOX
+rda_location: TALLAHASSEE
+wfo_name: TALLAHASSEE, FL
+wfo_sid: TAE
+radar_operator: DOD
+start_time: '1996-03-26 14:47:12'
+end_time: ''
+latitude: 31.460556
+longitude: -85.459389
+altitude: 163.6776

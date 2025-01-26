@@ -1,0 +1,5 @@
+prune .github
+prune ci
+prune docs
+prune radar_api/tests
+prune tutorials

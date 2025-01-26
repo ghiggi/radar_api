@@ -1,0 +1,11 @@
+radar_name: SALT LAKE CITY
+icao: KMTX
+rda_location: SALT LAKE CITY
+wfo_name: SALT LAKE CITY, UT
+wfo_sid: SLC
+radar_operator: NWS Western Region
+latitude: 41.262778
+longitude: -112.44777
+altitude: 2009.8512
+start_time: '1997-06-09 23:23:39'
+end_time: ''

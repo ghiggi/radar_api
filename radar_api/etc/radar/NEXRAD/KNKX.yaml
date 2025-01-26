@@ -1,0 +1,11 @@
+radar_name: SAN DIEGO
+icao: KNKX
+rda_location: SAN DIEGO
+wfo_name: SAN DIEGO, CA
+wfo_sid: SGX
+radar_operator: NWS Western Region
+latitude: 32.919017
+longitude: -117.0418
+altitude: 320.6496
+start_time: '1996-04-30 23:32:34'
+end_time: ''

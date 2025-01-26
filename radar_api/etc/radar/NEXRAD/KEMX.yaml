@@ -1,0 +1,11 @@
+radar_name: TUCSON
+icao: KEMX
+rda_location: TUCSON
+wfo_name: TUCSON, AZ
+wfo_sid: TWC
+radar_operator: NWS Western Region
+start_time: '1995-11-13 20:49:59'
+end_time: ''
+latitude: 31.89365
+longitude: -110.63025
+altitude: 1621.2312000000002

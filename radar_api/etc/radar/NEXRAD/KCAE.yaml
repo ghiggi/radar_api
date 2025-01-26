@@ -1,0 +1,11 @@
+radar_name: COLUMBIA
+icao: KCAE
+rda_location: WEST COLUMBIA
+wfo_name: COLUMBIA, SC
+wfo_sid: CAE
+radar_operator: NWS Eastern Region
+latitude: 33.948722
+longitude: -81.118278
+altitude: 105.156
+start_time: '1995-06-01 14:09:19'
+end_time: ''

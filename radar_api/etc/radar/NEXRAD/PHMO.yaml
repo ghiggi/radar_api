@@ -1,0 +1,11 @@
+radar_name: MOLOKAI FAA
+icao: PHMO
+rda_location: HONOLULU
+wfo_name: HONOLULU, HI
+wfo_sid: HFO
+radar_operator: FAA
+start_time: '1997-02-28 01:02:31'
+end_time: ''
+latitude: 21.132778
+longitude: -157.18027
+altitude: 440.13120000000004

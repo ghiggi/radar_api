@@ -1,0 +1,11 @@
+radar_name: NORMAN
+icao: KTLX
+rda_location: OKLAHOMA CITY
+wfo_name: NORMAN, OK
+wfo_sid: OUN
+radar_operator: NWS Southern Region
+latitude: 35.333361
+longitude: -97.277761
+altitude: 389.5344
+start_time: '1991-09-07 20:09:23'
+end_time: ''

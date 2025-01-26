@@ -1,0 +1,11 @@
+radar_name: DALLAS/FT WORTH
+icao: KFWS
+rda_location: FORT WORTH
+wfo_name: DALLAS / FT. WORTH, TX
+wfo_sid: FWD
+radar_operator: NWS Southern Region
+latitude: 32.573
+longitude: -97.30315
+altitude: 236.8296
+start_time: '1995-03-09 21:36:37'
+end_time: ''

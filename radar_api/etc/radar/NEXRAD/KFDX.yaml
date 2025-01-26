@@ -1,0 +1,11 @@
+radar_name: CANNON AFB
+icao: KFDX
+rda_location: ALBUQUERQUE
+wfo_name: ALBUQUERQUE, NM
+wfo_sid: ABQ
+radar_operator: DOD
+start_time: '1995-09-07 16:01:29'
+end_time: ''
+latitude: 34.634167
+longitude: -103.61888
+altitude: 1431.9504000000002

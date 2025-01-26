@@ -1,0 +1,11 @@
+radar_name: BROWNSVILLE
+icao: KBRO
+rda_location: BROWNSVILLE
+wfo_name: BROWNSVILLE, TX
+wfo_sid: BRO
+radar_operator: NWS Southern Region
+start_time: '1995-05-24 17:15:33'
+end_time: ''
+latitude: 25.916
+longitude: -97.418967
+altitude: 26.822400000000002

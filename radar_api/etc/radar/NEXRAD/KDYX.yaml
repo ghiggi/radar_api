@@ -1,0 +1,11 @@
+radar_name: DYESS AFB
+icao: KDYX
+rda_location: SAN ANGELO
+wfo_name: SAN ANGELO, TX
+wfo_sid: SJT
+radar_operator: DOD
+latitude: 32.5385
+longitude: -99.254333
+altitude: 482.1936
+start_time: '1995-07-25 02:07:06'
+end_time: ''

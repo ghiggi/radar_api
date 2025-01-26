@@ -1,0 +1,11 @@
+radar_name: NORTHEAST ALABAMA
+icao: KHTX
+rda_location: HYTOP
+wfo_name: HUNTSVILLE, AL
+wfo_sid: HUN
+radar_operator: NWS Southern Region
+start_time: '1998-10-19 20:07:48'
+end_time: ''
+latitude: 34.930556
+longitude: -86.083611
+altitude: 566.6232

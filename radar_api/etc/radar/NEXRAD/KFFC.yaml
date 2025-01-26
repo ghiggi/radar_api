@@ -1,0 +1,11 @@
+radar_name: ATLANTA
+icao: KFFC
+rda_location: PEACHTREE CITY
+wfo_name: PEACHTREE CITY/ATLANTA, GA
+wfo_sid: FFC
+radar_operator: NWS Southern Region
+start_time: '1995-01-12 20:35:49'
+end_time: ''
+latitude: 33.36355
+longitude: -84.56595
+altitude: 296.2656

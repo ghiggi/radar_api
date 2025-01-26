@@ -1,0 +1,11 @@
+radar_name: CHEYENNE
+icao: KCYS
+rda_location: CHEYENNE
+wfo_name: CHEYENNE, WY
+wfo_sid: CYS
+radar_operator: NWS Central Region
+latitude: 41.151919
+longitude: -104.80603
+altitude: 1887.6264
+start_time: '1995-05-07 06:41:59'
+end_time: ''

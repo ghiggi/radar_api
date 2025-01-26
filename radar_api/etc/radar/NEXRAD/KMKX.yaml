@@ -1,0 +1,11 @@
+radar_name: MILWAUKEE
+icao: KMKX
+rda_location: DOUSMAN
+wfo_name: MILWAUKEE, WI
+wfo_sid: MKX
+radar_operator: NWS Central Region
+latitude: 42.9679
+longitude: -88.550667
+altitude: 311.8104
+start_time: '1995-05-24 18:44:08'
+end_time: ''

@@ -1,0 +1,11 @@
+radar_name: SPRINGFIELD
+icao: KSGF
+rda_location: SPRINGFIELD
+wfo_name: SPRINGFIELD, MO
+wfo_sid: SGF
+radar_operator: NWS Central Region
+latitude: 37.235239
+longitude: -93.400419
+altitude: 419.1
+start_time: '1995-04-24 18:34:32'
+end_time: ''

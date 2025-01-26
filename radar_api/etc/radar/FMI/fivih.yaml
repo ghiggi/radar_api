@@ -1,0 +1,14 @@
+icao: ''
+radar_name: ''
+start_time: '2021-07-05 12:30:00'
+end_time: ''
+latitude: 60.5561900138855
+longitude: 24.49559200555086
+altitude: 181.0
+geographic_extent:
+- 19.943603991247517
+- 29.047580019854287
+- 58.31539257378552
+- 62.79623083056246
+maximum_range: 249750.0
+maximum_horizontal_distance: 249630.60959525357

@@ -1,0 +1,11 @@
+radar_name: MEMPHIS
+icao: KNQA
+rda_location: MILLINGTON
+wfo_name: MEMPHIS, TN
+wfo_sid: MEG
+radar_operator: NWS Southern Region
+start_time: '1995-05-01 19:04:19'
+end_time: ''
+latitude: 35.344722
+longitude: -89.873333
+altitude: 132.588

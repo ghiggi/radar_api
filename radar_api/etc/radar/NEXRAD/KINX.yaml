@@ -1,0 +1,11 @@
+radar_name: TULSA
+icao: KINX
+rda_location: INOLA
+wfo_name: TULSA, OK
+wfo_sid: TSA
+radar_operator: NWS Southern Region
+latitude: 36.175131
+longitude: -95.564161
+altitude: 228.29520000000002
+start_time: '1994-08-02 14:08:50'
+end_time: ''

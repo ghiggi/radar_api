@@ -1,0 +1,11 @@
+radar_name: CHICAGO
+icao: KLOT
+rda_location: ROMEOVILLE
+wfo_name: CHICAGO, IL
+wfo_sid: LOT
+radar_operator: NWS Central Region
+latitude: 41.604444
+longitude: -88.084444
+altitude: 231.64800000000002
+start_time: '1995-04-13 13:21:43'
+end_time: ''

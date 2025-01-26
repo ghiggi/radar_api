@@ -1,0 +1,11 @@
+radar_name: NASHVILLE
+icao: KOHX
+rda_location: OLD HICKORY
+wfo_name: NASHVILLE, TN
+wfo_sid: OHX
+radar_operator: NWS Southern Region
+latitude: 36.247222
+longitude: -86.5625
+altitude: 206.0448
+start_time: '1995-08-28 17:23:12'
+end_time: ''

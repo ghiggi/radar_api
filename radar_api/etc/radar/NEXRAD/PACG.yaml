@@ -1,0 +1,11 @@
+radar_name: SITKA FAA
+icao: PACG
+rda_location: JUNEAU
+wfo_name: JUNEAU, AK
+wfo_sid: AJK
+radar_operator: FAA
+latitude: 56.852778
+longitude: -135.52916
+altitude: 82.9056
+start_time: '1997-10-03 23:24:44'
+end_time: ''

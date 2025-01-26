@@ -1,0 +1,11 @@
+radar_name: BETHEL FAA
+icao: PABC
+rda_location: ANCHORAGE
+wfo_name: ANCHORAGE, AK
+wfo_sid: AFC
+radar_operator: FAA
+latitude: 60.791944
+longitude: -161.87638
+altitude: 58.8264
+start_time: '2013-08-28 17:55:13'
+end_time: ''

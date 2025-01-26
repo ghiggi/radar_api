@@ -1,0 +1,11 @@
+radar_name: HOUSTON
+icao: KHGX
+rda_location: DICKINSON
+wfo_name: HOUSTON/ GALVESTON, TX
+wfo_sid: HGX
+radar_operator: NWS Southern Region
+start_time: '1992-08-25 02:14:52'
+end_time: ''
+latitude: 29.4719
+longitude: -95.078733
+altitude: 35.052

@@ -1,0 +1,11 @@
+radar_name: PHILADELPHIA
+icao: KDIX
+rda_location: FORT DIX
+wfo_name: MT HOLLY/PHILADELPHIA, PA
+wfo_sid: PHI
+radar_operator: NWS Eastern Region
+start_time: '1995-04-26 10:49:42'
+end_time: ''
+latitude: 39.947089
+longitude: -74.410731
+altitude: 70.104

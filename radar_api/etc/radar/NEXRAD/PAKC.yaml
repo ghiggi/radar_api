@@ -1,0 +1,11 @@
+radar_name: KING SALMON FAA
+icao: PAKC
+rda_location: ANCHORAGE
+wfo_name: ANCHORAGE, AK
+wfo_sid: AFC
+radar_operator: FAA
+latitude: 58.679444
+longitude: -156.62944
+altitude: 43.891200000000005
+start_time: '2013-08-28 17:56:11'
+end_time: ''

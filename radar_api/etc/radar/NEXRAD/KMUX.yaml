@@ -1,0 +1,11 @@
+radar_name: SAN FRANCISCO
+icao: KMUX
+rda_location: LOS GATOS
+wfo_name: MONTEREY/SAN FRANCISCO, CA
+wfo_sid: MTR
+radar_operator: NWS Western Region
+start_time: '1995-09-03 17:03:47'
+end_time: ''
+latitude: 37.155222
+longitude: -121.89844
+altitude: 1082.04

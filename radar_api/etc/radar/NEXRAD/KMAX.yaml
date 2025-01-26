@@ -1,0 +1,11 @@
+radar_name: MEDFORD
+icao: KMAX
+rda_location: MEDFORD
+wfo_name: MEDFORD, OR
+wfo_sid: MFR
+radar_operator: NWS Western Region
+start_time: '1996-08-02 07:08:16'
+end_time: ''
+latitude: 42.081169
+longitude: -122.71736
+altitude: 2304.5928

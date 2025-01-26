@@ -1,0 +1,11 @@
+radar_name: JACKSONVILLE
+icao: KJAX
+rda_location: JACKSONVILLE
+wfo_name: JACKSONVILLE, FL
+wfo_sid: JAX
+radar_operator: NWS Southern Region
+latitude: 30.484633
+longitude: -81.7019
+altitude: 48.768
+start_time: '1995-07-25 13:59:42'
+end_time: ''

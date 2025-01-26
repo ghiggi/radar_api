@@ -1,0 +1,11 @@
+radar_name: RALEIGH/DURHAM
+icao: KRAX
+rda_location: CLAYTON
+wfo_name: RALEIGH/DURHAM, NC
+wfo_sid: RAH
+radar_operator: NWS Eastern Region
+latitude: 35.665519
+longitude: -78.48975
+altitude: 140.8176
+start_time: '1995-05-04 15:44:24'
+end_time: ''

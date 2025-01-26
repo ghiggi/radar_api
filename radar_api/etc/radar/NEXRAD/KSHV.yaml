@@ -1,0 +1,11 @@
+radar_name: SHREVEPORT
+icao: KSHV
+rda_location: SHREVEPORT
+wfo_name: SHREVEPORT, LA
+wfo_sid: SHV
+radar_operator: NWS Southern Region
+start_time: '1995-09-29 19:56:23'
+end_time: ''
+latitude: 32.450833
+longitude: -93.84125
+altitude: 117.9576

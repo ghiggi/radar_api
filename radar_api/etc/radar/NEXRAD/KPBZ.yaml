@@ -1,0 +1,11 @@
+radar_name: PITTSBURGH
+icao: KPBZ
+rda_location: CORAOPOLIS
+wfo_name: PITTSBURGH, PA
+wfo_sid: PBZ
+radar_operator: NWS Eastern Region
+start_time: '1995-04-25 14:34:36'
+end_time: ''
+latitude: 40.531717
+longitude: -80.217967
+altitude: 385.8768

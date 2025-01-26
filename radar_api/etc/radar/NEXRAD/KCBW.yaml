@@ -1,0 +1,11 @@
+radar_name: CARIBOU
+icao: KCBW
+rda_location: HOULTON
+wfo_name: CARIBOU, ME
+wfo_sid: CAR
+radar_operator: NWS Eastern Region
+latitude: 46.03925
+longitude: -67.806431
+altitude: 262.128
+start_time: '1996-01-31 19:15:19'
+end_time: ''

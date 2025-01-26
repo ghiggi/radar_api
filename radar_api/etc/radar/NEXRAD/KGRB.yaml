@@ -1,0 +1,11 @@
+radar_name: GREEN BAY
+icao: KGRB
+rda_location: GREEN BAY
+wfo_name: GREEN BAY, WI
+wfo_sid: GRB
+radar_operator: NWS Central Region
+latitude: 44.498633
+longitude: -88.111111
+altitude: 250.8504
+start_time: '1995-06-13 16:53:17'
+end_time: ''

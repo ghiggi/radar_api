@@ -1,0 +1,11 @@
+radar_name: FAIRBANKS FAA
+icao: PAPD
+rda_location: FAIRBANKS
+wfo_name: FAIRBANKS, AK
+wfo_sid: AFG
+radar_operator: FAA
+start_time: '1997-01-19 19:55:38'
+end_time: ''
+latitude: 65.035114
+longitude: -147.50143
+altitude: 825.0936

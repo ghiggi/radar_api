@@ -1,0 +1,11 @@
+radar_name: TOPEKA
+icao: KTWX
+rda_location: TOPEKA
+wfo_name: TOPEKA, KS
+wfo_sid: TOP
+radar_operator: NWS Central Region
+start_time: '1995-06-02 18:23:45'
+end_time: ''
+latitude: 38.99695
+longitude: -96.23255
+altitude: 431.29200000000003

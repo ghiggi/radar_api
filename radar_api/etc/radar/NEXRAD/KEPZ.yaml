@@ -1,0 +1,11 @@
+radar_name: EL PASO
+icao: KEPZ
+rda_location: SANTA TERESA
+wfo_name: EL PASO, TX
+wfo_sid: EPZ
+radar_operator: NWS Southern Region
+latitude: 31.873056
+longitude: -106.698
+altitude: 1285.6464
+start_time: '1996-05-15 16:04:15'
+end_time: ''

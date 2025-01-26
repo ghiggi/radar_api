@@ -1,0 +1,11 @@
+radar_name: HOLLOMAN AFB
+icao: KHDX
+rda_location: SANTA TERESA
+wfo_name: EL PASO, TX
+wfo_sid: EPZ
+radar_operator: DOD
+latitude: 33.077
+longitude: -106.12003
+altitude: 1301.496
+start_time: '1995-08-24 20:29:18'
+end_time: ''

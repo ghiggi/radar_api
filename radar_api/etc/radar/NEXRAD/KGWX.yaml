@@ -1,0 +1,11 @@
+radar_name: COLUMBUS AFB
+icao: KGWX
+rda_location: JACKSON
+wfo_name: JACKSON, MS
+wfo_sid: JAN
+radar_operator: DOD
+start_time: '1995-06-02 18:03:08'
+end_time: ''
+latitude: 33.896917
+longitude: -88.329194
+altitude: 179.83200000000002

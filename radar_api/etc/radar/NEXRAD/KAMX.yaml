@@ -1,0 +1,11 @@
+radar_name: MIAMI
+icao: KAMX
+rda_location: MIAMI
+wfo_name: MIAMI, FL
+wfo_sid: MFL
+radar_operator: NWS Southern Region
+latitude: 25.611083
+longitude: -80.412667
+altitude: 33.8328
+start_time: '1993-09-27 17:50:08'
+end_time: ''

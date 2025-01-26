@@ -1,0 +1,11 @@
+radar_name: LAUGHLIN AFB
+icao: KDFX
+rda_location: NEW BRAUNFELS
+wfo_name: SAN ANTONIO, TX
+wfo_sid: EWX
+radar_operator: DOD
+start_time: '1996-03-08 07:40:02'
+end_time: ''
+latitude: 29.273139
+longitude: -100.28033
+altitude: 364.5408

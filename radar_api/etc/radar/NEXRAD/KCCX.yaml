@@ -1,0 +1,11 @@
+radar_name: STATE COLLEGE
+icao: KCCX
+rda_location: STATE COLLEGE
+wfo_name: STATE COLLEGE/CENTRAL, PA
+wfo_sid: CTP
+radar_operator: NWS Eastern Region
+start_time: '1995-05-22 16:15:22'
+end_time: ''
+latitude: 40.923167
+longitude: -78.003722
+altitude: 757.7328

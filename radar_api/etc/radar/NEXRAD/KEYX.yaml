@@ -1,0 +1,11 @@
+radar_name: EDWARDS AFB
+icao: KEYX
+rda_location: LAS VEGAS
+wfo_name: LAS VEGAS, NV
+wfo_sid: VEF
+radar_operator: DOD
+latitude: 35.09785
+longitude: -117.56075
+altitude: 875.6904000000001
+start_time: '1996-01-22 22:12:00'
+end_time: ''

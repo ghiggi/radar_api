@@ -1,0 +1,11 @@
+radar_name: BEALE AFB
+icao: KBBX
+rda_location: SACRAMENTO
+wfo_name: SACRAMENTO, CA
+wfo_sid: STO
+radar_operator: DOD
+start_time: '1996-10-22 20:54:13'
+end_time: ''
+latitude: 39.495639
+longitude: -121.63161
+altitude: 67.3608
