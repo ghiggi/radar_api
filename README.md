@@ -9,135 +9,129 @@
 | Project Status    | [![Project Status](https://www.repostatus.org/badges/latest/active.svg?style=flat)](https://www.repostatus.org/#active)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
 | Build Status      | [![Tests](https://github.com/ghiggi/radar_api/actions/workflows/tests.yaml/badge.svg?style=flat)](https://github.com/ghiggi/radar_api/actions/workflows/tests.yaml) [![Lint](https://github.com/ghiggi/radar_api/actions/workflows/lint.yaml/badge.svg?style=flat)](https://github.com/ghiggi/radar_api/actions/workflows/lint.yaml) [![Docs](https://readthedocs.org/projects/radar_api/badge/?version=latest&style=flat)](https://radar-api.readthedocs.io/en/latest/)                                                                                                                                                                                                                  |
 | Linting           | [![Black](https://img.shields.io/badge/code%20style-black-000000.svg?style=flat)](https://github.com/psf/black) [![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json&style=flat)](https://github.com/astral-sh/ruff) [![Codespell](https://img.shields.io/badge/Codespell-enabled-brightgreen?style=flat)](https://github.com/codespell-project/codespell)                                                                                                                                                                                                                                                 |
-| Code Coverage     | [![Coveralls](https://coveralls.io/repos/github/ghiggi/radar_api/badge.svg?branch=main&style=flat)](https://coveralls.io/github/ghiggi/radar_api?branch=main) [![Codecov](https://codecov.io/gh/ghiggi/radar_api/branch/main/graph/badge.svg?style=flat)](https://codecov.io/gh/ghiggi/radar_api)                                                                                                                                                                                                                                                                                                                                                                                     |
-| Code Quality      | [![Codefactor](https://www.codefactor.io/repository/github/ghiggi/radar_api/badge?style=flat)](https://www.codefactor.io/repository/github/ghiggi/radar_api) [![Codebeat](https://codebeat.co/badges/236abcf2-cbae-4ca9-8a2d-3b70495bb16b?style=flat)](https://codebeat.co/projects/github-com-ghiggi-radar_api-main) [![Codacy](https://app.codacy.com/project/badge/Grade/bee842cb10004ad8bb9288256f2fc8af?style=flat)](https://app.codacy.com/gh/ghiggi/radar_api/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade) [![Codescene](https://codescene.io/projects/36767/status-badges/code-health?style=flat)](https://codescene.io/projects/36767) |
+| Code Coverage     | [![Coveralls](https://coveralls.io/repos/github/ghiggi/radar_api/badge.svg?branch=main&style=flat)](https://coveralls.io/github/ghiggi/radar_api?branch=main) [![Codecov](https://codecov.io/gh/ghiggi/radar_api/branch/main/graph/badge.svg?token=G7IESZ02CW?style=flat)](https://codecov.io/gh/ghiggi/radar_api)                                                                                                                                                                                                                                                                                                                                                                                     |
+| Code Quality      | [![Codefactor](https://www.codefactor.io/repository/github/ghiggi/radar_api/badge?style=flat)](https://www.codefactor.io/repository/github/ghiggi/radar_api) [![Codebeat](https://codebeat.co/badges/57498d71-f042-473f-bb8e-9b45e50572d8?style=flat)](https://codebeat.co/projects/github-com-ghiggi-radar_api-main) [![Codacy](https://app.codacy.com/project/badge/Grade/bee842cb10004ad8bb9288256f2fc8af?style=flat)](https://app.codacy.com/gh/ghiggi/radar_api/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade) [![Codescene](https://codescene.io/projects/63299/status-badges/average-code-health?style=flat)](https://codescene.io/projects/63299) |
 | License           | [![License](https://img.shields.io/github/license/ghiggi/radar_api?style=flat)](https://github.com/ghiggi/radar_api/blob/main/LICENSE)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
-| Community         | [![Slack](https://img.shields.io/badge/Slack-radar_api-green.svg?logo=slack&style=flat)](https://join.slack.com/t/gpmapi/shared_invite/zt-28vkxzjs1-~cIYci2o3G0qEEoQJVMQRg) [![GitHub Discussions](https://img.shields.io/badge/GitHub-Discussions-green?logo=github&style=flat)](https://github.com/ghiggi/radar_api/discussions)                                                                                                                                                                                                                                                                                                                                                |
-| Citation          | [![DOI](https://zenodo.org/badge/286664485.svg?style=flat)](https://doi.org/10.5281/zenodo.7753488)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
-
-[**Slack**](https://join.slack.com/t/gpmapi/shared_invite/zt-28vkxzjs1-~cIYci2o3G0qEEoQJVMQRg) | [**Docs**](https://radar-api.readthedocs.io/en/latest/)
+| Community         | [![Discourse](https://img.shields.io/badge/Slack-radar_api-green.svg?logo=slack&style=flat)](https://openradar.discourse.group/) [![GitHub Discussions](https://img.shields.io/badge/GitHub-Discussions-green?logo=github&style=flat)](https://github.com/ghiggi/radar_api/discussions)                                                                                                                                                                                                                                                                                                                                                |
+| Citation          | [![DOI](https://zenodo.org/badge/286664485.svg?style=flat)](https://doi.org/10.5281/zenodo.7753488)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+[**Docs**](https://radar-api.readthedocs.io/en/latest/)
 
 ## 🚀 Quick start
 
-RADAR-API provides an easy-to-use python interface to download, read, process and visualize most
-of the products of the Global Precipitation Measurement Mission (GPM) data archive.
+RADAR-API provides an easy-to-use python interface to find, download and
+read weather radar data from several meteorological services.
+Data are retrieved directly from cloud buckets.
+Current radar networks supported are: NEXRAD, SIDEAM and FMI.
 
-The list of available products can be retrieved using:
+The list of available radar networks and radars can be retrieved using:
 
 ```python
-import gpm
+import radar_api
 
-gpm.available_products(product_types="RS")  # research products
-gpm.available_products(product_types="NRT")  # near-real-time products
+radar_api.available_networks() 
+radar_api.available_radars()
+radar_api.available_radars(network="NEXRAD")
 ```
 
-Before starting using RADAR-API, we highly suggest to save into a configuration file:
-
-1. your credentials to access the [NASA Precipitation Processing System (PPS) servers](https://gpm.nasa.gov/data/sources/pps-research)
-1. the directory on the local disk where to save the GPM dataset of interest.
+Before starting using RADAR-API, we highly suggest to save into a configuration file
+the directory on the local disk where to save the radar dataset of interest.
 
 To facilitate the creation of the configuration file, you can run the following script:
 
 ```python
-import gpm
+import radar_api
 
-username_pps = "<your PPS username>"  # likely your mail
-password_pps = "<your PPS password>"  # likely your mail
-base_dir = "<path/to/directory/GPM"  # path to the directory where to download the data
-gpm.define_configs(
-    username_pps=username_pps, password_pps=password_pps, base_dir=base_dir
+base_dir = "<path/to/directory/RADAR"  # path to the directory where to download the data
+radar_api.define_configs(
+   base_dir=base_dir
 )
 
 # You can check that the config file has been correctly created with:
-configs = gpm.read_configs()
+configs = radar_api.read_configs()
 print(configs)
 ```
-
 ______________________________________________________________________
 
-### 📥 Download GPM data
+### 📥 Download radar data
 
-Now you can either start to download GPM data within python:
+You can start to download radar data using the following code snippet:
 
 ```python
-import gpm
+import radar_data
 import datetime
 
-product = "2A-DPR"
-product_type = "RS"
-version = 7
+start_time = "2021-02-01 12:00:00"
+end_time = "2021-02-01 13:00:00"
+ 
+radar = "KABR"
+network = "NEXRAD"
 
-start_time = datetime.datetime(2020, 7, 22, 0, 1, 11)
-end_time = datetime.datetime(2020, 7, 22, 0, 23, 5)
-
-gpm.download(
-    product=product,
-    product_type=product_type,
-    version=version,
-    n_threads=2,
+filepaths = radar_api.download_files(
+    network=network,
+    radar=radar,
     start_time=start_time,
     end_time=end_time,
 )
+ 
 ```
-
-or from the terminal using i.e. `download_daily_gpm_data <product> <year> <month> <day>`:
-
-```bash
-download_daily_gpm_data 2A-DPR 2022 7 22
-```
-
 ______________________________________________________________________
 
-### 💫 Open GPM files into xarray
+### 💫 Open radar files into xarray or pyart
 
-A GPM granule can be opened in python using:
+A radar file can be opened into an xarray object or a pyart radar object.
+RADAR-API make use of pyart and xradar readers to open the files.
 
 ```python
-import gpm
+import radar_api
+import pyart
 
-ds = gpm.open_granule_dataset(<path_to_granule>)
-# or
-dt = gpm.open_granule_datatree(<path_to_granule>)
+# Open xradar datatree
+dt = radar_api.open_datatree(filepath, network=network)
+dt = radar_api.open_datatree(filepath, network=network, chunks={})
+dt["sweep_0"].to_dataset()
+
+# Open xradar dataset (a single radar sweep)
+ds = radar_api.open_dataset(filepath, network=network, group="sweep_0")
+
+# Open pyart radar object
+radar_obj = radar_api.open_pyart(filepath, network=network)
+
+# Display data with pyart
+display = pyart.graph.RadarDisplay(radar_obj)
+display.plot('reflectivity') # title="{} {}".format(scan.radar_id,scan.scan_time))
+display.set_limits((-150, 150), (-150, 150))
 
 ```
 
-while multiple granules over a specific time period can be opened using:
+RADAR-API allows to read directly radar data from the cloud without the
+need to previously download the files on the local disk.
 
 ```python
-import gpm
-import datetime
 
-product = "2A-DPR"
-product_type = "RS"
-version = 7
+# Search for files on cloud bucket 
+filepaths = radar_api.find_files(
+    network=network,
+    radar=radar,
+    start_time=start_time,
+    end_time=end_time,
+    protocol="s3",
+    )
+print(filepaths)
 
-start_time = datetime.datetime(2020,7, 22, 0, 1, 11)
-end_time = datetime.datetime(2020,7, 22, 0, 23, 5)
-ds = gpm.open_dataset(product=product,
-                      product_type=product_type,
-                      version=version
-                      start_time=start_time,
-                      end_time=end_time)
+# Open with xradar datatree
+dt = radar_api.open_datatree(filepath, network=network)
 ```
 
 ______________________________________________________________________
 
 ### 📖 Explore the RADAR-API documentation
 
-To discover all RADAR-API download, manipulation, analysis and plotting features,
+To discover all RADAR-API utilities and functionalities,
 please read the software documentation available at [https://radar-api.readthedocs.io/en/latest/](https://radar-api.readthedocs.io/en/latest/).
-
-If you are new to RADAR-API, we recommend starting with the following pages:
-
-- [Introduction to GPM sensors, products, theoretical and practical aspects](https://radar-api.readthedocs.io/en/latest/00_introduction.html)
-- [Software installation](https://radar-api.readthedocs.io/en/latest/02_installation.html)
-- [Configuration of RADAR-API to start download GPM Data from NASA PPS and GES DISC servers](https://radar-api.readthedocs.io/en/latest/03_quickstart.html)
-- [Basic tutorials on how to read, manipulate and visualize radar, passive microwave sensors and IMERG products](https://radar-api.readthedocs.io/en/latest/04_tutorials.htmls)
 
 All RADAR-API tutorials are available as Jupyter Notebooks in the [`tutorial`](https://github.com/ghiggi/radar_api/tree/main/tutorials) directory.
 
 ______________________________________________________________________
-
 ## 🛠️ Installation
 
 ### conda
@@ -169,7 +163,7 @@ To install the latest development version via pip, see the [documentation][dev_i
 ## 💭 Feedback and Contributing Guidelines
 
 If you aim to contribute your data or discuss the future development of RADAR-API,
-we highly suggest to join the [**RADAR-API Slack Workspace**](https://join.slack.com/t/gpmapi/shared_invite/zt-28vkxzjs1-~cIYci2o3G0qEEoQJVMQRg)
+we highly suggest to join the [**Open Radar Science Discourse Group**](https://openradar.discourse.group/)
 
 Feel free to also open a [GitHub Issue](https://github.com/ghiggi/radar_api/issues) or a [GitHub Discussion](https://github.com/ghiggi/radar_api/discussions) specific to your questions or ideas.
 
