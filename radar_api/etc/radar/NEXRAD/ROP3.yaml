@@ -1,8 +1,8 @@
 icao: ROP3
-radar_name: ''
-radar_operator: ''
-rda_location: ''
-wfo_name: ''
-wfo_sid: ''
-start_time: '2012-07-23 17:05:21'
-end_time: '2021-08-01 23:56:38'
+radar_name: ""
+radar_operator: ""
+rda_location: ""
+wfo_name: ""
+wfo_sid: ""
+start_time: "2012-07-23 17:05:21"
+end_time: "2021-08-01 23:56:38"

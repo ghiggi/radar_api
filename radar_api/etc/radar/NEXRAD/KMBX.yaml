@@ -4,8 +4,8 @@ rda_location: BISMARCK
 wfo_name: BISMARCK, ND
 wfo_sid: BIS
 radar_operator: DOD
-start_time: '1996-05-11 19:00:23'
-end_time: ''
+start_time: "1996-05-11 19:00:23"
+end_time: ""
 latitude: 48.393056
 longitude: -100.86444
 altitude: 484.632

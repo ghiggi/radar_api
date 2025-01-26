@@ -1,11 +1,11 @@
 icao: TOKC
-radar_name: ''
-radar_operator: ''
-rda_location: ''
-wfo_name: ''
-wfo_sid: ''
+radar_name: ""
+radar_operator: ""
+rda_location: ""
+wfo_name: ""
+wfo_sid: ""
 latitude: 35.276111
 longitude: -97.51
 altitude: 398.9832
-start_time: '2020-03-10 15:27:58'
-end_time: ''
+start_time: "2020-03-10 15:27:58"
+end_time: ""

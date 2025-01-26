@@ -26,15 +26,14 @@
 # -----------------------------------------------------------------------------.
 """This module provide tools to extraction information from the granules' filenames."""
 
-import datetime
 import os
 import re
 from collections import defaultdict
-import numpy as np
-from radar_api.utils.yaml import read_yaml
-from trollsift import Parser
-from radar_api.io import get_network_filename_patterns
 
+import numpy as np
+from trollsift import Parser
+
+from radar_api.io import get_network_filename_patterns
 
 # TODO: Create a class all such methods that depend on the filename_patterns and network
 
@@ -47,29 +46,29 @@ from radar_api.io import get_network_filename_patterns
 def parse_filename(filename, network):
     filename_patterns = get_network_filename_patterns(network)
     pattern_identified = False
-    for pattern in filename_patterns: 
+    for pattern in filename_patterns:
         try:
             p = Parser(pattern)
             info_dict = p.parse(filename)
             pattern_identified = True
-        except Exception: 
+        except Exception:
             pass
         if pattern_identified:
-            break 
-    if not pattern_identified: 
+            break
+    if not pattern_identified:
         # print(f"Report the bug for filename '{filename}'.")
         info_dict = {}
     return info_dict
 
- 
+
 def _get_info_from_filename(filename, network):
     """Retrieve file information dictionary from filename."""
     try:
         info_dict = parse_filename(filename, network=network)
     except Exception:
         raise ValueError(f"Impossible to infer file information from '{filename}'")
-    # Set default volume_identifier if missing 
-    if "volume_identifier" not in info_dict: 
+    # Set default volume_identifier if missing
+    if "volume_identifier" not in info_dict:
         info_dict["volume_identifier"] = ""
     return info_dict
 
@@ -240,7 +239,7 @@ def group_filepaths(filepaths, network, groups=None):
         List of filepaths.
     groups: list or str
         The group keys by which to group the filepaths.
-        Valid group keys are 
+        Valid group keys are
         ``start_time``, ``end_time``, ``version``, ``volume_identifier``, ``radar_acronym``, ``extension``,
         ``year``, ``month``, ``day``,  ``doy``, ``dow``, ``hour``, ``minute``, ``second``,
         ``month_name``, ``quarter``, ``season``.
@@ -259,5 +258,7 @@ def group_filepaths(filepaths, network, groups=None):
         return filepaths
     groups = check_groups(groups)
     filepaths_dict = defaultdict(list)
-    _ = [filepaths_dict[_get_groups_value(groups, filepath, network=network)].append(filepath) for filepath in filepaths]
+    _ = [
+        filepaths_dict[_get_groups_value(groups, filepath, network=network)].append(filepath) for filepath in filepaths
+    ]
     return dict(filepaths_dict)

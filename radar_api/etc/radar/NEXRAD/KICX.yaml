@@ -4,8 +4,8 @@ rda_location: CEDAR CITY
 wfo_name: SALT LAKE CITY, UT
 wfo_sid: SLC
 radar_operator: NWS Western Region
-start_time: '1998-03-03 18:04:08'
-end_time: ''
+start_time: "1998-03-03 18:04:08"
+end_time: ""
 latitude: 37.59105
 longitude: -112.86218
 altitude: 3278.7336

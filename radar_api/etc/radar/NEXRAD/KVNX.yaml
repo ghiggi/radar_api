@@ -4,8 +4,8 @@ rda_location: NORMAN
 wfo_name: NORMAN, OK
 wfo_sid: OUN
 radar_operator: DOD
-start_time: '1995-10-11 17:02:45'
-end_time: ''
+start_time: "1995-10-11 17:02:45"
+end_time: ""
 latitude: 36.740617
 longitude: -98.127717
 altitude: 383.4384

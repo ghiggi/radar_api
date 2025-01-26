@@ -4,8 +4,8 @@ rda_location: PUEBLO
 wfo_name: PUEBLO, CO
 wfo_sid: PUB
 radar_operator: NWS Central Region
-start_time: '1995-06-13 14:42:48'
-end_time: ''
+start_time: "1995-06-13 14:42:48"
+end_time: ""
 latitude: 38.45955
 longitude: -104.18135
 altitude: 1634.6424000000002

@@ -4,8 +4,8 @@ rda_location: FORT KNOX
 wfo_name: LOUISVILLE, KY
 wfo_sid: LMK
 radar_operator: NWS Central Region
-start_time: '1995-06-09 02:03:01'
-end_time: ''
+start_time: "1995-06-09 02:03:01"
+end_time: ""
 latitude: 37.975278
 longitude: -85.943889
 altitude: 253.8984

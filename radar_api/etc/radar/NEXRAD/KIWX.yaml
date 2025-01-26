@@ -7,5 +7,5 @@ radar_operator: NWS Central Region
 latitude: 41.358611
 longitude: -85.7
 altitude: 321.8688
-start_time: '1998-04-24 02:28:47'
-end_time: ''
+start_time: "1998-04-24 02:28:47"
+end_time: ""

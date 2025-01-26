@@ -24,9 +24,10 @@
 
 # -----------------------------------------------------------------------------.
 """This module provide tools to extraction information from the granules' filenames."""
+import datetime
 import os
-import datetime 
-import numpy as np 
+
+import numpy as np
 
 PROTOCOLS = ["gcs", "s3", "local", "file"]
 BUCKET_PROTOCOLS = ["gcs", "s3"]
@@ -45,7 +46,7 @@ def check_protocol(protocol):
 
 
 def check_download_protocol(protocol):
-    """ "Check protocol validity for download."""
+    """Check protocol validity for download."""
     if protocol not in ["gcs", "s3"]:
         raise ValueError("Please specify either 'gcs' or 's3' protocol for download.")
 
@@ -62,21 +63,23 @@ def check_base_dir(base_dir):
     return base_dir
 
 
-def check_radar(radar, network): 
-    """Check radar name validity"""
+def check_radar(radar, network):
+    """Check radar name validity."""
     from radar_api.io import available_radars
+
     check_network(network)
-    valid_radars = available_radars() 
-    if radar not in valid_radars: 
+    valid_radars = available_radars()
+    if radar not in valid_radars:
         raise ValueError(f"Invalid {network} radar {radar}. Available radars: {valid_radars}")
     return radar
 
 
 def check_network(network):
-    """Check radar network."""
+    """Check radar network validity."""
     from radar_api.io import available_networks
-    valid_networks = available_networks() 
-    if network not in valid_networks: 
+
+    valid_networks = available_networks()
+    if network not in valid_networks:
         raise ValueError(f"Invalid network {network}. Available networks: {valid_networks}")
     return network
 
@@ -134,12 +137,12 @@ def check_start_end_time(start_time, end_time):
     end_time = check_time(end_time)
     # Check start_time and end_time are chronological
     if start_time > end_time:
-        raise ValueError("Provide start_time occuring before of end_time")
+        raise ValueError("Provide start_time occurring before of end_time")
     # Check start_time is in the past
     if start_time > datetime.datetime.utcnow():
-        raise ValueError("Provide a start_time occuring in the past.")
-        
-    # end_time must not be checked if wanting to search on latest file available ! 
+        raise ValueError("Provide a start_time occurring in the past.")
+
+    # end_time must not be checked if wanting to search on latest file available !
     # if end_time > datetime.datetime.utcnow():
-    #     raise ValueError("Provide a end_time occuring in the past.")
+    #     raise ValueError("Provide a end_time occurring in the past.")
     return (start_time, end_time)

@@ -4,8 +4,8 @@ rda_location: ORCUTT, CA
 wfo_name: AFWA
 wfo_sid: .nan
 radar_operator: AFWA
-start_time: '1995-11-21 20:12:03'
-end_time: ''
+start_time: "1995-11-21 20:12:03"
+end_time: ""
 latitude: 34.83855
 longitude: -120.39791
 altitude: 412.6992

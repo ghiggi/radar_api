@@ -4,8 +4,8 @@ rda_location: PHOENIX
 wfo_name: PHOENIX, AZ
 wfo_sid: PSR
 radar_operator: NWS Western Region
-start_time: '1993-06-30 22:25:28'
-end_time: ''
+start_time: "1993-06-30 22:25:28"
+end_time: ""
 latitude: 33.289233
 longitude: -111.66991
 altitude: 434.64480000000003

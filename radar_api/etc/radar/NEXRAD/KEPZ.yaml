@@ -7,5 +7,5 @@ radar_operator: NWS Southern Region
 latitude: 31.873056
 longitude: -106.698
 altitude: 1285.6464
-start_time: '1996-05-15 16:04:15'
-end_time: ''
+start_time: "1996-05-15 16:04:15"
+end_time: ""

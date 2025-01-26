@@ -1,11 +1,11 @@
 icao: TMCO
-radar_name: ''
-radar_operator: ''
-rda_location: ''
-wfo_name: ''
-wfo_sid: ''
+radar_name: ""
+radar_operator: ""
+rda_location: ""
+wfo_name: ""
+wfo_sid: ""
 latitude: 28.343889
 longitude: -81.326111
 altitude: 52.1208
-start_time: '2020-06-10 13:35:18'
-end_time: ''
+start_time: "2020-06-10 13:35:18"
+end_time: ""

@@ -4,8 +4,8 @@ rda_location: GLASGOW
 wfo_name: GLASGOW, MT
 wfo_sid: GGW
 radar_operator: NWS Western Region
-start_time: '1996-06-06 18:11:25'
-end_time: ''
+start_time: "1996-06-06 18:11:25"
+end_time: ""
 latitude: 48.206361
 longitude: -106.62469
 altitude: 726.6432000000001

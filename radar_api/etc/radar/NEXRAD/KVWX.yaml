@@ -4,8 +4,8 @@ rda_location: OWENSVILLE
 wfo_name: PADUCAH, KY
 wfo_sid: VWX
 radar_operator: NWS Central Region
-start_time: '2004-01-05 16:29:17'
-end_time: ''
+start_time: "2004-01-05 16:29:17"
+end_time: ""
 latitude: 38.26025
 longitude: -87.724528
 altitude: 190.5

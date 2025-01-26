@@ -27,23 +27,6 @@ project = "radar_api"
 copyright = "Gionata Ghiggi"
 author = "Gionata Ghiggi"
 
-
-# -- Copy Jupyter Notebook Tutorials------------------------------------------
-root_path = os.path.dirname(os.path.dirname(os.getcwd()))
-filenames = [
-    "tutorial_02_IMERG.ipynb",
-    "tutorial_02_PMW_1C.ipynb",
-    "tutorial_02_PMW_2A.ipynb",
-    "tutorial_02_RADAR_2A.ipynb",
-    "tutorial_03_SR_GR_Matching.ipynb",
-    "tutorial_03_SR_GR_Calibration.ipynb",
-]
-for filename in filenames:
-    in_path = os.path.join(root_path, "tutorials", filename)
-    out_path = os.path.join(os.getcwd(), "tutorials", filename)
-    shutil.copyfile(in_path, out_path)
-
-
 # -- General configuration ---------------------------------------------------
 
 # Add any Sphinx extension module names here, as strings. They can be

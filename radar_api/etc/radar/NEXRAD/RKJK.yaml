@@ -4,8 +4,8 @@ rda_location: HICKAM AFB, HI
 wfo_name: AFWA
 wfo_sid: .nan
 radar_operator: AFWA
-start_time: '1997-06-18 02:24:08'
-end_time: ''
+start_time: "1997-06-18 02:24:08"
+end_time: ""
 latitude: 35.924167
 longitude: 126.622222
 altitude: 58.52160000000001

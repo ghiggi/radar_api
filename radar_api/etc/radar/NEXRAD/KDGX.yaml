@@ -4,8 +4,8 @@ rda_location: BRANDON
 wfo_name: JACKSON, MS
 wfo_sid: JAN
 radar_operator: NWS Southern Region
-start_time: '2004-04-01 16:45:22'
-end_time: ''
+start_time: "2004-04-01 16:45:22"
+end_time: ""
 latitude: 32.279944
 longitude: -89.984444
 altitude: 185.6232

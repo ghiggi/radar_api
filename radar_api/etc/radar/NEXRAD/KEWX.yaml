@@ -4,8 +4,8 @@ rda_location: NEW BRAUNFELS
 wfo_name: SAN ANTONIO, TX
 wfo_sid: EWX
 radar_operator: NWS Southern Region
-start_time: '1995-04-12 12:39:21'
-end_time: ''
+start_time: "1995-04-12 12:39:21"
+end_time: ""
 latitude: 29.704056
 longitude: -98.028611
 altitude: 233.78160000000003

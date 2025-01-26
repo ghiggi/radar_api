@@ -1,11 +1,11 @@
 icao: TDAY
-radar_name: ''
-radar_operator: ''
-rda_location: ''
-wfo_name: ''
-wfo_sid: ''
-start_time: '2020-06-19 14:39:23'
-end_time: ''
+radar_name: ""
+radar_operator: ""
+rda_location: ""
+wfo_name: ""
+wfo_sid: ""
+start_time: "2020-06-19 14:39:23"
+end_time: ""
 latitude: 40.021944
 longitude: -84.123056
 altitude: 310.896

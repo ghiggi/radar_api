@@ -4,8 +4,8 @@ rda_location: EAST BERNE
 wfo_name: ALBANY, NY
 wfo_sid: ALY
 radar_operator: NWS Eastern Region
-start_time: '1995-08-02 03:41:12'
-end_time: ''
+start_time: "1995-08-02 03:41:12"
+end_time: ""
 latitude: 42.586556
 longitude: -74.064083
 altitude: 589.788

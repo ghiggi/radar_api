@@ -1,11 +1,11 @@
 icao: TMDW
-radar_name: ''
-radar_operator: ''
-rda_location: ''
-wfo_name: ''
-wfo_sid: ''
+radar_name: ""
+radar_operator: ""
+rda_location: ""
+wfo_name: ""
+wfo_sid: ""
 latitude: 41.651111
 longitude: -87.73
 altitude: 232.86720000000003
-start_time: '2020-07-29 16:37:51'
-end_time: ''
+start_time: "2020-07-29 16:37:51"
+end_time: ""

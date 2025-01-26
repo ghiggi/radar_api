@@ -4,8 +4,8 @@ rda_location: COLCHESTER
 wfo_name: BURLINGTON, VT
 wfo_sid: BTV
 radar_operator: NWS Eastern Region
-start_time: '1997-06-04 16:19:19'
-end_time: ''
+start_time: "1997-06-04 16:19:19"
+end_time: ""
 latitude: 44.511
 longitude: -73.166431
 altitude: 131.3688

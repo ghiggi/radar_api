@@ -4,8 +4,8 @@ rda_location: CHAFFEE RIDGE
 wfo_name: TULSA, OK
 wfo_sid: TSA
 radar_operator: NWS Southern Region
-start_time: '1998-04-22 19:51:22'
-end_time: ''
+start_time: "1998-04-22 19:51:22"
+end_time: ""
 latitude: 35.290417
 longitude: -94.361889
 altitude: 224.63760000000002

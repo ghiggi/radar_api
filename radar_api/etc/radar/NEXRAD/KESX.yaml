@@ -4,8 +4,8 @@ rda_location: LAS VEGAS
 wfo_name: LAS VEGAS, NV
 wfo_sid: VEF
 radar_operator: NWS Western Region
-start_time: '1995-10-19 01:19:08'
-end_time: ''
+start_time: "1995-10-19 01:19:08"
+end_time: ""
 latitude: 35.70135
 longitude: -114.89165
 altitude: 1508.1504

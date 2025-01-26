@@ -4,8 +4,8 @@ rda_location: GRAND FORKS
 wfo_name: FARGO/GRAND FORKS, ND
 wfo_sid: FGF
 radar_operator: NWS Central Region
-start_time: '1996-03-28 19:29:59'
-end_time: ''
+start_time: "1996-03-28 19:29:59"
+end_time: ""
 latitude: 47.527778
 longitude: -97.325556
 altitude: 330.0984

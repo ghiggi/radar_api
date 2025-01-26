@@ -29,23 +29,23 @@
 import contextlib
 import os
 from importlib.metadata import PackageNotFoundError, version
+
 from radar_api._config import config  # noqa
 from radar_api.configs import (  # noqa
     define_configs,
     read_configs,
 )
+from radar_api.download import download_files
+from radar_api.info import group_filepaths
 from radar_api.io import (
-    available_radars, 
     available_networks,
-    open_datatree, 
-    open_dataset, 
+    available_radars,
+    open_dataset,
+    open_datatree,
     open_pyart,
 )
 from radar_api.search import find_files
-from radar_api.info import group_filepaths
-from radar_api.download import download_files
 
- 
 _root_path = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
 
 
@@ -54,7 +54,7 @@ __all__ = [
     "available_networks",
     "find_files",
     "group_filepaths",
-    "open_datatree", 
+    "open_datatree",
     "open_dataset",
     "open_pyart",
     "download_files",

@@ -4,8 +4,8 @@ rda_location: NIXON
 wfo_name: RENO, NV
 wfo_sid: REV
 radar_operator: NWS Western Region
-start_time: '1995-12-05 05:28:25'
-end_time: ''
+start_time: "1995-12-05 05:28:25"
+end_time: ""
 latitude: 39.754056
 longitude: -119.46202
 altitude: 2559.1008

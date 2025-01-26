@@ -4,8 +4,8 @@ rda_location: HONOLULU
 wfo_name: HONOLULU, HI
 wfo_sid: HFO
 radar_operator: FAA
-start_time: '1998-07-23 01:29:01'
-end_time: ''
+start_time: "1998-07-23 01:29:01"
+end_time: ""
 latitude: 20.125278
 longitude: -155.77777
 altitude: 1208.8368

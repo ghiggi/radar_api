@@ -4,8 +4,8 @@ rda_location: JACKSONVILLE
 wfo_name: JACKSONVILLE, FL
 wfo_sid: JAX
 radar_operator: DOD
-start_time: '1997-01-02 05:04:29'
-end_time: ''
+start_time: "1997-01-02 05:04:29"
+end_time: ""
 latitude: 30.890278
 longitude: -83.001806
 altitude: 100.584

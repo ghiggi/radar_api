@@ -3,12 +3,11 @@ description: "NOAA NEXRAD radar network"
 cloud_directory_pattern: "s3://noaa-nexrad-level2/{time:%Y}/{time:%m}/{time:%d}/{radar:s}"
 local_directory_pattern: "{base_dir}/nexrad/{time:%Y}/{time:%m}/{time:%d}/{time:%H}/{radar:s}"
 filename_patterns:
--  "{radar_acronym:4s}{start_time:%Y%m%d_%H%M%S}_V0{version:1s}"
--  "{radar_acronym:4s}{start_time:%Y%m%d_%H%M%S}_V0{version:1s}_{volume_identifier:3s}"
--  "{radar_acronym:4s}{start_time:%Y%m%d_%H%M%S}_V0{version:1s}.gz"
--  "{radar_acronym:4s}{start_time:%Y%m%d_%H%M%S}_V0{version:1s}_{volume_identifier:3s}.gz"
--  "{radar_acronym:4s}{start_time:%Y%m%d_%H%M%S}.gz"
+  - "{radar_acronym:4s}{start_time:%Y%m%d_%H%M%S}_V0{version:1s}"
+  - "{radar_acronym:4s}{start_time:%Y%m%d_%H%M%S}_V0{version:1s}_{volume_identifier:3s}"
+  - "{radar_acronym:4s}{start_time:%Y%m%d_%H%M%S}_V0{version:1s}.gz"
+  - "{radar_acronym:4s}{start_time:%Y%m%d_%H%M%S}_V0{version:1s}_{volume_identifier:3s}.gz"
+  - "{radar_acronym:4s}{start_time:%Y%m%d_%H%M%S}.gz"
 pyart_reader: read_nexrad_archive
 xradar_reader: open_nexradlevel2_datatree
 xradar_engine: nexradlevel2
-

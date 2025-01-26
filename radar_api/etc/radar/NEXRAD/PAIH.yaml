@@ -4,8 +4,8 @@ rda_location: ANCHORAGE
 wfo_name: ANCHORAGE, AK
 wfo_sid: AFC
 radar_operator: FAA
-start_time: '1997-05-02 18:59:23'
-end_time: ''
+start_time: "1997-05-02 18:59:23"
+end_time: ""
 latitude: 59.460767
 longitude: -146.30344
 altitude: 40.2336

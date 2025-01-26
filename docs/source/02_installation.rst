@@ -168,7 +168,7 @@ The following bash code allow to install all optional dependencies:
 
 .. code-block:: bash
 
-   conda install -c conda-forge jupyter spyder xradar wradlib arm_pyart flox numbagg bottleneck opt-einsum python-graphviz bokeh 
+   conda install -c conda-forge jupyter spyder xradar wradlib arm_pyart flox numbagg bottleneck opt-einsum python-graphviz bokeh
 
 
 IDE Tools

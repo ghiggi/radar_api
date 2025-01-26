@@ -1,8 +1,8 @@
 icao: ROP4
-radar_name: ''
-radar_operator: ''
-rda_location: ''
-wfo_name: ''
-wfo_sid: ''
-start_time: '2013-10-31 14:55:19'
-end_time: '2024-04-01 23:53:53'
+radar_name: ""
+radar_operator: ""
+rda_location: ""
+wfo_name: ""
+wfo_sid: ""
+start_time: "2013-10-31 14:55:19"
+end_time: "2024-04-01 23:53:53"

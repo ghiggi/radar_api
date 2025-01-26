@@ -26,7 +26,7 @@
 # -----------------------------------------------------------------------------.
 """RADAR-API configurations settings."""
 import os
-from typing import Optional
+
 from radar_api.utils.yaml import read_yaml, write_yaml
 
 
@@ -39,11 +39,7 @@ def _define_config_filepath():
 
 
 def define_configs(
-    base_dir: Optional[str] = None,
-    username_pps: Optional[str] = None,
-    password_pps: Optional[str] = None,
-    username_earthdata: Optional[str] = None,
-    password_earthdata: Optional[str] = None,
+    base_dir: str | None = None,
 ):
     """Defines the RADAR-API configuration file with the given credentials and base directory.
 
@@ -51,7 +47,7 @@ def define_configs(
     ----------
     base_dir : str
         The base directory where radar data are stored.
-  
+
     Notes
     -----
     This function writes a YAML file to the user's home directory at ~/.config_radar_api.yaml

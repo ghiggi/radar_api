@@ -4,8 +4,8 @@ rda_location: VALLEY
 wfo_name: OMAHA, NE
 wfo_sid: OAX
 radar_operator: NWS Central Region
-start_time: '1995-04-18 17:28:56'
-end_time: ''
+start_time: "1995-04-18 17:28:56"
+end_time: ""
 latitude: 41.320369
 longitude: -96.366819
 altitude: 384.6576

@@ -4,8 +4,8 @@ rda_location: HAMMOND
 wfo_name: NEW ORLEANS/SLIDELL, LA
 wfo_sid: LIX
 radar_operator: NWS Southern Region
-start_time: '2024-03-23 21:30:16'
-end_time: ''
+start_time: "2024-03-23 21:30:16"
+end_time: ""
 latitude: 30.52083
 longitude: -90.4175
 altitude: 13.411200000000001

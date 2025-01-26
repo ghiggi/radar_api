@@ -1,11 +1,11 @@
 icao: TCMH
-radar_name: ''
-radar_operator: ''
-rda_location: ''
-wfo_name: ''
-wfo_sid: ''
+radar_name: ""
+radar_operator: ""
+rda_location: ""
+wfo_name: ""
+wfo_sid: ""
 latitude: 40.006111
 longitude: -82.715
 altitude: 349.91040000000004
-start_time: '2020-06-19 14:21:33'
-end_time: ''
+start_time: "2020-06-19 14:21:33"
+end_time: ""

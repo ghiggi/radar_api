@@ -2,8 +2,8 @@ network: "FMI"
 description: "Finnish Meteorological Institute radars"
 cloud_directory_pattern: "s3://fmi-opendata-radar-volume-hdf5/{time:%Y}/{time:%m}/{time:%d}/{radar:s}"
 local_directory_pattern: "{base_dir}/fmi/{time:%Y}/{time:%m}/{time:%d}/{time:%H}/{radar:s}"
-filename_patterns: 
-- "{start_time:%Y%m%d%H%M}_{radar_acronym:s}_{volume_identifier:s}.{extension}"
+filename_patterns:
+  - "{start_time:%Y%m%d%H%M}_{radar_acronym:s}_{volume_identifier:s}.{extension}"
 pyart_reader: read_odim_h5
 xradar_reader: open_odim_datatree
 xradar_engine: odim

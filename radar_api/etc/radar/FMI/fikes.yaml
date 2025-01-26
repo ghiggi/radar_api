@@ -1,14 +1,14 @@
-icao: ''
-radar_name: ''
-start_time: '2014-11-21 10:35:00'
-end_time: ''
+icao: ""
+radar_name: ""
+start_time: "2014-11-21 10:35:00"
+end_time: ""
 latitude: 61.90699204802513
 longitude: 29.797720089554787
 altitude: 174.0
 geographic_extent:
-- 25.042351268200505
-- 34.5530889109091
-- 59.66525750718666
-- 64.14799161060981
+  - 25.042351268200505
+  - 34.5530889109091
+  - 59.66525750718666
+  - 64.14799161060981
 maximum_range: 249937.5
 maximum_horizontal_distance: 249786.31912443327

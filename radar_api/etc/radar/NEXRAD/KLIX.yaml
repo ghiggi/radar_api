@@ -1,11 +1,11 @@
 icao: KLIX
-radar_name: ''
-radar_operator: ''
-rda_location: ''
-wfo_name: ''
-wfo_sid: ''
-start_time: '1995-05-16 18:03:20'
-end_time: '2023-11-01 23:58:49'
+radar_name: ""
+radar_operator: ""
+rda_location: ""
+wfo_name: ""
+wfo_sid: ""
+start_time: "1995-05-16 18:03:20"
+end_time: "2023-11-01 23:58:49"
 latitude: 30.336667
 longitude: -89.825417
 altitude: 54.559200000000004

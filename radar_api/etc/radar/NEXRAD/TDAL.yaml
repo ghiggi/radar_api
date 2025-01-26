@@ -1,11 +1,11 @@
 icao: TDAL
-radar_name: ''
-radar_operator: ''
-rda_location: ''
-wfo_name: ''
-wfo_sid: ''
-start_time: '2020-03-18 17:44:05'
-end_time: ''
+radar_name: ""
+radar_operator: ""
+rda_location: ""
+wfo_name: ""
+wfo_sid: ""
+start_time: "2020-03-18 17:44:05"
+end_time: ""
 latitude: 32.926111
 longitude: -96.968056
 altitude: 189.8904

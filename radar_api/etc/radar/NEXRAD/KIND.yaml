@@ -4,8 +4,8 @@ rda_location: INDIANAPOLIS
 wfo_name: INDIANAPOLIS, IN
 wfo_sid: IND
 radar_operator: NWS Central Region
-start_time: '1995-04-24 16:02:57'
-end_time: ''
+start_time: "1995-04-24 16:02:57"
+end_time: ""
 latitude: 39.7075
 longitude: -86.280278
 altitude: 270.3576

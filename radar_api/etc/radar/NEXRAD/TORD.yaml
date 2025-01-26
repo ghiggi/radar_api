@@ -1,11 +1,11 @@
 icao: TORD
-radar_name: ''
-radar_operator: ''
-rda_location: ''
-wfo_name: ''
-wfo_sid: ''
-start_time: '2020-07-29 16:24:13'
-end_time: ''
+radar_name: ""
+radar_operator: ""
+rda_location: ""
+wfo_name: ""
+wfo_sid: ""
+start_time: "2020-07-29 16:24:13"
+end_time: ""
 latitude: 41.796944
 longitude: -87.858056
 altitude: 227.07600000000002

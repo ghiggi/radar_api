@@ -4,8 +4,8 @@ rda_location: GRAND JUNCTION
 wfo_name: GRAND JUNCTION, CO
 wfo_sid: GJT
 radar_operator: NWS Central Region
-start_time: '1996-02-05 04:59:34'
-end_time: ''
+start_time: "1996-02-05 04:59:34"
+end_time: ""
 latitude: 39.062169
 longitude: -108.21376
 altitude: 3078.7848000000004

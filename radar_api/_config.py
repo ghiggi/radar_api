@@ -51,4 +51,4 @@ _CONFIG_DEFAULTS.update(_get_default_configs())
 
 _CONFIG_PATHS = []
 
-config = Config("radar_api", defaults=[_CONFIG_DEFAULTS], paths=_CONFIG_PATHS)
+config = Config("radar", defaults=[_CONFIG_DEFAULTS], paths=_CONFIG_PATHS)

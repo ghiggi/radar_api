@@ -1,8 +1,8 @@
 icao: NOP3
-radar_name: ''
-radar_operator: ''
-rda_location: ''
-wfo_name: ''
-wfo_sid: ''
-start_time: '2007-10-10 00:04:07'
-end_time: '2021-03-01 13:01:26'
+radar_name: ""
+radar_operator: ""
+rda_location: ""
+wfo_name: ""
+wfo_sid: ""
+start_time: "2007-10-10 00:04:07"
+end_time: "2021-03-01 13:01:26"

@@ -1,11 +1,11 @@
 icao: TBWI
-radar_name: ''
-radar_operator: ''
-rda_location: ''
-wfo_name: ''
-wfo_sid: ''
+radar_name: ""
+radar_operator: ""
+rda_location: ""
+wfo_name: ""
+wfo_sid: ""
 latitude: 39.09
 longitude: -76.63
 altitude: 91.1352
-start_time: '2020-07-01 16:46:40'
-end_time: ''
+start_time: "2020-07-01 16:46:40"
+end_time: ""

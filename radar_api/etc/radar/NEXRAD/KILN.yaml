@@ -4,8 +4,8 @@ rda_location: WILMINGTON
 wfo_name: WILMINGTON/CINCINNATI, OH
 wfo_sid: ILN
 radar_operator: NWS Eastern Region
-start_time: '1995-05-17 04:24:58'
-end_time: ''
+start_time: "1995-05-17 04:24:58"
+end_time: ""
 latitude: 39.420483
 longitude: -83.82145
 altitude: 356.61600000000004

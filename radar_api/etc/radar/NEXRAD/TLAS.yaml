@@ -1,11 +1,11 @@
 icao: TLAS
-radar_name: ''
-radar_operator: ''
-rda_location: ''
-wfo_name: ''
-wfo_sid: ''
-start_time: '2020-06-15 19:17:19'
-end_time: ''
+radar_name: ""
+radar_operator: ""
+rda_location: ""
+wfo_name: ""
+wfo_sid: ""
+start_time: "2020-06-15 19:17:19"
+end_time: ""
 latitude: 36.143889
 longitude: -115.00694
 altitude: 626.9736

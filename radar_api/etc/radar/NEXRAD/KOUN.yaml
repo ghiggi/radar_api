@@ -1,11 +1,11 @@
 icao: KOUN
-radar_name: ''
-radar_operator: ''
-rda_location: ''
-wfo_name: ''
-wfo_sid: ''
+radar_name: ""
+radar_operator: ""
+rda_location: ""
+wfo_name: ""
+wfo_sid: ""
 latitude: 35.236058
 longitude: -97.46235
 altitude: 391.3632
-start_time: '2010-05-09 00:01:16'
-end_time: '2012-10-01 23:55:36'
+start_time: "2010-05-09 00:01:16"
+end_time: "2012-10-01 23:55:36"

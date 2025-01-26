@@ -4,8 +4,8 @@ rda_location: UPTON
 wfo_name: NEW YORK CITY, NY
 wfo_sid: OKX
 radar_operator: NWS Eastern Region
-start_time: '1995-04-27 16:27:05'
-end_time: ''
+start_time: "1995-04-27 16:27:05"
+end_time: ""
 latitude: 40.865528
 longitude: -72.863917
 altitude: 60.6552

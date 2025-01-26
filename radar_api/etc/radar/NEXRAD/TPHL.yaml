@@ -1,11 +1,11 @@
 icao: TPHL
-radar_name: ''
-radar_operator: ''
-rda_location: ''
-wfo_name: ''
-wfo_sid: ''
+radar_name: ""
+radar_operator: ""
+rda_location: ""
+wfo_name: ""
+wfo_sid: ""
 latitude: 39.948889
 longitude: -75.068889
 altitude: 46.9392
-start_time: '2020-08-12 15:26:50'
-end_time: ''
+start_time: "2020-08-12 15:26:50"
+end_time: ""

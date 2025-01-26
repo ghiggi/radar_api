@@ -4,8 +4,8 @@ rda_location: SAN JUAN
 wfo_name: SAN JUAN, PR
 wfo_sid: SJU
 radar_operator: FAA
-start_time: '1997-06-27 16:30:16'
-end_time: ''
+start_time: "1997-06-27 16:30:16"
+end_time: ""
 latitude: 18.115667
 longitude: -66.078167
 altitude: 901.5984000000001

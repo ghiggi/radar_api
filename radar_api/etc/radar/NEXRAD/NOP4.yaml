@@ -1,8 +1,8 @@
 icao: NOP4
-radar_name: ''
-radar_operator: ''
-rda_location: ''
-wfo_name: ''
-wfo_sid: ''
-start_time: '2010-05-24 17:44:19'
-end_time: '2024-07-01 23:57:07'
+radar_name: ""
+radar_operator: ""
+rda_location: ""
+wfo_name: ""
+wfo_sid: ""
+start_time: "2010-05-24 17:44:19"
+end_time: "2024-07-01 23:57:07"

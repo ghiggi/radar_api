@@ -3,10 +3,8 @@ description: "Colombian weather radar network"
 cloud_directory_pattern: "s3://s3-radaresideam/l2_data/{time:%Y}/{time:%m}/{time:%d}/{radar:s}"
 local_directory_pattern: "{base_dir}/sideam/{time:%Y}/{time:%m}/{time:%d}/{time:%H}/{radar:s}"
 filename_patterns:
-- "{radar_acronym:3s}{start_time:%y%m%d%H%M%S}.RAW{volume_identifier:4s}"
-- "{radar_acronym:7s}-{start_time:%Y%m%d-%H%M%S}-PPIVol-{volume_identifier:4s}.nc"
+  - "{radar_acronym:3s}{start_time:%y%m%d%H%M%S}.RAW{volume_identifier:4s}"
+  - "{radar_acronym:7s}-{start_time:%Y%m%d-%H%M%S}-PPIVol-{volume_identifier:4s}.nc"
 pyart_reader: read_sigmet
 xradar_reader: open_iris_datatree
 xradar_engine: iris
-
-

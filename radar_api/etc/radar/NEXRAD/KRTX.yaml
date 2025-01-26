@@ -4,8 +4,8 @@ rda_location: PORTLAND
 wfo_name: PORTLAND, OR
 wfo_sid: PQR
 radar_operator: NWS Western Region
-start_time: '1995-08-06 15:54:59'
-end_time: ''
+start_time: "1995-08-06 15:54:59"
+end_time: ""
 latitude: 45.715039
 longitude: -122.965
 altitude: 526.6944

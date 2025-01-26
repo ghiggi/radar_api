@@ -4,8 +4,8 @@ rda_location: MORRISTOWN
 wfo_name: MORRISTOWN/KNOXVILLE, TN
 wfo_sid: MRX
 radar_operator: NWS Southern Region
-start_time: '1995-05-11 16:47:31'
-end_time: ''
+start_time: "1995-05-11 16:47:31"
+end_time: ""
 latitude: 36.168611
 longitude: -83.401944
 altitude: 437.08320000000003

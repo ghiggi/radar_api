@@ -22,7 +22,6 @@ Documentation
 .. toctree::
    :maxdepth: 2
 
-   00_introduction
    02_installation
    03_quickstart
    06_contributors_guidelines

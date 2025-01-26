@@ -24,42 +24,41 @@
 # SOFTWARE.
 """Functions for searching files on local disk and cloud buckets."""
 import datetime
+
 import pandas as pd
 from trollsift import Parser
+
+from radar_api.checks import (
+    check_base_dir,
+    check_network,
+    check_protocol,
+    check_radar,
+    check_start_end_time,
+)
 from radar_api.configs import get_base_dir
 from radar_api.filter import filter_files
-from radar_api.checks import (
-     check_protocol,
-     check_base_dir,
-     check_radar,
-     check_network,
-     check_start_end_time,
-)
-from radar_api.io import (
-    get_filesystem, get_directory_pattern, get_bucket_prefix
-)
+from radar_api.io import get_bucket_prefix, get_directory_pattern, get_filesystem
 from radar_api.utils.list import flatten_list
-
 
 ####--------------------------------------------------------------------------.
 
 
-def _identify_last_time_component(directory_pattern): 
-    if "{time:%M}" in directory_pattern: 
+def _identify_last_time_component(directory_pattern):
+    if "{time:%M}" in directory_pattern:
         return "min"
-    if "{time:%H}" in directory_pattern: 
+    if "{time:%H}" in directory_pattern:
         return "h"
-    if any([s in directory_pattern for s in ["{time:%d}", "{time:%j}"]]): 
+    if any(s in directory_pattern for s in ["{time:%d}", "{time:%j}"]):
         return "D"
-    if any([s in directory_pattern for s in ["{time:%m}", "{time:%b}", "{time:%B}"]]): 
+    if any(s in directory_pattern for s in ["{time:%m}", "{time:%b}", "{time:%B}"]):
         return "MS"
-    if any([s in directory_pattern for s in ["{time:%Y}", "{time:%y}"]]): 
+    if any(s in directory_pattern for s in ["{time:%Y}", "{time:%y}"]):
         return "Y"
-    raise NotImplementedError()
+    raise NotImplementedError
 
 
-def get_list_timesteps(start_time, end_time, freq):     
-    # Convert inputs to pandas Timestamps  
+def get_list_timesteps(start_time, end_time, freq):
+    # Convert inputs to pandas Timestamps
     start = pd.to_datetime(start_time)
     end = pd.to_datetime(end_time)
 
@@ -69,30 +68,30 @@ def get_list_timesteps(start_time, end_time, freq):
     # "D" -> zero out hour, minute, second
     # "h" -> zero out minute, second
     # "min" -> zero out second
-    if freq in ["D","h", "min"]:
+    if freq in ["D", "h", "min"]:
         timedelta = pd.Timedelta(1, freq)
         start = start - timedelta
         start = start.floor(freq)
-        end = end.floor(freq) # inclusive date range
+        end = end.floor(freq)  # inclusive date range
         timedelta = pd.Timedelta(1, freq)
-    elif freq == "MS":  
-        if start.month == 1: 
+    elif freq == "MS":
+        if start.month == 1:
             new_start_month = 12
             new_start_year = start.year - 1
-        else: 
+        else:
             new_start_month = start.month - 1
             new_start_year = start.year
         start = pd.to_datetime(datetime.datetime(new_start_year, new_start_month, 1))
         end = pd.to_datetime(datetime.datetime(end.year, end.month, 1))
-    elif freq == "Y": 
+    elif freq == "Y":
         start = pd.to_datetime(datetime.datetime(start.year - 1, 1, 1))
         end = pd.to_datetime(datetime.datetime(end.year, 1, 1))
-    else: 
-        raise NotImplementedError()
-    
-    # Define timesteps (directory) to visit 
+    else:
+        raise NotImplementedError
+
+    # Define timesteps (directory) to visit
     # - We search also in the previous directory for hour/day files spanning the directory boundary
-    timesteps = pd.date_range(start=start, end=end, freq=freq, inclusive='both')
+    timesteps = pd.date_range(start=start, end=end, freq=freq, inclusive="both")
     return timesteps
 
 
@@ -105,17 +104,17 @@ def get_directories_paths(start_time, end_time, network, radar, protocol, base_d
     list_time = get_list_timesteps(start_time=start_time, end_time=end_time, freq=freq)
     # Compose directories path
     parser = Parser(directory_pattern)
-    paths =  [parser.compose({"time": time, "radar": radar, "base_dir": base_dir}) for time in list_time]
+    paths = [parser.compose({"time": time, "radar": radar, "base_dir": base_dir}) for time in list_time]
     return paths
- 
-    
-def _try_list_files(fs, dir_path): 
-    try: 
-       fpaths = fs.ls(dir_path)
+
+
+def _try_list_files(fs, dir_path):
+    try:
+        fpaths = fs.ls(dir_path)
     except Exception:
-        fpaths = [] 
+        fpaths = []
     return fpaths
-        
+
 
 def find_files(
     radar,
@@ -133,14 +132,14 @@ def find_files(
     Parameters
     ----------
     base_dir : str, optional
-        This argument must be specified only if searching files on the local storage 
-        when protocol="file". 
-        It represents the path to the local directory where to search for radar data. 
-        If protocol="file" and base_dir is None, base_dir is retrieved from 
+        This argument must be specified only if searching files on the local storage
+        when protocol="file".
+        It represents the path to the local directory where to search for radar data.
+        If protocol="file" and base_dir is None, base_dir is retrieved from
         the RADAR-API config file.
         The default is None.
     protocol : str (optional)
-        String specifying the location where to search for the data. 
+        String specifying the location where to search for the data.
         If protocol="file", it searches on local storage (indicated by base_dir).
         Otherwise, protocol refers to a specific cloud bucket storage.
         Use `radar_api.available_protocols()` to check the available protocols.
@@ -165,16 +164,16 @@ def find_files(
     # Check inputs
     if protocol not in ["file", "local"] and base_dir is not None:
         raise ValueError("If protocol is not 'file' or 'local', base_dir must not be specified !")
-    
-    # Check for when searching on local storage 
+
+    # Check for when searching on local storage
     if protocol in ["file", "local"]:
         # Get default local directory if base_dir = None
         base_dir = get_base_dir(base_dir)
         # Set protocol and fs_args expected by fsspec
         protocol = "file"
-        fs_args = {}            
-            
-    #-------------------------------------------------------------------------.
+        fs_args = {}
+
+    # -------------------------------------------------------------------------.
     # Format inputs
     protocol = check_protocol(protocol)
     base_dir = check_base_dir(base_dir)
@@ -187,8 +186,15 @@ def find_files(
     bucket_prefix = get_bucket_prefix(protocol)
 
     # Get list of directories over which to search
-    dir_paths = get_directories_paths(start_time=start_time, end_time=end_time, network=network, radar=radar, protocol=protocol, base_dir=base_dir)
-    
+    dir_paths = get_directories_paths(
+        start_time=start_time,
+        end_time=end_time,
+        network=network,
+        radar=radar,
+        protocol=protocol,
+        base_dir=base_dir,
+    )
+
     # Report over how many directory to scan
     n_directories = len(dir_paths)
     if verbose:
@@ -200,17 +206,18 @@ def find_files(
     for dir_path in dir_paths:
         # Retrieve list of files
         fpaths = _try_list_files(fs=fs, dir_path=dir_path)
-        # Special conditions 
-        if network == "NEXRAD": 
-            fpaths = [fpath for fpath in fpaths if "NWS_NEXRAD" not in fpath]  # NWS_NEXRAD_NXL2DP or NWS_NEXRAD_NXL2LG tar balls
-            fpaths = [fpath for fpath in fpaths if not fpath.endswith(".001")] # repeated files
-            fpaths = [fpath for fpath in fpaths if not fpath.endswith(".Z")]   # corrupted compressed files
+        # Special conditions
+        if network == "NEXRAD":
+            fpaths = [
+                fpath for fpath in fpaths if "NWS_NEXRAD" not in fpath
+            ]  # NWS_NEXRAD_NXL2DP or NWS_NEXRAD_NXL2LG tar balls
+            fpaths = [fpath for fpath in fpaths if not fpath.endswith(".001")]  # repeated files
+            fpaths = [fpath for fpath in fpaths if not fpath.endswith(".Z")]  # corrupted compressed files
         # Add bucket prefix
         fpaths = [bucket_prefix + fpath for fpath in fpaths]
         # Filter files if necessary
         fpaths = filter_files(fpaths, network=network, start_time=start_time, end_time=end_time)
         list_fpaths += fpaths
 
-    # Flat the list of filepaths and return it 
+    # Flat the list of filepaths and return it
     return sorted(flatten_list(list_fpaths))
- 

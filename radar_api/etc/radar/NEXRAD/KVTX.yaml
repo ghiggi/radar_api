@@ -4,8 +4,8 @@ rda_location: LOS ANGELES
 wfo_name: LOS ANGELES, CA
 wfo_sid: LOX
 radar_operator: NWS Western Region
-start_time: '1995-10-26 17:48:58'
-end_time: ''
+start_time: "1995-10-26 17:48:58"
+end_time: ""
 latitude: 34.412017
 longitude: -119.17875
 altitude: 855.5736

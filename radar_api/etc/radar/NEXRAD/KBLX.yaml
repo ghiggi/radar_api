@@ -4,8 +4,8 @@ rda_location: BILLINGS
 wfo_name: BILLINGS, MT
 wfo_sid: BYZ
 radar_operator: NWS Western Region
-start_time: '1996-06-22 03:45:36'
-end_time: ''
+start_time: "1996-06-22 03:45:36"
+end_time: ""
 latitude: 45.853778
 longitude: -108.6068
 altitude: 1128.6744

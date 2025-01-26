@@ -4,8 +4,8 @@ rda_location: LAKE CHARLES
 wfo_name: LAKE CHARLES, LA
 wfo_sid: LCH
 radar_operator: NWS Southern Region
-start_time: '1995-08-02 00:04:38'
-end_time: ''
+start_time: "1995-08-02 00:04:38"
+end_time: ""
 latitude: 30.125306
 longitude: -93.215889
 altitude: 41.757600000000004

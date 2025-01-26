@@ -4,8 +4,8 @@ rda_location: CHARLESTON
 wfo_name: CHARLESTON, WV
 wfo_sid: RLX
 radar_operator: NWS Eastern Region
-start_time: '1995-06-07 19:17:09'
-end_time: ''
+start_time: "1995-06-07 19:17:09"
+end_time: ""
 latitude: 38.311111
 longitude: -81.722778
 altitude: 369.7224
