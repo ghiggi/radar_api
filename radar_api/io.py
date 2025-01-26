@@ -242,7 +242,7 @@ def check_software_availability(software, conda_package):
 
 def get_filesystem(protocol, fs_args={}):
     """
-    Define ffspec filesystem.
+    Define fsspec filesystem.
 
     protocol : str
        String specifying the cloud bucket storage from which to retrieve

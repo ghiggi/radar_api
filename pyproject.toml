@@ -44,6 +44,7 @@ dependencies = [
     "trollsift",
     "numpy",
     "pandas",
+    "tqdm",
 ]
 requires-python = ">=3.10"
 dynamic = ["version"]

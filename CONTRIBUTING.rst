@@ -226,7 +226,7 @@ Refer to the table below for a comprehensive summary of all CI tools employed to
 +----------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------+
 | Tool                                               | Aim                                                                                                                                 |
 +====================================================+=====================================================================================================================================+
-| `pre-commit.ci <https://pre-commit.ci/>`__         | Run pre-commit (as defined in `.pre-commit-config.yaml <https://github.com/ghiggi/radar_api/blob/main/.pre-commit-config.yaml>`__)    |
+| `pre-commit.ci <https://pre-commit.ci/>`__         | Run pre-commit (as defined in `.pre-commit-config.yaml <https://github.com/ghiggi/radar_api/blob/main/.pre-commit-config.yaml>`__)  |
 +----------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------+
 | `CodeBeat <https://codebeat.co/>`__                | Automated code review and analysis tools                                                                                            |
 +----------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------+

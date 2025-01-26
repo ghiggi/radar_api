@@ -47,7 +47,7 @@ To list the available radars, you can use the following command:
     radar_api.available_radars()
 
 
-You can also search for radars belonging to a specific network and available during
+You can also search which radars of a specific network are available during
 a given time period:
 
 
@@ -56,7 +56,7 @@ a given time period:
     radar_api.available_radars(network="NEXRAD", start_time="1992-01-01", end__time="1993-01-01")
 
 
-The available radar networks can be retrieved using:
+The available radar networks can be listed using:
 
 .. code-block:: python
 
@@ -89,8 +89,8 @@ Search the data
 --------------------
 
 RADAR-API enables to search files files which have been downloaded locally,
-or the path to files located onto a cloud bucket. To search for file locally,
-specify ``procol="local"``, while to retrieve the path to cloud bucket files,
+or files which are located into a cloud bucket. To search for file locally,
+specify ``procol="local"``, while to retrieve the file path of cloud bucket files,
 specify ``procol="s3"``.
 
 .. code-block:: python
@@ -120,8 +120,8 @@ specify ``procol="s3"``.
     print(filepaths)
 
 
-RADAR-API provide an utility to also group filepaths by temporal interval,
-volume identifiers, etc.
+RADAR-API provide an utility to group filepaths by temporal interval,
+radar volume identifiers, etc.
 
 .. code-block:: python
 
@@ -133,25 +133,22 @@ Open the data
 ----------------
 
 RADAR-API enables to open radars files into various objects by simply providing a
-local or cloud filepath.
+local or cloud file path.
 
-- ``radar_api.open_datatree(filepath, network)`` opens a file into a ``xarray.DataTree`` object
-using the appropriate ``xradar`` reader. Typically, ``xarray.DataTree`` contains multiple radar sweeps.
+- ``radar_api.open_datatree(filepath, network)`` opens a file into a ``xarray.DataTree`` object using the appropriate ``xradar`` reader. Typically, an ``xarray.DataTree`` object contains multiple radar sweeps.
 
-- ``radar_api.open_dataset(filepath, network, group="sweep_0")`` opens a file and extract a single radar sweep into a ``xarray.Dataset`` object.
-The name of the radar sweep must be known beforehand !
+- ``radar_api.open_dataset(filepath, network, group="sweep_0")`` opens a file and extract a single radar sweep into a ``xarray.Dataset`` object. The name of the radar sweep must be known beforehand !
 
-- ``radar_api.open_pyart(filepath, network)`` opens a file into a ``pyart`` radar object.
+- ``radar_api.open_pyart(filepath, network)`` opens a file into a ``pyart.Radar``  object.
 
 
 Further documentation
 --------------------------
 
-For radar data processing, please have a look at the following software:
-
-- `xradar <https://docs.openradarscience.org/projects/xradar/en/stable/>`_,
-- `pyart <https://arm-doe.github.io/pyart/>`_
-- `wradlib <https://docs.wradlib.org/en/latest/>`_
+For radar data processing, please have a look at 
+`xradar <https://docs.openradarscience.org/projects/xradar/en/stable/>`_,
+`pyart <https://arm-doe.github.io/pyart/>`_ and 
+`wradlib <https://docs.wradlib.org/en/latest/>`_ software.
 
 
 If you are not familiar with `xarray <http://xarray.pydata.org/en/stable/>`_,

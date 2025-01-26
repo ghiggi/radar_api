@@ -71,8 +71,8 @@ def remove_corrupted_files(local_fpaths, bucket_fpaths, fs, return_corrupted_fpa
         List of filepaths on local storage.
     bucket_fpaths : list
         List of filepaths on cloud bucket.
-    fs : ffspec.FileSystem
-        ffspec filesystem instance.
+    fs : fsspec.FileSystem
+        fsspec filesystem instance.
         It must be cohrenet with the cloud bucket address of bucket_fpaths.
     return_corrupted_fpaths : bool, optional
         If True, it returns the list of corrupted files.
@@ -81,7 +81,7 @@ def remove_corrupted_files(local_fpaths, bucket_fpaths, fs, return_corrupted_fpa
 
     Returns
     -------
-    (list_<valid/corrupted>_local_filepaths, list_<valid/corrupted>_bucket_filepaths)
+    (list_local_filepaths, list_bucket_filepaths)
 
     """
     l_corrupted_local = []

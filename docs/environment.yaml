@@ -2,7 +2,6 @@ name: build-doc-radar-api
 channels: [conda-forge]
 dependencies:
   - docutils
-  - radar-api
   - jupyter
   - nbsphinx==0.9.3
   - pandoc
@@ -13,3 +12,5 @@ dependencies:
   - sphinx-mdinclude==0.5.3
   - sphinx==7.2.6
   - sphinxcontrib-youtube
+  - pip:
+    - radar-api

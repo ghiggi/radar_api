@@ -1,6 +1,6 @@
 
 Welcome to the RADAR-API documentation!
-======================================
+========================================
 
 
 The **RADAR-API** is a Python package designed to make your life easier, whether you aim to download some weather radar data, search for specific files, or jump into scientific analysis.
@@ -17,7 +17,7 @@ Let's get started and unlock the full potential of weather radar data archive to
 
 
 Documentation
-=============
+==============
 
 .. toctree::
    :maxdepth: 2
@@ -39,7 +39,7 @@ API Reference
 
 
 Indices and tables
-==================
+===================
 
 * :ref:`genindex`
 * :ref:`modindex`
