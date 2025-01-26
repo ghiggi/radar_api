@@ -1,0 +1,14 @@
+[run]
+source =
+	radar_api
+omit =
+	*docs*
+	*tutorials*
+	radar_api/etc/*
+	radar_api/_version.py
+
+[report]
+exclude_lines =
+	pragma: no cover
+	def __repr__
+	def __str__
