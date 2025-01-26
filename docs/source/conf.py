@@ -66,9 +66,9 @@ intersphinx_mapping = {
     "shapely": ("https://shapely.readthedocs.io/en/stable/", None),
     "geopandas": ("https://geopandas.org/en/stable/", None),
     "xvec": ("https://xvec.readthedocs.io/en/stable/", None),
-    "xradar": ("https://docs.openradarscience.org/projects/xradar/en/stable/", None), 
+    "xradar": ("https://docs.openradarscience.org/projects/xradar/en/stable/", None),
     "pyart": ("https://arm-doe.github.io/pyart/", None),
-    "fsspec": ("https://filesystem-spec.readthedocs.io/en/stable/", None)
+    "fsspec": ("https://filesystem-spec.readthedocs.io/en/stable/", None),
 }
 always_document_param_types = True
 

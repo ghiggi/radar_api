@@ -13,4 +13,4 @@ dependencies:
   - sphinx==7.2.6
   - sphinxcontrib-youtube
   - pip:
-    - radar-api
+      - radar-api

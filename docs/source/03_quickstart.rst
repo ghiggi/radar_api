@@ -145,9 +145,9 @@ local or cloud file path.
 Further documentation
 --------------------------
 
-For radar data processing, please have a look at 
+For radar data processing, please have a look at
 `xradar <https://docs.openradarscience.org/projects/xradar/en/stable/>`_,
-`pyart <https://arm-doe.github.io/pyart/>`_ and 
+`pyart <https://arm-doe.github.io/pyart/>`_ and
 `wradlib <https://docs.wradlib.org/en/latest/>`_ software.
 
 
