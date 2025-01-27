@@ -21,7 +21,7 @@
 RADAR-API provides an easy-to-use python interface to find, download and
 read weather radar data from several meteorological services.
 Data are retrieved directly from cloud buckets.
-Current radar networks supported are: NEXRAD, SIDEAM and FMI.
+Current radar networks supported are: NEXRAD, IDEAM and FMI.
 
 The list of available radars can be retrieved using:
 

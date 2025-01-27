@@ -92,8 +92,8 @@ display.set_limits((-150, 150), (-150, 150))
 radar_api.available_radars(network="FMI", start_time="2025-01-01", end_time=None)
 radar_api.available_radars(network="FMI", end_time="2008-01-01")
 
-radar_api.available_radars(network="SIDEAM", start_time="2025-01-01", end_time=None)
-radar_api.available_radars(network="SIDEAM", end_time="2019-01-01")
+radar_api.available_radars(network="IDEAM", start_time="2025-01-01", end_time=None)
+radar_api.available_radars(network="IDEAM", end_time="2019-01-01")
 
 
 radar_api.available_radars(network="NEXRAD", start_time="2025-01-01")

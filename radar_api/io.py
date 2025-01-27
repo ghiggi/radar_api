@@ -158,6 +158,13 @@ def get_radar_end_time(network, radar):
     return None
 
 
+def get_radar_location(network, radar):
+    radar_info = get_radar_info(network=network, radar=radar)
+    if "latitude" in radar_info and "longitude" in radar_info:
+        return radar_info["longitude"], radar_info["latitude"]
+    raise ValueError("Radar location not available.")
+
+
 def is_radar_available(network, radar, start_time=None, end_time=None):
     """Check if a radar was existing within the specified time period.
 
