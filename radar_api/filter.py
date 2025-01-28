@@ -63,7 +63,7 @@ def filter_file(fpath, network, start_time, end_time):
         file_start_time = info_dict.get("start_time")
         if info_dict.get("end_time", None) is None:
             file_end_time = file_start_time + datetime.timedelta(
-                minutes=15,
+                minutes=7,
             )  # TODO: maybe based on file_time_coverage setting?
         else:
             file_end_time = info_dict.get("end_time")

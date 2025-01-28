@@ -134,11 +134,10 @@ def get_current_utc_time():
 
 def get_radar_time_coverage(network, radar):
     info_dict = get_radar_info(network=network, radar=radar)
-    start_time = info_dict.get("start_time", None)
-    end_time = info_dict.get("end_time", None)
-    if start_time is None and end_time is None:
-        return None
-
+    if "start_time" not in info_dict or "end_time" not in info_dict:
+        raise ValueError(f"Time coverage information for {network} radar '{radar}' is unavailable.")
+    start_time = info_dict["start_time"]
+    end_time = info_dict["end_time"]
     start_time = datetime.datetime.fromisoformat(start_time)
     end_time = get_current_utc_time() if end_time == "" else datetime.datetime.fromisoformat(end_time)
     return start_time, end_time
@@ -197,7 +196,11 @@ def is_radar_available(network, radar, start_time=None, end_time=None):
     start_time, end_time = check_start_end_time(start_time, end_time)
 
     # Retrieve radar temporal coverage
-    radar_start_time, radar_end_time = get_radar_time_coverage(network, radar)
+    try:
+        radar_start_time, radar_end_time = get_radar_time_coverage(network, radar)
+    except Exception as e:
+        print(str(e))
+        return False
 
     # Verify if radar is available
     return is_file_within_time(

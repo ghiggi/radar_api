@@ -38,9 +38,10 @@ def print_elapsed_time(fn):
         start_time = perf_counter()
         results = fn(*args, **kwargs)
         end_time = perf_counter()
-        execution_time = end_time - start_time
-        timedelta_str = str(datetime.timedelta(seconds=execution_time))
-        print(f"Elapsed time: {timedelta_str} .", end="\n")
+        if kwargs.get("verbose", True):
+            execution_time = end_time - start_time
+            timedelta_str = str(datetime.timedelta(seconds=execution_time))
+            print(f"Elapsed time: {timedelta_str} .", end="\n")
         return results
 
     return inner
