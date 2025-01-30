@@ -181,6 +181,21 @@ For an improved development experience, consider installing the intuitive `Jupyt
 
    conda install -c conda-forge jupyter spyder
 
+
+Radar Processing
+...................................
+
+To read and process ground and spaceborne radar data, install
+`xradar <https://docs.openradarscience.org/projects/xradar/en/stable/>`_,
+`wradlib <https://docs.wradlib.org/en/latest/>`_.
+`pyart <https://arm-doe.github.io/pyart/>`_ and
+`gpm-api <https://gpm-api.readthedocs.io/>`_.
+
+.. code-block:: bash
+
+   conda install -c conda-forge xradar wradlib arm_pyart gpm-api
+
+
 Speed Up Xarray Computations
 ..........................................
 
@@ -205,21 +220,7 @@ computations through the `Dask Dashboard <https://docs.dask.org/en/stable/dashbo
    conda install -c conda-forge python-graphviz bokeh
 
 
-Radar Processing
-...................................
-
-To read and process ground and spaceborne radar data, install
-`xradar <https://docs.openradarscience.org/projects/xradar/en/stable/>`_,
-`wradlib <https://docs.wradlib.org/en/latest/>`_.
-`pyart <https://arm-doe.github.io/pyart/>`_ and
-`gpm-api <https://gpm-api.readthedocs.io/>`_.
-
-.. code-block:: bash
-
-   conda install -c conda-forge xradar wradlib arm_pyart gpm-api
-
-
-Run RADAR-API on Jupyter Notebooks
+Run on Jupyter Notebooks
 =====================================
 
 If you want to run RADAR-API on a `Jupyter Notebook <https://jupyter.org/>`__,

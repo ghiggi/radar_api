@@ -37,105 +37,6 @@ from radar_api.io import get_network_filename_patterns
 
 # TODO: Create a class all such methods that depend on the filename_patterns and network
 
-####---------------------------------------------------------------------------.
-##########################
-#### Filename parsers ####
-##########################
-
-
-def parse_filename(filename, network):
-    filename_patterns = get_network_filename_patterns(network)
-    pattern_identified = False
-    for pattern in filename_patterns:
-        try:
-            p = Parser(pattern)
-            info_dict = p.parse(filename)
-            pattern_identified = True
-        except Exception:
-            pass
-        if pattern_identified:
-            break
-    if not pattern_identified:
-        # print(f"Report the bug for filename '{filename}'.")
-        info_dict = {}
-    return info_dict
-
-
-def _get_info_from_filename(filename, network):
-    """Retrieve file information dictionary from filename."""
-    try:
-        info_dict = parse_filename(filename, network=network)
-    except Exception:
-        raise ValueError(f"Impossible to infer file information from '{filename}'")
-    # Set default volume_identifier if missing
-    if "volume_identifier" not in info_dict:
-        info_dict["volume_identifier"] = ""
-    return info_dict
-
-
-def get_info_from_filepath(filepath, network):
-    """Retrieve file information dictionary from filepath."""
-    if not isinstance(filepath, str):
-        raise TypeError("'filepath' must be a string.")
-    filename = os.path.basename(filepath)
-    return _get_info_from_filename(filename, network=network)
-
-
-def get_key_from_filepath(filepath, key, network):
-    """Extract specific key information from a list of filepaths."""
-    return get_info_from_filepath(filepath, network=network)[key]
-
-
-def get_key_from_filepaths(filepaths, key, network):
-    """Extract specific key information from a list of filepaths."""
-    if isinstance(filepaths, str):
-        filepaths = [filepaths]
-    return [get_key_from_filepath(filepath, key=key, network=network) for filepath in filepaths]
-
-
-####--------------------------------------------------------------------------.
-#########################################
-#### Product and version information ####
-#########################################
-
-
-def get_version_from_filepath(filepath, network, integer=True):
-    """Infer file ``version`` from filenames."""
-    version = get_key_from_filepath(filepath, key="version", network=network)
-    if integer:
-        version = int(re.findall("\\d+", version)[0])
-    return version
-
-
-def get_version_from_filepaths(filepaths, network, integer=True):
-    """Infer files ``version`` from filenames."""
-    if isinstance(filepaths, str):
-        filepaths = [filepaths]
-    return [get_version_from_filepath(filepath, integer=integer, network=network) for filepath in filepaths]
-
-
-def get_start_time_from_filepaths(filepaths, network):
-    """Infer files ``start_time`` from filenames."""
-    return get_key_from_filepaths(filepaths, key="start_time", network=network)
-
-
-def get_end_time_from_filepaths(filepaths, network):
-    """Infer files ``end_time`` from filenames."""
-    return get_key_from_filepaths(filepaths, key="end_time", network=network)
-
-
-def get_start_end_time_from_filepaths(filepaths, network):
-    """Infer files ``start_time`` and ``end_time`` from filenames."""
-    list_start_time = get_key_from_filepaths(filepaths, key="start_time", network=network)
-    list_end_time = get_key_from_filepaths(filepaths, key="end_time", network=network)
-    return np.array(list_start_time), np.array(list_end_time)
-
-
-####--------------------------------------------------------------------------.
-#######################
-#### Group utility ####
-#######################
-
 
 FILE_KEYS = [
     "radar_acronym",
@@ -159,6 +60,127 @@ TIME_KEYS = [
     "minute",
     "second",
 ]
+
+DEFAULT_FILE_KEY = {
+    "radar_acronym": "",
+    "volume_identifier": "",
+    "start_time": None,
+    "end_time": None,
+    "version": "",
+    "extension": "",
+}
+
+
+####---------------------------------------------------------------------------.
+##########################
+#### Filename parsers ####
+##########################
+
+
+def parse_filename(filename, network):
+    """Try to parse the filename based on the radar network."""
+    filename_patterns = get_network_filename_patterns(network)
+    pattern_identified = False
+    for pattern in filename_patterns:
+        try:
+            p = Parser(pattern)
+            info_dict = p.parse(filename)
+            pattern_identified = True
+        except Exception:
+            pass
+        if pattern_identified:
+            break
+    if not pattern_identified:
+        info_dict = {}
+    return info_dict
+
+
+def get_info_from_filename(filename, network, ignore_errors=False):
+    """Retrieve file information dictionary from filename."""
+    # Try to parse the filename
+    info_dict = parse_filename(filename, network=network)
+
+    # Raise error if the filename can't be parsed
+    if len(info_dict) == 0 and not ignore_errors:
+        raise ValueError(f"Impossible to parse filename '{filename}' for {network} network.")
+
+    # If info_dict is empty, return empty dictionary
+    if len(info_dict) == 0:
+        return info_dict
+
+    # Set default file keys if missing
+    for file_key, default_value in DEFAULT_FILE_KEY.items():
+        if file_key not in info_dict:
+            info_dict[file_key] = default_value
+    return info_dict
+
+
+def get_info_from_filepath(filepath, network, ignore_errors=False):
+    """Retrieve file information dictionary from filepath."""
+    if not isinstance(filepath, str):
+        raise TypeError("'filepath' must be a string.")
+    filename = os.path.basename(filepath)
+    return get_info_from_filename(filename, network=network, ignore_errors=ignore_errors)
+
+
+def get_key_from_filepath(filepath, key, network, ignore_errors=False):
+    """Extract specific key information from a list of filepaths."""
+    return get_info_from_filepath(filepath, network=network, ignore_errors=ignore_errors)[key]
+
+
+def get_key_from_filepaths(filepaths, key, network, ignore_errors=False):
+    """Extract specific key information from a list of filepaths."""
+    if isinstance(filepaths, str):
+        filepaths = [filepaths]
+    return [
+        get_key_from_filepath(filepath, key=key, network=network, ignore_errors=ignore_errors) for filepath in filepaths
+    ]
+
+
+####--------------------------------------------------------------------------.
+#########################################
+#### Product and version information ####
+#########################################
+
+
+def get_start_time_from_filepaths(filepaths, network, ignore_errors=False):
+    """Infer files ``start_time`` from filenames."""
+    return get_key_from_filepaths(filepaths, key="start_time", network=network, ignore_errors=ignore_errors)
+
+
+def get_end_time_from_filepaths(filepaths, network, ignore_errors=False):
+    """Infer files ``end_time`` from filenames."""
+    return get_key_from_filepaths(filepaths, key="end_time", network=network, ignore_errors=ignore_errors)
+
+
+def get_start_end_time_from_filepaths(filepaths, network, ignore_errors=False):
+    """Infer files ``start_time`` and ``end_time`` from filenames."""
+    list_start_time = get_start_time_from_filepaths(filepaths, network=network, ignore_errors=ignore_errors)
+    list_end_time = get_end_time_from_filepaths(filepaths, network=network, ignore_errors=ignore_errors)
+    return np.array(list_start_time), np.array(list_end_time)
+
+
+def get_version_from_filepath(filepath, network, integer=True):
+    """Infer file ``version`` from filenames."""
+    version = get_key_from_filepath(filepath, key="version", network=network)
+    if version == "":
+        return None
+    if integer:
+        version = int(re.findall("\\d+", version)[0])
+    return version
+
+
+def get_version_from_filepaths(filepaths, network, integer=True):
+    """Infer files ``version`` from filenames."""
+    if isinstance(filepaths, str):
+        filepaths = [filepaths]
+    return [get_version_from_filepath(filepath, integer=integer, network=network) for filepath in filepaths]
+
+
+####--------------------------------------------------------------------------.
+#######################
+#### Group utility ####
+#######################
 
 
 def check_groups(groups):

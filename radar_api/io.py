@@ -24,19 +24,17 @@
 # SOFTWARE.
 """Define filesystems, buckets, connection types and directory structures."""
 import datetime
-import importlib
 import os
-import sys
-from functools import wraps
 
 import fsspec
 
-from radar_api.checks import check_network, check_start_end_time
+from radar_api.checks import check_network, check_start_end_time, get_current_utc_time
 from radar_api.utils.list import flatten_list
 from radar_api.utils.yaml import read_yaml
 
 
 def get_network_config_path():
+    """Get directory path with the network configuration files."""
     from radar_api import _root_path
 
     path = os.path.join(_root_path, "radar_api", "etc", "network")
@@ -44,6 +42,7 @@ def get_network_config_path():
 
 
 def get_network_radars_config_path(network):
+    """Get directory path with the radar configuration files of a given network."""
     from radar_api import _root_path
 
     path = os.path.join(_root_path, "radar_api", "etc", "radar", network)
@@ -51,16 +50,19 @@ def get_network_radars_config_path(network):
 
 
 def get_network_config_filepath(network):
+    """Get filepath of the network configuration file."""
     filepath = os.path.join(get_network_config_path(), f"{network}.yaml")
     return filepath
 
 
 def get_radar_config_filepath(network, radar):
+    """Get filepath of the radar configuration file."""
     filepath = os.path.join(get_network_radars_config_path(network), f"{radar}.yaml")
     return filepath
 
 
 def available_networks():
+    """Get list of available networks."""
     network_config_path = get_network_config_path()
     networks_config_filenames = os.listdir(network_config_path)
     networks = [fname.split(".")[0] for fname in networks_config_filenames]
@@ -80,6 +82,7 @@ def _get_network_radars(network, start_time=None, end_time=None):
 
 
 def available_radars(network=None, start_time=None, end_time=None):
+    """Get list of available radars."""
     if network is None:
         networks = available_networks()
         list_radars = [
@@ -94,45 +97,21 @@ def available_radars(network=None, start_time=None, end_time=None):
 
 
 def get_network_info(network):
+    """Get network information."""
     network_config_path = get_network_config_filepath(network)
     info_dict = read_yaml(network_config_path)
     return info_dict
 
 
-def get_xradar_datatree_reader(network):
-    import xradar.io
-
-    func = getattr(xradar.io, get_network_info(network)["xradar_reader"])
-    return func
-
-
-def get_pyart_reader(network):
-    import pyart.io
-
-    try:
-        func = getattr(pyart.io, get_network_info(network)["pyart_reader"])
-    except AttributeError:
-        func = getattr(pyart.aux_io, get_network_info(network)["pyart_reader"])
-    return func
-
-
-def get_xradar_engine(network):
-    return get_network_info(network)["xradar_engine"]
-
-
 def get_radar_info(network, radar):
+    """Get radar information."""
     network_config_path = get_radar_config_filepath(network, radar)
     info_dict = read_yaml(network_config_path)
     return info_dict
 
 
-def get_current_utc_time():
-    if sys.version_info >= (3, 11):
-        return datetime.datetime.now(datetime.UTC).replace(tzinfo=None)
-    return datetime.datetime.utcnow()
-
-
 def get_radar_time_coverage(network, radar):
+    """Get first and last timestep with radar data."""
     info_dict = get_radar_info(network=network, radar=radar)
     if "start_time" not in info_dict or "end_time" not in info_dict:
         raise ValueError(f"Time coverage information for {network} radar '{radar}' is unavailable.")
@@ -144,6 +123,7 @@ def get_radar_time_coverage(network, radar):
 
 
 def get_radar_start_time(network, radar):
+    """Get first timestep with radar data."""
     time_coverage = get_radar_time_coverage(network, radar)
     if time_coverage is not None:
         return time_coverage[0]
@@ -151,6 +131,7 @@ def get_radar_start_time(network, radar):
 
 
 def get_radar_end_time(network, radar):
+    """Get last timestep with radar data."""
     time_coverage = get_radar_time_coverage(network, radar)
     if time_coverage is not None:
         return time_coverage[1]
@@ -158,6 +139,7 @@ def get_radar_end_time(network, radar):
 
 
 def get_radar_location(network, radar):
+    """Get radar location."""
     radar_info = get_radar_info(network=network, radar=radar)
     if "latitude" in radar_info and "longitude" in radar_info:
         return radar_info["longitude"], radar_info["latitude"]
@@ -212,10 +194,12 @@ def is_radar_available(network, radar, start_time=None, end_time=None):
 
 
 def get_network_filename_patterns(network):
+    """Get radar filenames patterns."""
     return get_network_info(network)["filename_patterns"]
 
 
 def get_directory_pattern(protocol, network):
+    """Get directory pattern."""
     if protocol in ["s3", "gcs"]:
         directory_pattern = get_network_info(network)["cloud_directory_pattern"]
     else:
@@ -223,34 +207,7 @@ def get_directory_pattern(protocol, network):
     return directory_pattern
 
 
-def check_software_availability(software, conda_package):
-    """A decorator to ensure that a software package is installed.
-
-    Parameters
-    ----------
-    software : str
-        The package name as recognized by Python's import system.
-    conda_package : str
-        The package name as recognized by conda-forge.
-    """
-
-    def decorator(func):
-        @wraps(func)
-        def wrapper(*args, **kwargs):
-            if not importlib.util.find_spec(software):
-                raise ImportError(
-                    f"The '{software}' package is required but not found.\n"
-                    "Please install it using conda:\n"
-                    f"    conda install -c conda-forge {conda_package}",
-                )
-            return func(*args, **kwargs)
-
-        return wrapper
-
-    return decorator
-
-
-def get_filesystem(protocol, fs_args={}):
+def get_filesystem(protocol, fs_args=None):
     """
     Define fsspec filesystem.
 
@@ -261,22 +218,20 @@ def get_filesystem(protocol, fs_args={}):
     fs_args : dict, optional
        Dictionary specifying optional settings to initiate the fsspec.filesystem.
        The default is an empty dictionary. Anonymous connection is set by default.
-
     """
-    if not isinstance(fs_args, dict):
-        raise TypeError("fs_args must be a dictionary.")
+    fs_args = {} if fs_args is None else fs_args
     if protocol == "s3":
         # Set defaults
         # - Use the anonymous credentials to access public data
         _ = fs_args.setdefault("anon", True)  # TODO: or if is empty
         fs = fsspec.filesystem("s3", **fs_args)
         return fs
-    if protocol == "gcs":
-        # Set defaults
-        # - Use the anonymous credentials to access public data
-        _ = fs_args.setdefault("token", "anon")  # TODO: or if is empty
-        fs = fsspec.filesystem("gcs", **fs_args)
-        return fs
+    # if protocol == "gcs":
+    #     # Set defaults
+    #     # - Use the anonymous credentials to access public data
+    #     _ = fs_args.setdefault("token", "anon")  # TODO: or if is empty
+    #     fs = fsspec.filesystem("gcs", **fs_args)
+    #     return fs
     if protocol in ["local", "file"]:
         fs = fsspec.filesystem("file")
         return fs
@@ -291,51 +246,10 @@ def get_bucket_prefix(protocol):
         prefix = "gs://"
     elif protocol == "s3":
         prefix = "s3://"
-    elif protocol == "file":
+    elif protocol in ("file", "local"):
         prefix = ""
     else:
         raise NotImplementedError(
             "Current available protocols are 'gcs', 's3', 'local'.",
         )
     return prefix
-
-
-def get_simplecache_file(filepath):
-    file = fsspec.open_local(
-        f"simplecache::{filepath}",  # assume filepath has s3://
-        s3={"anon": True},
-        filecache={"cache_storage": "."},
-    )
-    return file
-
-
-@check_software_availability(software="xradar", conda_package="xradar")
-def open_datatree(filepath, network, **kwargs):
-    """Open a file into an xarray DataTree object using xradar."""
-    if filepath.startswith("s3"):
-        filepath = get_simplecache_file(filepath)
-    open_datatree = get_xradar_datatree_reader(network)
-    dt = open_datatree(filepath, **kwargs)
-    return dt
-
-
-@check_software_availability(software="xradar", conda_package="xradar")
-def open_dataset(filepath, network, group, **kwargs):
-    """Open a file into an xarray Dataset object using xradar."""
-    import xarray as xr
-
-    if filepath.startswith("s3"):
-        filepath = get_simplecache_file(filepath)
-    engine = get_xradar_engine(network)
-    ds = xr.open_dataset(filepath, group=group, engine=engine, **kwargs)
-    return ds
-
-
-@check_software_availability(software="pyart", conda_package="arm_pyart")
-def open_pyart(filepath, network, **kwargs):
-    """Open a file into a pyart object."""
-    if filepath.startswith("s3"):
-        filepath = get_simplecache_file(filepath)
-    pyart_reader = get_pyart_reader(network)
-    pyart_obj = pyart_reader(filepath, **kwargs)
-    return pyart_obj

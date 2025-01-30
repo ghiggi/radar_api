@@ -56,18 +56,17 @@ def filter_file(fpath, network, start_time, end_time):
     # Filter by start_time
     if start_time is not None and end_time is not None:
         # Retrieve info
-        info_dict = get_info_from_filepath(fpath, network=network)
+        info_dict = get_info_from_filepath(fpath, network=network, ignore_errors=True)
+        # If no start_time info, return None --> filtered out
         if "start_time" not in info_dict:
             return None
         # Retrieve file start time and end time
         file_start_time = info_dict.get("start_time")
-        if info_dict.get("end_time", None) is None:
+        file_end_time = info_dict.get("end_time")
+        if file_end_time is None:
             file_end_time = file_start_time + datetime.timedelta(
                 minutes=7,
             )  # TODO: maybe based on file_time_coverage setting?
-        else:
-            file_end_time = info_dict.get("end_time")
-
         if not is_file_within_time(start_time, end_time, file_start_time, file_end_time):
             return None
     return fpath

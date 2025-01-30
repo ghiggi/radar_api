@@ -43,7 +43,8 @@ from radar_api.utils.list import flatten_list
 ####--------------------------------------------------------------------------.
 
 
-def _identify_last_time_component(directory_pattern):
+def get_pattern_shortest_time_component(directory_pattern):
+    """Return the shortest time frequency component present in the pattern."""
     if "{time:%M}" in directory_pattern:
         return "min"
     if "{time:%H}" in directory_pattern:
@@ -53,11 +54,12 @@ def _identify_last_time_component(directory_pattern):
     if any(s in directory_pattern for s in ["{time:%m}", "{time:%b}", "{time:%B}"]):
         return "MS"
     if any(s in directory_pattern for s in ["{time:%Y}", "{time:%y}"]):
-        return "Y"
+        return "Y"  # Y-DEC
     raise NotImplementedError
 
 
 def get_list_timesteps(start_time, end_time, freq):
+    """Return the list of timesteps (directory) to scan."""
     # Convert inputs to pandas Timestamps
     start = pd.to_datetime(start_time)
     end = pd.to_datetime(end_time)
@@ -83,9 +85,9 @@ def get_list_timesteps(start_time, end_time, freq):
             new_start_year = start.year
         start = pd.to_datetime(datetime.datetime(new_start_year, new_start_month, 1))
         end = pd.to_datetime(datetime.datetime(end.year, end.month, 1))
-    elif freq == "Y":
+    elif freq == "Y":  # Y-DEC
         start = pd.to_datetime(datetime.datetime(start.year - 1, 1, 1))
-        end = pd.to_datetime(datetime.datetime(end.year, 1, 1))
+        end = pd.to_datetime(datetime.datetime(end.year, 12, 31))
     else:
         raise NotImplementedError
 
@@ -96,10 +98,11 @@ def get_list_timesteps(start_time, end_time, freq):
 
 
 def get_directories_paths(start_time, end_time, network, radar, protocol, base_dir):
+    """Returns a list of the directory paths to scan."""
     # Get directory pattern
     directory_pattern = get_directory_pattern(protocol, network)
     # Identify frequency
-    freq = _identify_last_time_component(directory_pattern)
+    freq = get_pattern_shortest_time_component(directory_pattern)
     # Create list of time directories
     list_time = get_list_timesteps(start_time=start_time, end_time=end_time, freq=freq)
     # Compose directories path

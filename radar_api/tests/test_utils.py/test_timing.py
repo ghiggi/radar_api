@@ -24,47 +24,27 @@
 # SOFTWARE.
 
 # -----------------------------------------------------------------------------.
-"""RADAR-API Package."""
-
-import contextlib
-import os
-from importlib.metadata import PackageNotFoundError, version
-
-from radar_api._config import config
-from radar_api.configs import (
-    define_configs,
-    read_configs,
-)
-from radar_api.download import download_files
-from radar_api.info import group_filepaths
-from radar_api.io import (
-    available_networks,
-    available_radars,
-)
-from radar_api.readers import (
-    open_dataset,
-    open_datatree,
-    open_pyart,
-)
-from radar_api.search import find_files
-
-_root_path = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
+"""This module test the list utilities."""
+from radar_api.utils.timing import print_elapsed_time 
 
 
-__all__ = [
-    "available_radars",
-    "available_networks",
-    "config",
-    "define_configs",
-    "read_configs",
-    "find_files",
-    "group_filepaths",
-    "open_datatree",
-    "open_dataset",
-    "open_pyart",
-    "download_files",
-]
+def test_print_elapsed_time(capsys):
+    """Test for print_elapsed_time."""
+    
+    @print_elapsed_time
+    def add_decorated(a, b, verbose=True):
+        return a + b
+    
+    # Check when verbose = True 
+    result = add_decorated(2, 3)
+    captured = capsys.readouterr()  # Capture the print output
 
-# Get version
-with contextlib.suppress(PackageNotFoundError):
-    __version__ = version("radar_api")
+    assert result == 5, "Function result incorrect"
+    assert "Elapsed time: " in captured.out
+    
+    # Check when verbose = False 
+    result = add_decorated(2, 3, verbose=False)
+    captured = capsys.readouterr()  # Capture the print output
+
+    assert result == 5, "Function result incorrect"
+    assert "" == captured.out

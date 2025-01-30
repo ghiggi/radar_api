@@ -24,47 +24,18 @@
 # SOFTWARE.
 
 # -----------------------------------------------------------------------------.
-"""RADAR-API Package."""
+"""This module test the list utilities."""
 
-import contextlib
-import os
-from importlib.metadata import PackageNotFoundError, version
-
-from radar_api._config import config
-from radar_api.configs import (
-    define_configs,
-    read_configs,
-)
-from radar_api.download import download_files
-from radar_api.info import group_filepaths
-from radar_api.io import (
-    available_networks,
-    available_radars,
-)
-from radar_api.readers import (
-    open_dataset,
-    open_datatree,
-    open_pyart,
-)
-from radar_api.search import find_files
-
-_root_path = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
+from radar_api.utils.list import flatten_list
 
 
-__all__ = [
-    "available_radars",
-    "available_networks",
-    "config",
-    "define_configs",
-    "read_configs",
-    "find_files",
-    "group_filepaths",
-    "open_datatree",
-    "open_dataset",
-    "open_pyart",
-    "download_files",
-]
-
-# Get version
-with contextlib.suppress(PackageNotFoundError):
-    __version__ = version("radar_api")
+def test_flatten_list() -> None:
+    """Test flattening nested lists into lists."""
+    assert flatten_list([["single item"]]) == ["single item"]
+    assert flatten_list([["double", "item"]]) == ["double", "item"]
+    assert flatten_list([]) == [], "Empty list should return empty list"
+    assert flatten_list(["single item"]) == ["single item"], "Flat list should return same list"
+    assert flatten_list(["double", "item"]) == [
+        "double",
+        "item",
+    ], "Flat list should return same list"
