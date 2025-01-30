@@ -23,7 +23,7 @@
 # SOFTWARE.
 
 # -----------------------------------------------------------------------------.
-"""This module provide tools to extraction information from the granules' filenames."""
+"""This module provide tools to extraction information from the radar filenames."""
 import datetime
 import os
 import pathlib

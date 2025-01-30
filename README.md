@@ -95,7 +95,7 @@ dt = radar_api.open_datatree(filepath, network=network, chunks={})
 dt["sweep_0"].to_dataset()
 
 # Open xradar dataset (a single radar sweep)
-ds = radar_api.open_dataset(filepath, network=network, group="sweep_0")
+ds = radar_api.open_dataset(filepath, network=network, sweep="sweep_0")
 
 # Open pyart radar object
 radar_obj = radar_api.open_pyart(filepath, network=network)

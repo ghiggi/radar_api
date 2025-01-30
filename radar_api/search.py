@@ -22,7 +22,7 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
-"""Functions for searching files on local disk and cloud buckets."""
+"""This module provide functions for searching files on local disk and cloud buckets."""
 import datetime
 
 import pandas as pd

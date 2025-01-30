@@ -77,7 +77,7 @@ dt = radar_api.open_datatree(filepath, network=network, chunks={})
 dt["sweep_0"].to_dataset()
 
 # Open xradar dataset (a single sweep)
-ds = radar_api.open_dataset(filepath, network=network, group="sweep_0")
+ds = radar_api.open_dataset(filepath, network=network, sweep="sweep_0")
 
 # Open pyart radar object
 radar_obj = radar_api.open_pyart(filepath, network=network)
@@ -99,13 +99,7 @@ radar_api.available_radars(network="IDEAM", end_time="2019-01-01")
 radar_api.available_radars(network="NEXRAD", start_time="2025-01-01")
 radar_api.available_radars(network="NEXRAD", end_time="1993-01-01")
 
-
 # -------------------------------------------------------.
-#### TODO Search for radars available at a given location
 
-# available_radars_around_point(point, distance)
 
-# -------------------------------------------------------.
-# radar_api.available_radars(network=)
-# radar = "fianj"
-# network = "FMI"
+

@@ -7,9 +7,10 @@ dependencies:
   - donfig
   - jupyter
   - xradar
+  - arm_pyart
   - numpy
   - pandas
-  - arm_pyart
+  - matplotlib
   - netcdf4
   - pytest
   - pytest-cov

@@ -24,7 +24,7 @@
 # SOFTWARE.
 
 # -----------------------------------------------------------------------------.
-"""Filtering functions."""
+"""This module provides files filtering functions."""
 import datetime
 
 from radar_api.info import get_info_from_filepath

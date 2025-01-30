@@ -137,7 +137,7 @@ local or cloud file path.
 
 - ``radar_api.open_datatree(filepath, network)`` opens a file into a ``xarray.DataTree`` object using the appropriate ``xradar`` reader. Typically, an ``xarray.DataTree`` object contains multiple radar sweeps.
 
-- ``radar_api.open_dataset(filepath, network, group="sweep_0")`` opens a file and extract a single radar sweep into a ``xarray.Dataset`` object. The name of the radar sweep must be known beforehand !
+- ``radar_api.open_dataset(filepath, network, sweep="sweep_0")`` opens a file and extract a single radar sweep into a ``xarray.Dataset`` object. The name of the radar sweep must be known beforehand !
 
 - ``radar_api.open_pyart(filepath, network)`` opens a file into a ``pyart.Radar``  object.
 
