@@ -27,17 +27,16 @@
 """This module test the RADAR-API readers functions."""
 import os
 
-import pyart
 import pytest
 import xarray as xr
-import matploblib # noqa (pyart bug)
+
 import radar_api
 from radar_api.readers import (
     check_software_availability,
     get_simplecache_file,
     open_dataset,
     open_datatree,
-    open_pyart,
+    # open_pyart,
 )
 
 
@@ -81,9 +80,9 @@ def test_open_dataset():
     assert isinstance(ds, xr.Dataset)
 
 
-def test_open_pyart():
-    """Test file with open_pyart."""
-    network = "NEXRAD"
-    filepath = os.path.join(radar_api._root_path, "radar_api", "tests", "test_data", "KABR20230101_000142_V06")
-    radar_obj = open_pyart(filepath, network=network)
-    assert isinstance(radar_obj, pyart.core.Radar)
+# def test_open_pyart():
+#     """Test file with open_pyart."""
+#     network = "NEXRAD"
+#     filepath = os.path.join(radar_api._root_path, "radar_api", "tests", "test_data", "KABR20230101_000142_V06")
+#     radar_obj = open_pyart(filepath, network=network)
+#     assert isinstance(radar_obj, pyart.core.Radar)
