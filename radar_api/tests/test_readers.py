@@ -30,7 +30,7 @@ import os
 import pyart
 import pytest
 import xarray as xr
-
+import matploblib # noqa (pyart bug)
 import radar_api
 from radar_api.readers import (
     check_software_availability,

@@ -171,7 +171,7 @@ Feel free to also open a [GitHub Issue](https://github.com/ghiggi/radar_api/issu
 
 If you are using RADAR-API in your publication please cite our Zenodo repository:
 
-> Ghiggi Gionata. ghiggi/radar_api. Zenodo. [![<https://doi.org/10.5281/zenodo.14743651>](https://zenodo.org/badge/922589509.svg?style=flat)](https://doi.org/10.5281/zenodo.7753488)
+> Ghiggi Gionata. ghiggi/radar_api. Zenodo. [![<https://doi.org/10.5281/zenodo.14743651>](https://zenodo.org/badge/922589509.svg?style=flat)](https://doi.org/10.5281/zenodo.14743651)
 
 If you want to cite a specific software version, have a look at the [Zenodo site](https://doi.org/10.5281/zenodo.14743651).
 
