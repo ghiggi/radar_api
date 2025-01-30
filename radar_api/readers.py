@@ -23,13 +23,16 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 """This module defines file readers."""
-import fsspec
 import importlib
 from functools import wraps
+
+import fsspec
+
 from radar_api.io import get_network_info
 
 
 def get_simplecache_file(filepath):
+    """Simple cache a s3 file."""
     file = fsspec.open_local(
         f"simplecache::{filepath}",  # assume filepath has s3://
         s3={"anon": True},
@@ -98,7 +101,7 @@ def _prepare_file(filepath):
 @check_software_availability(software="xradar", conda_package="xradar")
 def open_datatree(filepath, network, **kwargs):
     """Open a file into an xarray DataTree object using xradar."""
-    filepath =_prepare_file(filepath)
+    filepath = _prepare_file(filepath)
     open_datatree = get_xradar_datatree_reader(network)
     dt = open_datatree(filepath, **kwargs)
     return dt
@@ -109,7 +112,7 @@ def open_dataset(filepath, network, sweep, **kwargs):
     """Open a file into an xarray Dataset object using xradar."""
     import xarray as xr
 
-    filepath =_prepare_file(filepath)
+    filepath = _prepare_file(filepath)
     engine = get_xradar_engine(network)
     ds = xr.open_dataset(filepath, group=sweep, engine=engine, **kwargs)
     return ds
@@ -118,7 +121,7 @@ def open_dataset(filepath, network, sweep, **kwargs):
 @check_software_availability(software="pyart", conda_package="arm_pyart")
 def open_pyart(filepath, network, **kwargs):
     """Open a file into a pyart object."""
-    filepath =_prepare_file(filepath)
+    filepath = _prepare_file(filepath)
     pyart_reader = get_pyart_reader(network)
     pyart_obj = pyart_reader(filepath, **kwargs)
     return pyart_obj

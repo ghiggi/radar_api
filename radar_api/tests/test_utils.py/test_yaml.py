@@ -27,7 +27,9 @@
 """This module test the YAML reader and writer utilities."""
 
 import os
+
 import yaml
+
 from radar_api.utils.yaml import read_yaml, write_yaml
 
 # Sample data for testing

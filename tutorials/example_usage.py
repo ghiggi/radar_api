@@ -100,6 +100,3 @@ radar_api.available_radars(network="NEXRAD", start_time="2025-01-01")
 radar_api.available_radars(network="NEXRAD", end_time="1993-01-01")
 
 # -------------------------------------------------------.
-
-
-

@@ -27,7 +27,7 @@
 """This module test the file filtering routines."""
 from radar_api.filter import (
     is_file_within_time,
-    # filter_file, 
+    # filter_file,
     # filter_files,
 )
 

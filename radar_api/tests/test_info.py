@@ -26,7 +26,6 @@
 """This module test the info extraction from radar filename."""
 
 import datetime
-from typing import Any
 
 import pytest
 
@@ -37,8 +36,8 @@ from radar_api.info import (
     get_end_time_from_filepaths,
     get_info_from_filename,
     get_info_from_filepath,
-    get_key_from_filepath, 
-    get_key_from_filepaths, 
+    get_key_from_filepath,
+    get_key_from_filepaths,
     get_season,
     get_start_end_time_from_filepaths,
     get_start_time_from_filepaths,
@@ -47,92 +46,105 @@ from radar_api.info import (
     group_filepaths,
 )
 
-SAMPLE_FILES = { 
+SAMPLE_FILES = {
     # <network> : [<sample_filenames>]
-    "FMI": ["202101010100_fiika_PVOL.h5"], 
+    "FMI": ["202101010100_fiika_PVOL.h5"],
     "NEXRAD": ["KFSX19960701_044028.gz", "KABR20100101_000618_V03", "KLIX20211220_160243_V06"],
     "IDEAM": ["9100SAN-20240202-105624-PPIVol-0d1c.nc", "BAR240201135316.RAWMUAK"],
-    }
+}
 
 
 #### Examples info dictionaries
 
 
-SAMPLE_FILES_INFO_DICT = { 
+SAMPLE_FILES_INFO_DICT = {
     "FMI": [
         # Filename
-        ("202101010100_fiika_PVOL.h5", 
-        # InfoDict
-        {"start_time": datetime.datetime(2021,1,1,1,0), 
-         "end_time": None,
-         "radar_acronym": "fiika", 
-         "volume_identifier": "PVOL",
-         "extension": "h5",
-         "version": "",
-         }),
-        ],
+        (
+            "202101010100_fiika_PVOL.h5",
+            # InfoDict
+            {
+                "start_time": datetime.datetime(2021, 1, 1, 1, 0),
+                "end_time": None,
+                "radar_acronym": "fiika",
+                "volume_identifier": "PVOL",
+                "extension": "h5",
+                "version": "",
+            },
+        ),
+    ],
     "NEXRAD": [
         # Filename
-        ("KFSX19960701_044028.gz",
-         # InfoDict
-         {"start_time": datetime.datetime(1996,7,1,4,40, 28), 
-          "end_time": None,
-          "radar_acronym": "KFSX", 
-          "volume_identifier": "",
-          "extension": "gz",
-          "version": "",
-          }
-        ),
-        # Filename
-        ("KABR20100101_000618_V03.gz",
-         # InfoDict
-         {"start_time": datetime.datetime(2010,1,1,0,6,18), 
-          "end_time": None,
-          "radar_acronym": "KABR", 
-          "volume_identifier": "",
-          "extension": "gz",
-          "version": "3",
-          }
-        ),
-        ("KABR20100101_000618_V06",
-         # InfoDict
-         {"start_time": datetime.datetime(2010,1,1,0,6,18), 
-          "end_time": None,
-          "radar_acronym": "KABR", 
-          "volume_identifier": "",
-          "extension": "",
-          "version": "6",
-          }
-        ),
-        ], 
-    "IDEAM": [ 
         (
-         # Filename
-        "9100SAN-20240202-105624-PPIVol-0d1c.nc",
-         # InfoDict
-        {"start_time": datetime.datetime(2024,2,2,10, 56, 24), 
-         "end_time": None,
-         "radar_acronym": "9100SAN", 
-         "volume_identifier": "0d1c",
-         "extension": "nc",
-         "version": "",
-         }),
+            "KFSX19960701_044028.gz",
+            # InfoDict
+            {
+                "start_time": datetime.datetime(1996, 7, 1, 4, 40, 28),
+                "end_time": None,
+                "radar_acronym": "KFSX",
+                "volume_identifier": "",
+                "extension": "gz",
+                "version": "",
+            },
+        ),
         # Filename
-       ("BAR240201135316.RAWMUAK",
-        # InfoDict
-       {"start_time": datetime.datetime(2024,2,1,13, 53, 16), 
-        "end_time": None,
-        "radar_acronym": "BAR", 
-        "volume_identifier": "MUAK",
-        "extension": "",
-        "version": "",
-        }),
-        ]
+        (
+            "KABR20100101_000618_V03.gz",
+            # InfoDict
+            {
+                "start_time": datetime.datetime(2010, 1, 1, 0, 6, 18),
+                "end_time": None,
+                "radar_acronym": "KABR",
+                "volume_identifier": "",
+                "extension": "gz",
+                "version": "3",
+            },
+        ),
+        (
+            "KABR20100101_000618_V06",
+            # InfoDict
+            {
+                "start_time": datetime.datetime(2010, 1, 1, 0, 6, 18),
+                "end_time": None,
+                "radar_acronym": "KABR",
+                "volume_identifier": "",
+                "extension": "",
+                "version": "6",
+            },
+        ),
+    ],
+    "IDEAM": [
+        (
+            # Filename
+            "9100SAN-20240202-105624-PPIVol-0d1c.nc",
+            # InfoDict
+            {
+                "start_time": datetime.datetime(2024, 2, 2, 10, 56, 24),
+                "end_time": None,
+                "radar_acronym": "9100SAN",
+                "volume_identifier": "0d1c",
+                "extension": "nc",
+                "version": "",
+            },
+        ),
+        # Filename
+        (
+            "BAR240201135316.RAWMUAK",
+            # InfoDict
+            {
+                "start_time": datetime.datetime(2024, 2, 1, 13, 53, 16),
+                "end_time": None,
+                "radar_acronym": "BAR",
+                "volume_identifier": "MUAK",
+                "extension": "",
+                "version": "",
+            },
+        ),
+    ],
 }
-        
-         
-NETWORKS = list(SAMPLE_FILES)
 
+
+NETWORKS = list(SAMPLE_FILES)
 
 
 ##############################
@@ -141,9 +153,7 @@ NETWORKS = list(SAMPLE_FILES)
 
 
 def _generate_test_params(sample_dict):
-    """
-    Generate (network, filename, expected_info) for all samples in SAMPLE_FILES_INFO_DICT.
-    """
+    """Generate (network, filename, expected_info) for all samples in SAMPLE_FILES_INFO_DICT."""
     for network, file_info_list in sample_dict.items():
         for filename, expected_info in file_info_list:
             test_id = f"{network}-{filename}"
@@ -152,54 +162,51 @@ def _generate_test_params(sample_dict):
 
 ####------------------------------------------------------------------------
 
- 
-@pytest.mark.parametrize("network, filename, expected_info", _generate_test_params(SAMPLE_FILES_INFO_DICT))
+
+@pytest.mark.parametrize(("network", "filename", "expected_info"), _generate_test_params(SAMPLE_FILES_INFO_DICT))
 def test_get_info_from_filename(network, filename, expected_info):
     """Test get_info_from_filename returns the correct parsed info for known filenames."""
     parsed_info = get_info_from_filename(filename, network)
     # Check each key in expected_info
     for key, expected_val in expected_info.items():
         assert parsed_info.get(key) == expected_val, (
-            f"For '{filename}', key '{key}' should be {expected_val}, "
-            f"but got {parsed_info.get(key)}"
+            f"For '{filename}', key '{key}' should be {expected_val}, " f"but got {parsed_info.get(key)}"
         )
     # Check that no unexpected keys exist
     extra_keys = set(parsed_info.keys()) - set(expected_info.keys())
     assert len(extra_keys) == 0, f"Extra keys: {extra_keys}"
- 
 
-def test_get_info_from_invalid_filename(): 
+
+def test_get_info_from_invalid_filename():
     """Test get_info_from_filename raise error or return empty dictionary for unknown filenames."""
     with pytest.raises(ValueError):
         get_info_from_filename("invalid_filename", network="NEXRAD")
-        
+
     # Assert that if ignore_errors = True, return empty dictionary
     assert get_info_from_filename("invalid_filename", network="NEXRAD", ignore_errors=True) == {}
-        
-    
+
+
 def test_get_info_from_invalid_filepath():
-    """Test get_info_from_filepath raise error with invalid filepaths"""
+    """Test get_info_from_filepath raise error with invalid filepaths."""
     # Invalid filename
     with pytest.raises(ValueError):
         get_info_from_filepath("invalid_filename", network="NEXRAD")
- 
+
     # Filepath not a string
     with pytest.raises(TypeError):
         get_info_from_filepath(123, network="NEXRAD")
-        
+
     # Assert that if ignore_errors = True, return empty dictionary
     assert get_info_from_filepath("invalid_filename", network="NEXRAD", ignore_errors=True) == {}
-        
 
-@pytest.mark.parametrize("network, filename, expected_info", _generate_test_params(SAMPLE_FILES_INFO_DICT))
+
+@pytest.mark.parametrize(("network", "filename", "expected_info"), _generate_test_params(SAMPLE_FILES_INFO_DICT))
 def test_get_key_from_filepath_valid(network, filename, expected_info):
     """Test get_key_from_filepath returns the requested key value."""
     for key, expected_val in expected_info.items():
         # Some keys might be None in expected_info, skip them or test them if relevant
         returned_val = get_key_from_filepath(filename, key=key, network=network)
-        assert returned_val == expected_val, (
-            f"For key '{key}', expected {expected_val} but got {returned_val}"
-        )
+        assert returned_val == expected_val, f"For key '{key}', expected {expected_val} but got {returned_val}"
 
 
 def test_get_key_from_filepath_missing_key():
@@ -211,14 +218,13 @@ def test_get_key_from_filepath_missing_key():
 def test_get_key_from_filepaths():
     """Test get_key_from_filepaths returns a list of the requested key value."""
     filepaths = ["202101010100_fiika_PVOL.h5"]
-    # Test input a list return a list 
-    assert isinstance(get_key_from_filepaths(filepaths, network="FMI", key="start_time"), list) 
+    # Test input a list return a list
+    assert isinstance(get_key_from_filepaths(filepaths, network="FMI", key="start_time"), list)
     # Test input a string return still a list
-    assert isinstance(get_key_from_filepaths(filepaths[0], network="FMI", key="start_time"), list) 
+    assert isinstance(get_key_from_filepaths(filepaths[0], network="FMI", key="start_time"), list)
 
-        
-def test_get_start_time_from_filepaths(
-) -> None:
+
+def test_get_start_time_from_filepaths() -> None:
     """Test that the start time is correctly extracted from filepaths."""
     # We'll use the FMI sample as an example
     filenames = ["202101010100_fiika_PVOL.h5"]
@@ -228,8 +234,7 @@ def test_get_start_time_from_filepaths(
     assert times[0] == datetime.datetime(2021, 1, 1, 1, 0)
 
 
-def test_get_end_time_from_filepaths(
-) -> None:
+def test_get_end_time_from_filepaths() -> None:
     """Test that the end time is correctly extracted from filepaths."""
     # We'll use the FMI sample as an example (without end_time in filename)
     filenames = ["202101010100_fiika_PVOL.h5"]
@@ -238,27 +243,27 @@ def test_get_end_time_from_filepaths(
     assert times[0] is None, f"Expected None end_time for {filenames[0]}"
 
 
-def test_get_start_end_time_from_filepaths(
-) -> None:
+def test_get_start_end_time_from_filepaths() -> None:
     """Test get_start_end_time_from_filepaths returns numpy arrays."""
     filenames = ["202101010100_fiika_PVOL.h5"]
     start_arr, end_arr = get_start_end_time_from_filepaths(filenames, network="FMI")
-    assert len(start_arr) == 1 and len(end_arr) == 1
+    assert len(start_arr) == 1
+    assert len(end_arr) == 1
     assert start_arr[0] == datetime.datetime(2021, 1, 1, 1, 0)
     assert end_arr[0] is None
-    assert hasattr(start_arr, "shape") and hasattr(end_arr, "shape"), "Expected numpy arrays."
-        
+    assert hasattr(start_arr, "shape")
+    assert hasattr(end_arr, "shape"), "Expected numpy arrays."
 
-def test_get_versions_from_filepaths(
-) -> None:
+
+def test_get_versions_from_filepaths() -> None:
     """Test that the version is correctly extracted from filepaths."""
     filenames = ["KFSX19960701_044028.gz", "KABR20100101_000618_V03.gz", "KABR20100101_000618_V06"]
     output_version = get_version_from_filepaths(filenames, network="NEXRAD")
-    assert  output_version == [None, 3, 6]
-    
-    assert get_version_from_filepaths(filenames[0], network="NEXRAD") == [None] # input str output list
+    assert output_version == [None, 3, 6]
 
- 
+    assert get_version_from_filepaths(filenames[0], network="NEXRAD") == [None]  # input str output list
+
+
 def test_check_groups():
     """Test check_groups function."""
     valid_groups = ["radar_acronym", "volume_identifier", "version", "extension"]
@@ -300,22 +305,22 @@ def test_get_season():
 def test_group_filepaths(network):
     """Test group_filepaths function."""
     filepaths = SAMPLE_FILES[network]
-    
+
     # Test groups = None
     assert group_filepaths(filepaths, None) == filepaths
 
     # Test all time keys pass
     for key in TIME_KEYS:
         assert isinstance(group_filepaths(filepaths, network=network, groups=key), dict)
-        
+
     # Test multiple groups
     assert isinstance(group_filepaths([filepaths[0]], network=network, groups=["radar_acronym", "year", "month"]), dict)
 
     # Test all file keys pass
     for key in FILE_KEYS:
         assert isinstance(group_filepaths(filepaths, network=network, groups=key), dict)
-    
-     
+
+
 def test_group_filepaths_by_time():
     """Test group_filepaths by time."""
     network = "NEXRAD"
@@ -325,6 +330,6 @@ def test_group_filepaths_by_time():
     assert group_filepaths([dummy_filepath], network=network, groups="year") == {"2010": [dummy_filepath]}
 
     # Test multiple groups
-    assert group_filepaths([dummy_filepath], network=network, groups=["radar_acronym", "year", "month"]) == {"KABR/2010/1": [dummy_filepath]}
-
- 
+    assert group_filepaths([dummy_filepath], network=network, groups=["radar_acronym", "year", "month"]) == {
+        "KABR/2010/1": [dummy_filepath],
+    }

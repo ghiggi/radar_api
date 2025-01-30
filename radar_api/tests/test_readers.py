@@ -25,44 +25,46 @@
 
 # -----------------------------------------------------------------------------.
 """This module test the RADAR-API readers functions."""
-import pytest
 import os
+
+import pyart
+import pytest
 import xarray as xr
-import pyart 
+
 import radar_api
 from radar_api.readers import (
     check_software_availability,
     get_simplecache_file,
-    open_datatree,
     open_dataset,
+    open_datatree,
     open_pyart,
 )
- 
+
 
 def test_get_simplecache_file():
     """Test file simple caching with fsspec."""
     filepath = "s3://noaa-nexrad-level2/2023/01/01/KABR/KABR20230101_000142_V06"
     file = get_simplecache_file(filepath)
-    assert isinstance(file, str) 
-    
+    assert isinstance(file, str)
 
-def test_check_software_availability_decorator(): 
+
+def test_check_software_availability_decorator():
     """Test check_software_availability_decorator raise ImportError."""
-    
+
     @check_software_availability(software="dummy_package", conda_package="dummy_package")
     def dummy_function(a, b=1):
-        return a,b
-    
+        return a, b
+
     with pytest.raises(ImportError):
         dummy_function()
-        
+
     @check_software_availability(software="numpy", conda_package="numpy")
     def dummy_function(a, b=1):
-        return a,b
-    
-    assert dummy_function(2, b=3) == (2,3)
+        return a, b
 
-    
+    assert dummy_function(2, b=3) == (2, 3)
+
+
 def test_open_datatree():
     """Test file with open_datatree."""
     network = "NEXRAD"
@@ -77,8 +79,8 @@ def test_open_dataset():
     filepath = os.path.join(radar_api._root_path, "radar_api", "tests", "test_data", "KABR20230101_000142_V06")
     ds = open_dataset(filepath, sweep="sweep_0", network=network)
     assert isinstance(ds, xr.Dataset)
-    
-    
+
+
 def test_open_pyart():
     """Test file with open_pyart."""
     network = "NEXRAD"

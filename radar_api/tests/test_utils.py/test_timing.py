@@ -25,26 +25,26 @@
 
 # -----------------------------------------------------------------------------.
 """This module test the list utilities."""
-from radar_api.utils.timing import print_elapsed_time 
+from radar_api.utils.timing import print_elapsed_time
 
 
 def test_print_elapsed_time(capsys):
     """Test for print_elapsed_time."""
-    
+
     @print_elapsed_time
     def add_decorated(a, b, verbose=True):
         return a + b
-    
-    # Check when verbose = True 
+
+    # Check when verbose = True
     result = add_decorated(2, 3)
     captured = capsys.readouterr()  # Capture the print output
 
     assert result == 5, "Function result incorrect"
     assert "Elapsed time: " in captured.out
-    
-    # Check when verbose = False 
+
+    # Check when verbose = False
     result = add_decorated(2, 3, verbose=False)
     captured = capsys.readouterr()  # Capture the print output
 
     assert result == 5, "Function result incorrect"
-    assert "" == captured.out
+    assert captured.out == ""

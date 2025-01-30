@@ -25,14 +25,15 @@
 
 # -----------------------------------------------------------------------------.
 """This module test the files download routines."""
-import os
 import datetime
+import os
+
 from radar_api.download import (
-   download_files,
-   get_start_of_day, 
-   get_end_of_day,
-   get_list_daily_time_blocks,
-   define_local_filepath,
+    define_local_filepath,
+    download_files,
+    get_end_of_day,
+    get_list_daily_time_blocks,
+    get_start_of_day,
 )
 
 
@@ -48,7 +49,7 @@ class TestDayBoundaries:
         time = datetime.datetime(2023, 7, 10, 15, 45, 30)
         end_of_day = get_end_of_day(time)
         assert end_of_day == datetime.datetime(2023, 7, 11, 0, 0, 0)
-        
+
         time = datetime.datetime(2023, 7, 12, 0, 0, 0)
         end_of_day = get_end_of_day(time)
         assert end_of_day == datetime.datetime(2023, 7, 13, 0, 0, 0)
@@ -80,8 +81,8 @@ class TestGetListDailyTimeBlocks:
         start_time = datetime.datetime(2023, 7, 10, 0, 0, 0)
         end_time = datetime.datetime(2023, 7, 12, 0, 0, 0)
         result = get_list_daily_time_blocks(start_time, end_time)
-        # We expect blocks:  
-        # (7/10 00:00, 7/11 00:00), 
+        # We expect blocks:
+        # (7/10 00:00, 7/11 00:00),
         # (7/11 00:00, 7/12 00:00)]
         assert len(result) == 2
         assert result[0] == (
@@ -120,40 +121,37 @@ class TestGetListDailyTimeBlocks:
             datetime.datetime(2023, 7, 13, 0, 0),
             datetime.datetime(2023, 7, 13, 9, 45),
         )
-        
-        
-def test_define_local_filepath(): 
+
+
+def test_define_local_filepath():
     """Test the define_local_filepath function."""
     filename = "KTLX19910605_162126.gz"
-    network="NEXRAD"
-    radar="KTLX"
-    base_dir="my_basedir"
-    res = define_local_filepath(filename=filename,
-                                network=network,
-                                radar=radar,
-                                base_dir=base_dir)
+    network = "NEXRAD"
+    radar = "KTLX"
+    base_dir = "my_basedir"
+    res = define_local_filepath(filename=filename, network=network, radar=radar, base_dir=base_dir)
     assert res == os.path.join(base_dir, network, "1991", "06", "05", "16", radar, filename)
-    
-    
-def test_find_files_on_cloud_bucket(tmp_path): 
+
+
+def test_find_files_on_cloud_bucket(tmp_path):
     """Test the find_files function on the s3 cloud bucket."""
     base_dir = tmp_path
     radar = "KTLX"
     network = "NEXRAD"
     start_time = "1991-06-05T16:20:00"
-    end_time = "1991-06-05T16:22:00" # download only the first file available ...
+    end_time = "1991-06-05T16:22:00"  # download only the first file available ...
     filepaths = download_files(
-           network=network,
-           radar=radar,
-           start_time=start_time,
-           end_time=end_time,
-           verbose=True,
-           n_threads=4,
-           base_dir=base_dir,
-           force_download=False,
-           check_data_integrity=True,
-           progress_bar=True,
+        network=network,
+        radar=radar,
+        start_time=start_time,
+        end_time=end_time,
+        verbose=True,
+        n_threads=4,
+        base_dir=base_dir,
+        force_download=False,
+        check_data_integrity=True,
+        progress_bar=True,
     )
-    assert isinstance(filepaths, list) 
-    assert len(filepaths) == 1 
+    assert isinstance(filepaths, list)
+    assert len(filepaths) == 1
     assert filepaths[0].endswith("KTLX19910605_162126.gz")

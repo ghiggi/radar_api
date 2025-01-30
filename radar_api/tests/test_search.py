@@ -27,17 +27,19 @@
 """This module test the files search routines."""
 import os
 import shutil
-import pytest
+
 import pandas as pd
+import pytest
+
 import radar_api
 from radar_api.search import (
-    get_pattern_shortest_time_component,
-    get_list_timesteps,
-    get_directories_paths,
     find_files,
+    get_directories_paths,
+    get_list_timesteps,
+    get_pattern_shortest_time_component,
 )
 
- 
+
 class TestIdentifyLastTimeComponent:
     def test_minute_component(self):
         """Test get_pattern_shortest_time_component returns 'min' for pattern with {time:%M}."""
@@ -76,24 +78,27 @@ class TestIdentifyLastTimeComponent:
             get_pattern_shortest_time_component(pattern)
 
 
- 
 class TestGetListTimesteps:
     @pytest.mark.parametrize(
-        "freq, start_str, end_str, expected_dates",
+        ("freq", "start_str", "end_str", "expected_dates"),
         [
             # freq='D' => shift start back by 1 day, then floor both
             (
                 "D",
                 "2023-07-01 12:00:00",
                 "2023-07-02 01:00:00",
-                [pd.Timestamp("2023-06-30"), pd.Timestamp("2023-07-01"), pd.Timestamp("2023-07-02")]
+                [pd.Timestamp("2023-06-30"), pd.Timestamp("2023-07-01"), pd.Timestamp("2023-07-02")],
             ),
             # freq='h' => shift start back by 1 hour, then floor hours
             (
                 "h",
                 "2023-07-01 12:30:00",
                 "2023-07-01 13:45:00",
-                [pd.Timestamp("2023-07-01 11:00:00"), pd.Timestamp("2023-07-01 12:00:00"), pd.Timestamp("2023-07-01 13:00:00")]
+                [
+                    pd.Timestamp("2023-07-01 11:00:00"),
+                    pd.Timestamp("2023-07-01 12:00:00"),
+                    pd.Timestamp("2023-07-01 13:00:00"),
+                ],
             ),
             # freq='min' => shift start back by 1 minute, floor minutes
             (
@@ -105,15 +110,14 @@ class TestGetListTimesteps:
                     pd.Timestamp("2023-07-01 12:30:00"),
                     pd.Timestamp("2023-07-01 12:31:00"),
                     pd.Timestamp("2023-07-01 12:32:00"),
-                ]
+                ],
             ),
-        ]
+        ],
     )
     def test_frequencies(self, freq, start_str, end_str, expected_dates):
         """Test get_list_timesteps with day/hour/minute frequencies."""
         times = get_list_timesteps(start_str, end_str, freq)
         assert list(times) == expected_dates
-
 
     def test_freq_ms(self):
         """Test get_list_timesteps with freq='MS' (monthly start)."""
@@ -127,7 +131,7 @@ class TestGetListTimesteps:
             pd.Timestamp("2023-01-01"),
             pd.Timestamp("2023-02-01"),
         ]
-        
+
         start_time = "2023-02-15"
         end_time = "2023-03-10"
         times = get_list_timesteps(start_time, end_time, freq="MS")
@@ -156,7 +160,6 @@ class TestGetListTimesteps:
             get_list_timesteps("2023-01-01", "2023-02-01", freq="S")  # seconds not supported
 
 
- 
 class TestGetDirectoriesPaths:
     def test_directories_s3_day(self):
         """Test get_directories_paths for s3 daily pattern with partial day range."""
@@ -177,7 +180,7 @@ class TestGetDirectoriesPaths:
             network=network,
             radar=radar,
             protocol=protocol,
-            base_dir=base_dir
+            base_dir=base_dir,
         )
         expected = [
             # Because the function does start_time - 1 day, then floors to day ...
@@ -188,25 +191,25 @@ class TestGetDirectoriesPaths:
         assert paths == expected
 
 
-def test_find_files_on_cloud_bucket(): 
+def test_find_files_on_cloud_bucket():
     """Test the find_files function on the s3 cloud bucket."""
     radar = "KABR"
     network = "NEXRAD"
     start_time = "2023-07-01T12:00:00"
     end_time = "2023-07-01T13:00:00"
     filepaths = find_files(
-           network=network,
-           radar=radar,
-           start_time=start_time,
-           end_time=end_time,
-           protocol="s3",
-           verbose=True,
+        network=network,
+        radar=radar,
+        start_time=start_time,
+        end_time=end_time,
+        protocol="s3",
+        verbose=True,
     )
-    assert isinstance(filepaths, list) 
+    assert isinstance(filepaths, list)
     assert len(filepaths) == 12
-    
-    
-def test_find_files_on_local_disk(tmp_path): 
+
+
+def test_find_files_on_local_disk(tmp_path):
     """Test the find_files function on local disk."""
     # Copy sample file to temporary local directory
     filepath = os.path.join(radar_api._root_path, "radar_api", "tests", "test_data", "KABR20230101_000142_V06")
@@ -215,27 +218,27 @@ def test_find_files_on_local_disk(tmp_path):
     dst_fpath = os.path.join(dst_dir, os.path.basename(filepath))
     os.makedirs(dst_dir, exist_ok=True)
     shutil.copy(filepath, dst_fpath)
-    
+
     # Check the file is found on the local disk
     radar = "KABR"
     network = "NEXRAD"
     start_time = "2023-01-01T00:00:00"
     end_time = "2023-01-01T01:00:00"
     filepaths = find_files(
-           network=network,
-           radar=radar,
-           start_time=start_time,
-           end_time=end_time,
-           protocol="local",
-           base_dir=base_dir,
-           verbose=True,
+        network=network,
+        radar=radar,
+        start_time=start_time,
+        end_time=end_time,
+        protocol="local",
+        base_dir=base_dir,
+        verbose=True,
     )
-    assert isinstance(filepaths, list) 
+    assert isinstance(filepaths, list)
     assert len(filepaths) == 1
     assert filepaths[0].endswith("KABR20230101_000142_V06")
-    
 
-def test_find_files_invalid_arguments(): 
+
+def test_find_files_invalid_arguments():
     """Test the find_files raise error if base_dir specified with cloud protocol."""
     radar = "KABR"
     network = "NEXRAD"
@@ -243,10 +246,10 @@ def test_find_files_invalid_arguments():
     end_time = "2023-07-01T13:00:00"
     with pytest.raises(ValueError):
         find_files(
-               network=network,
-               radar=radar,
-               start_time=start_time,
-               end_time=end_time,
-               protocol="s3",
-               base_dir="base_dir_path_with_s3_protocol"
+            network=network,
+            radar=radar,
+            start_time=start_time,
+            end_time=end_time,
+            protocol="s3",
+            base_dir="base_dir_path_with_s3_protocol",
         )
