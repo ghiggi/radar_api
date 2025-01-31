@@ -123,6 +123,9 @@ def define_local_filepath(filename, network, radar, base_dir):
     # Define local directory path
     parser = Parser(directory_pattern)
     path = parser.compose({"time": time, "radar": radar, "base_dir": base_dir})
+    # Adapt path to window separator if the case
+    if os.name == "nt":
+        path = path.replace("/", "\\")
     filepath = os.path.join(path, filename)
     return filepath
 

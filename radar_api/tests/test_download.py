@@ -123,12 +123,12 @@ class TestGetListDailyTimeBlocks:
         )
 
 
-def test_define_local_filepath():
+def test_define_local_filepath(tmp_path):
     """Test the define_local_filepath function."""
     filename = "KTLX19910605_162126.gz"
     network = "NEXRAD"
     radar = "KTLX"
-    base_dir = "my_basedir"
+    base_dir = os.path.join(tmp_path, "RADAR")
     res = define_local_filepath(filename=filename, network=network, radar=radar, base_dir=base_dir)
     assert res == os.path.join(base_dir, network, "1991", "06", "05", "16", radar, filename)
 
