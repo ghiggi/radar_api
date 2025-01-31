@@ -81,7 +81,8 @@ def remove_corrupted_files(local_fpaths, bucket_fpaths, fs, return_corrupted_fpa
 
     Returns
     -------
-    (list_local_filepaths, list_bucket_filepaths)
+    tuple
+        (list_local_filepaths, list_bucket_filepaths)
 
     """
     l_corrupted_local = []
