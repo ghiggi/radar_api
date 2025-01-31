@@ -115,8 +115,10 @@ def _select_missing_fpaths(local_fpaths, bucket_fpaths):
     return local_fpaths, bucket_fpaths
 
 
-def define_local_filepath(filename, network, radar, base_dir):
+def define_local_filepath(filename, network, radar, base_dir=None):
     """Define filepath where to save file locally on disk."""
+    base_dir = get_base_dir(base_dir)
+    base_dir = check_base_dir(base_dir)
     # Get directory pattern
     directory_pattern = get_directory_pattern(protocol="local", network=network)
     info_dict = get_info_from_filepath(filename, network=network)
