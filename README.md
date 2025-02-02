@@ -85,13 +85,26 @@ ______________________________________________________________________
 
 ### 💫 Open radar files into xarray or pyart
 
-A radar file can be opened into an xarray object or a pyart radar object.
-RADAR-API make use of pyart and xradar readers to open the files.
+RADAR-API allows to read directly radar data from the cloud without the
+need to previously download and save the files on your disk.
+
+RADAR-API make use of pyart and xradar readers to open the files into either
+an xarray object or pyart radar object.
 
 ```python
 import radar_api
 import pyart
 
+# Search for files on cloud bucket
+filepaths = radar_api.find_files(
+    network=network,
+    radar=radar,
+    start_time=start_time,
+    end_time=end_time,
+    protocol="s3",
+)
+print(filepaths)
+ 
 # Define the file to open
 filepath = filepaths[0]
 
@@ -107,28 +120,10 @@ ds = radar_api.open_dataset(filepath, network=network, sweep="sweep_0")
 # Open all sweeps of a radar volume into a pyart radar object
 radar_obj = radar_api.open_pyart(filepath, network=network)
 
-# Display data with pyart
+# Display the data with pyart
 display = pyart.graph.RadarDisplay(radar_obj)
 display.plot("reflectivity")
 display.set_limits((-150, 150), (-150, 150))
-```
-
-RADAR-API allows to read directly radar data from the cloud without the
-need to previously download the files on the local disk.
-
-```python
-# Search for files on cloud bucket
-filepaths = radar_api.find_files(
-    network=network,
-    radar=radar,
-    start_time=start_time,
-    end_time=end_time,
-    protocol="s3",
-)
-print(filepaths)
-
-# Open with xradar datatree
-dt = radar_api.open_datatree(filepath, network=network)
 ```
 
 ______________________________________________________________________
