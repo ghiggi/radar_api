@@ -1,7 +1,7 @@
 # -----------------------------------------------------------------------------.
 # MIT License
 
-# Copyright (c) 2024 RADAR-API developers
+# Copyright (c) 2025 RADAR-API developers
 #
 # This file is part of RADAR-API.
 
@@ -129,6 +129,7 @@ def test_define_local_filepath(tmp_path):
     network = "NEXRAD"
     radar = "KTLX"
     base_dir = os.path.join(tmp_path, "RADAR")
+    os.makedirs(base_dir, exist_ok=True)
     res = define_local_filepath(filename=filename, network=network, radar=radar, base_dir=base_dir)
     assert res == os.path.join(base_dir, network, "1991", "06", "05", "16", radar, filename)
 

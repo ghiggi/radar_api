@@ -1,8 +1,12 @@
 icao: KUNR
 radar_name: ""
 radar_operator: ""
-rda_location: ""
+rda_location: "Rapid City"
 wfo_name: ""
 wfo_sid: ""
 start_time: "2002-04-26 16:37:33"
 end_time: "2003-12-01 23:51:21"
+latitude: 44.06667
+longitude: -103.20000
+altitude: 1027
+radar_band: S

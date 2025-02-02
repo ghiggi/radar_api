@@ -1,6 +1,6 @@
 # MIT License
 
-# Copyright (c) 2024 RADAR-API developers
+# Copyright (c) 2025 RADAR-API developers
 #
 # This file is part of RADAR-API.
 

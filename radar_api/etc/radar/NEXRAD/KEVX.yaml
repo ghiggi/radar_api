@@ -9,3 +9,4 @@ longitude: -85.921667
 altitude: 67.3608
 start_time: "1995-06-05 12:18:45"
 end_time: ""
+radar_band: S

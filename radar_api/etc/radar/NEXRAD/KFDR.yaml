@@ -9,3 +9,4 @@ longitude: -98.976667
 altitude: 400.812
 start_time: "1992-02-15 22:08:22"
 end_time: ""
+radar_band: S

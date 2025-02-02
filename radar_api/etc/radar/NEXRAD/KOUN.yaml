@@ -9,3 +9,4 @@ longitude: -97.46235
 altitude: 391.3632
 start_time: "2010-05-09 00:01:16"
 end_time: "2012-10-01 23:55:36"
+radar_band: S

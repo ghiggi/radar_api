@@ -4,6 +4,9 @@ rda_location: JOSE APONTE DE LA TORRE AIRPORT, PR
 wfo_name: null
 wfo_sid: null
 radar_operator: null
+start_time: "2017-11-01 00:00:00"
+end_time: "2018-06-26 00:00:00"
 latitude: 18.256
 longitude: -65.637
 altitude: 15.24
+radar_band: C

@@ -2,3 +2,7 @@ icao: ""
 radar_name: ""
 start_time: "2007-01-01 08:40:00"
 end_time: "2021-08-01 23:50:00"
+latitude: 60.270620081573725
+longitude: 24.86902004107833
+altitude: 82.0
+radar_band: C

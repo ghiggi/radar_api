@@ -1,7 +1,7 @@
 # -----------------------------------------------------------------------------.
 # MIT License
 
-# Copyright (c) 2024 RADAR-API developers
+# Copyright (c) 2025 RADAR-API developers
 #
 # This file is part of RADAR-API.
 
@@ -27,6 +27,7 @@ import datetime
 import os
 
 import fsspec
+import pandas as pd
 
 from radar_api.checks import check_network, check_start_end_time, get_current_utc_time
 from radar_api.utils.list import flatten_list
@@ -191,6 +192,29 @@ def is_radar_available(network, radar, start_time=None, end_time=None):
         file_start_time=radar_start_time,
         file_end_time=radar_end_time,
     )
+
+
+def get_network_database(network):
+    """Retrieve the radar network database."""
+    list_info = []
+    for radar in available_radars(network=network):
+        try:
+            radar_info_path = get_radar_config_filepath(network=network, radar=radar)
+            radar_info = read_yaml(radar_info_path)
+            variables = ["latitude", "longitude", "altitude", "radar_band", "start_time", "end_time"]
+            dict_info = {var: radar_info[var] for var in variables}
+            dict_info["radar"] = radar
+            dict_info["network"] = network
+            list_info.append(dict_info)
+        except Exception:
+            print(f"Skip info for {radar}")
+    return pd.DataFrame(list_info)
+
+
+def get_database():
+    """Retrieve the RADAR-API database."""
+    list_df = [get_network_database(network) for network in available_networks()]
+    return pd.concat(list_df)
 
 
 def get_network_filename_patterns(network):

@@ -12,3 +12,4 @@ geographic_extent:
   - 5.2172398961792865
 maximum_range: 59968.75
 maximum_horizontal_distance: 59943.576843647825
+radar_band: C

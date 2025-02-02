@@ -4,6 +4,9 @@ rda_location: NORMAN, OK
 wfo_name: null
 wfo_sid: null
 radar_operator: null
+start_time: "2014-10-31 16:01:07"
+end_time: "2014-10-31 23:57:59"
 latitude: 35.238333
 longitude: -97.46
 altitude: 400.812
+radar_band: S

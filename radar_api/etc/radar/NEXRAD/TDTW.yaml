@@ -9,3 +9,4 @@ end_time: ""
 latitude: 42.111111
 longitude: -83.515
 altitude: 235.0008
+radar_band: C

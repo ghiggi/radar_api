@@ -1,6 +1,6 @@
 icao: KILM
 radar_name: WILMINGTON
-radar_operator:
+radar_operator: null
 rda_location: WILMINGTON INT AIRPORT, NC
 wfo_name: ""
 wfo_sid: ""
@@ -9,3 +9,4 @@ end_time: "2001-03-01 23:59:17"
 latitude: 34.2675
 longitude: -77.8997
 altitude: 9.8
+radar_band: S

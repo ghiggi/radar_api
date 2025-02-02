@@ -6,3 +6,7 @@ wfo_name: ""
 wfo_sid: ""
 start_time: "2010-07-07 12:58:48"
 end_time: ""
+radar_band: S
+latitude: 35.23833465576172
+longitude: -97.45999908447266
+altitude: 400

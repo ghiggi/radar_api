@@ -9,3 +9,4 @@ longitude: -82.715
 altitude: 349.91040000000004
 start_time: "2020-06-19 14:21:33"
 end_time: ""
+radar_band: C

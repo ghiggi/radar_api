@@ -4,6 +4,9 @@ rda_location: RAFAEL HERNANDEZ AIRPORT, PR
 wfo_name: null
 wfo_sid: null
 radar_operator: null
+start_time: "2017-11-01 00:00:00"
+end_time: "2018-06-26 00:00:00"
 latitude: 18.485
 longitude: -67.143
 altitude: 85.34400000000001
+radar_band: C
