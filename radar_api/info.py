@@ -24,7 +24,7 @@
 # SOFTWARE.
 
 # -----------------------------------------------------------------------------.
-"""This module provide tools to extraction information from the granules' filenames."""
+"""This module provides tools to extract information from radar filenames."""
 
 import os
 import re

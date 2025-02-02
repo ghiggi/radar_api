@@ -23,7 +23,7 @@
 # SOFTWARE.
 
 # -----------------------------------------------------------------------------.
-"""This module provide tools to extraction information from the radar filenames."""
+"""This module provides functions to check RADAR-API arguments."""
 import datetime
 import os
 import pathlib
