@@ -42,9 +42,9 @@ radar_api.available_radars(network="NEXRAD")
 ```
 
 Before starting using RADAR-API, we highly suggest to save into a configuration file
-the directory on the local disk where to save the radar dataset of interest.
+the directory on your local disk where to save the radar data of interest.
 
-To facilitate the creation of the configuration file, you can run the following script:
+To facilitate the creation of the RADAR-API configuration file, you can adapt and execute the following script:
 
 ```python
 import radar_api
@@ -63,7 +63,7 @@ ______________________________________________________________________
 
 ### 📥 Download radar data
 
-You can start to download radar data using the following code snippet:
+You can start to download radar data editing the following code example:
 
 ```python
 import radar_api
