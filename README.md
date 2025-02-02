@@ -1,6 +1,6 @@
 <div align="center">
     
-# 📦 Welcome to RADAR-API
+# Welcome to RADAR-API
 
 ![Radars currently accessible through RADAR-API](/docs/source/static/radar_api_coverage.png)
 
@@ -134,7 +134,7 @@ dt = radar_api.open_datatree(filepath, network=network)
 
 ______________________________________________________________________
 
-### 📖 Explore the RADAR-API documentation
+## 📖 Explore the RADAR-API documentation
 
 To discover all RADAR-API utilities and functionalities,
 please read the software documentation available at [https://radar-api.readthedocs.io/en/latest/](https://radar-api.readthedocs.io/en/latest/).
