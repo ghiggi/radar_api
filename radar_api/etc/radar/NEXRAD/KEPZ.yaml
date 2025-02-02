@@ -6,7 +6,7 @@ wfo_sid: EPZ
 radar_operator: NWS Southern Region
 latitude: 31.873056
 longitude: -106.698
-altitude: 1285.6464
+altitude: 1285.6
 start_time: "1996-05-15 16:04:15"
 end_time: ""
 radar_band: S

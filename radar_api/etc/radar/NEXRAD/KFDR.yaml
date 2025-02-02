@@ -6,7 +6,7 @@ wfo_sid: OUN
 radar_operator: DOD
 latitude: 34.362194
 longitude: -98.976667
-altitude: 400.812
+altitude: 400.8
 start_time: "1992-02-15 22:08:22"
 end_time: ""
 radar_band: S

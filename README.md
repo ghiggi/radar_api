@@ -1,11 +1,9 @@
 <div align="center">
-    
+
 # Welcome to RADAR-API
 
 ![Radars currently accessible through RADAR-API](/docs/source/static/radar_api_coverage.png)
 
-
-    
 |                   |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
 | ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Deployment        | [![PyPI](https://badge.fury.io/py/radar_api.svg?style=flat)](https://pypi.org/project/radar_api/) [![Conda](https://img.shields.io/conda/vn/conda-forge/radar-api.svg?logo=conda-forge&logoColor=white&style=flat)](https://anaconda.org/conda-forge/radar-api)                                                                                                                                                                                                                                                                                                                                                                                                                               |
@@ -19,12 +17,12 @@
 | Code Quality      | [![Codefactor](https://www.codefactor.io/repository/github/ghiggi/radar_api/badge?style=flat)](https://www.codefactor.io/repository/github/ghiggi/radar_api) [![Codebeat](https://codebeat.co/badges/57498d71-f042-473f-bb8e-9b45e50572d8?style=flat)](https://codebeat.co/projects/github-com-ghiggi-radar_api-main) [![Codacy](https://app.codacy.com/project/badge/Grade/bee842cb10004ad8bb9288256f2fc8af?style=flat)](https://app.codacy.com/gh/ghiggi/radar_api/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade) [![Codescene](https://codescene.io/projects/63299/status-badges/average-code-health?style=flat)](https://codescene.io/projects/63299) |
 | License           | [![License](https://img.shields.io/github/license/ghiggi/radar_api?style=flat)](https://github.com/ghiggi/radar_api/blob/main/LICENSE)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
 | Community         | [![Discourse](https://img.shields.io/badge/Slack-radar_api-green.svg?logo=slack&style=flat)](https://openradar.discourse.group/) [![GitHub Discussions](https://img.shields.io/badge/GitHub-Discussions-green?logo=github&style=flat)](https://github.com/ghiggi/radar_api/discussions)                                                                                                                                                                                                                                                                                                                                                                                                       |
-| Citation          | [![DOI](https://zenodo.org/badge/922589509.svg?style=flat)](https://doi.org/10.5281/zenodo.14743651)                                                                                                                                                                                                                                                                                                                                                                                    </div>                                                                                                                                                                                                     |
+| Citation          | [![DOI](https://zenodo.org/badge/922589509.svg?style=flat)](https://doi.org/10.5281/zenodo.14743651)                                                                                                                                                                                                                                                                                                                                                                                    </div>                                                                                                                                                                                                |
 
 [**Documentation: https://radar-api.readthedocs.io**](https://radar-api.readthedocs.io/)
 
 <div align="left">
-    
+
 ## 🚀 Quick start
 
 RADAR-API provides an easy-to-use python interface to find, download and
@@ -187,10 +185,10 @@ If you want to cite a specific software version, have a look at the [Zenodo site
 
 The content of this repository is released under the terms of the [MIT license](LICENSE).
 
+</div>
+
 [conda_forge_link]: https://github.com/conda-forge/radar-api-feedstock#installing-radar-api
 [conda_link]: https://docs.conda.io/en/latest/miniconda.html
 [dev_install_link]: https://radar-api.readthedocs.io/en/latest/02_installation.html#installation-for-contributors
 [pip_link]: https://pypi.org/project/radar-api
 [winpy_link]: https://winpython.github.io/
-
-</div>   

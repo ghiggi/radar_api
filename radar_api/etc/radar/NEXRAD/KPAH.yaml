@@ -6,7 +6,7 @@ wfo_sid: PAH
 radar_operator: NWS Central Region
 latitude: 37.068333
 longitude: -88.771944
-altitude: 154.2288
+altitude: 154.2
 start_time: "1995-08-11 10:51:56"
 end_time: ""
 radar_band: S

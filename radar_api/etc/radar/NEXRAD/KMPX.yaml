@@ -6,7 +6,7 @@ wfo_sid: MPX
 radar_operator: NWS Central Region
 latitude: 44.848889
 longitude: -93.565528
-altitude: 335.58480000000003
+altitude: 335.6
 start_time: "1995-05-30 16:41:20"
 end_time: ""
 radar_band: S

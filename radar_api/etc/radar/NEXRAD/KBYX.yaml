@@ -6,7 +6,7 @@ wfo_sid: KEY
 radar_operator: NWS Southern Region
 latitude: 24.5975
 longitude: -81.703167
-altitude: 27.127200000000002
+altitude: 27.1
 start_time: "1996-07-20 15:42:48"
 end_time: ""
 radar_band: S

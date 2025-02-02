@@ -6,7 +6,7 @@ wfo_sid: TBW
 radar_operator: NWS Southern Region
 latitude: 27.7055
 longitude: -82.401778
-altitude: 37.1856
+altitude: 37.2
 start_time: "1995-05-03 15:02:55"
 end_time: ""
 radar_band: S

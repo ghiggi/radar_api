@@ -6,7 +6,7 @@ wfo_sid: SGX
 radar_operator: NWS Western Region
 latitude: 33.817733
 longitude: -117.636
-altitude: 946.7088
+altitude: 946.7
 start_time: "1997-10-09 20:11:39"
 end_time: ""
 radar_band: S

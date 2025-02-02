@@ -6,7 +6,7 @@ wfo_sid: HNX
 radar_operator: NWS Western Region
 latitude: 36.314181
 longitude: -119.63213
-altitude: 103.632
+altitude: 103.6
 start_time: "1996-03-28 17:59:16"
 end_time: ""
 radar_band: S

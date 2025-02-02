@@ -6,7 +6,7 @@ wfo_sid: GRB
 radar_operator: NWS Central Region
 latitude: 44.498633
 longitude: -88.111111
-altitude: 250.8504
+altitude: 250.9
 start_time: "1995-06-13 16:53:17"
 end_time: ""
 radar_band: S

@@ -6,7 +6,7 @@ wfo_sid: MOB
 radar_operator: NWS Southern Region
 latitude: 30.679444
 longitude: -88.24
-altitude: 88.08720000000001
+altitude: 88.1
 start_time: "1995-05-17 19:55:21"
 end_time: ""
 radar_band: S

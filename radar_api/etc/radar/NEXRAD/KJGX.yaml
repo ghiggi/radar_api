@@ -6,7 +6,7 @@ wfo_sid: FFC
 radar_operator: DOD
 latitude: 32.675683
 longitude: -83.350833
-altitude: 188.3664
+altitude: 188.4
 start_time: "1995-08-01 12:04:59"
 end_time: ""
 radar_band: S

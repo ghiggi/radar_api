@@ -7,6 +7,6 @@ radar_operator: NWS Eastern Region
 start_time: "1995-04-03 12:50:45"
 end_time: ""
 radar_band: S
-latitude: 41.41321563720703
-longitude: -81.85986328125
+latitude: 41.41321564
+longitude: -81.85986328
 altitude: 262

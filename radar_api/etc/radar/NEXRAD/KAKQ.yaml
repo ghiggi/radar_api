@@ -6,7 +6,7 @@ wfo_sid: AKQ
 radar_operator: NWS Eastern Region
 latitude: 36.98405
 longitude: -77.007361
-altitude: 77.724
+altitude: 77.7
 start_time: "1995-07-13 20:05:29"
 end_time: ""
 radar_band: S

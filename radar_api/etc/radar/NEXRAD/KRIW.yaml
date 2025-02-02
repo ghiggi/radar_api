@@ -6,7 +6,7 @@ wfo_sid: RIW
 radar_operator: NWS Central Region
 latitude: 43.066089
 longitude: -108.4773
-altitude: 1716.9384
+altitude: 1716.9
 start_time: "1996-04-03 14:55:24"
 end_time: ""
 radar_band: S

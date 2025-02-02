@@ -6,7 +6,7 @@ wfo_sid: DTX
 radar_operator: NWS Central Region
 latitude: 42.7
 longitude: -83.471667
-altitude: 370.6368
+altitude: 370.6
 start_time: "1995-11-30 13:57:06"
 end_time: ""
 radar_band: S

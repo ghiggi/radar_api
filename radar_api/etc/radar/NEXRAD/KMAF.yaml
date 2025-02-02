@@ -6,7 +6,7 @@ wfo_sid: MAF
 radar_operator: NWS Southern Region
 latitude: 31.943461
 longitude: -102.18925
-altitude: 902.8176000000001
+altitude: 902.8
 start_time: "1995-06-08 19:09:48"
 end_time: ""
 radar_band: S

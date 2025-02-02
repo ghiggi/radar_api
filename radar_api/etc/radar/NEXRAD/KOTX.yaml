@@ -6,7 +6,7 @@ wfo_sid: OTX
 radar_operator: NWS Western Region
 latitude: 47.680417
 longitude: -117.62677
-altitude: 746.4552
+altitude: 746.5
 start_time: "1997-01-08 21:54:55"
 end_time: ""
 radar_band: S

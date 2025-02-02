@@ -6,7 +6,7 @@ wfo_sid: PSR
 radar_operator: NWS Western Region
 latitude: 32.495281
 longitude: -114.65671
-altitude: 72.8472
+altitude: 72.8
 start_time: "1997-03-31 20:51:27"
 end_time: ""
 radar_band: S

@@ -2,14 +2,14 @@ icao: ""
 radar_name: ""
 start_time: "2007-01-01 00:00:00"
 end_time: ""
-latitude: 60.90387001633644
-longitude: 27.1080600656569
+latitude: 60.90387002
+longitude: 27.10806007
 altitude: 139.0
 geographic_extent:
-  - 22.503466225853682
-  - 31.712653905460122
-  - 58.66178584097578
-  - 63.145202275614274
-maximum_range: 249937.5
-maximum_horizontal_distance: 249787.276867282
+  - 22.5035
+  - 31.7127
+  - 58.6618
+  - 63.1452
+maximum_range: 249937
+maximum_horizontal_distance: 249787
 radar_band: C

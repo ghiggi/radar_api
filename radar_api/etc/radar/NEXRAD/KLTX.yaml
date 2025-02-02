@@ -6,7 +6,7 @@ wfo_sid: ILM
 radar_operator: NWS Eastern Region
 latitude: 33.98915
 longitude: -78.429108
-altitude: 44.196000000000005
+altitude: 44.2
 start_time: "1995-05-11 16:22:22"
 end_time: ""
 radar_band: S

@@ -6,7 +6,7 @@ wfo_sid: RNK
 radar_operator: NWS Eastern Region
 latitude: 37.0244
 longitude: -80.273969
-altitude: 903.7320000000001
+altitude: 903.7
 start_time: "1995-08-16 19:50:38"
 end_time: ""
 radar_band: S

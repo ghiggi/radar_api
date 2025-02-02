@@ -6,7 +6,7 @@ wfo_sid: PDT
 radar_operator: NWS Western Region
 latitude: 45.69065
 longitude: -118.85293
-altitude: 481.584
+altitude: 481.6
 start_time: "1996-06-05 17:11:58"
 end_time: ""
 radar_band: S
