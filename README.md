@@ -134,9 +134,9 @@ dt = radar_api.open_datatree(filepath, network=network)
 
 ______________________________________________________________________
 
-## 📖 Explore the RADAR-API documentation
+## 📖 Documentation
 
-To discover all RADAR-API utilities and functionalities,
+To discover RADAR-API utilities and functionalities,
 please read the software documentation available at [https://radar-api.readthedocs.io/en/latest/](https://radar-api.readthedocs.io/en/latest/).
 
 All RADAR-API tutorials are available as Jupyter Notebooks in the [`tutorial`](https://github.com/ghiggi/radar_api/tree/main/tutorials) directory.
