@@ -1,8 +1,10 @@
+<div align="center">
+    
 # 📦 Welcome to RADAR-API
 
 ![Radars currently accessible through RADAR-API](/docs/source/static/radar_api_coverage.png)
 
-<div align="center">
+
     
 |                   |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
 | ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -21,6 +23,8 @@
 
 [**Documentation: https://radar-api.readthedocs.io**](https://radar-api.readthedocs.io/)
 
+<div align="left">
+    
 ## 🚀 Quick start
 
 RADAR-API provides an easy-to-use python interface to find, download and
@@ -188,3 +192,5 @@ The content of this repository is released under the terms of the [MIT license](
 [dev_install_link]: https://radar-api.readthedocs.io/en/latest/02_installation.html#installation-for-contributors
 [pip_link]: https://pypi.org/project/radar-api
 [winpy_link]: https://winpython.github.io/
+
+</div>   
