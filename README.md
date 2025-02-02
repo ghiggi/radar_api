@@ -92,18 +92,19 @@ RADAR-API make use of pyart and xradar readers to open the files.
 import radar_api
 import pyart
 
-# Select the file to open
+# Define the file to open
 filepath = filepaths[0]
 
-# Open xradar datatree
+# Open all sweeps of a radar volume into a xradar datatree
 dt = radar_api.open_datatree(filepath, network=network)
-dt = radar_api.open_datatree(filepath, network=network, chunks={})
-dt["sweep_0"].to_dataset()
 
-# Open xradar dataset (a single radar sweep)
+# Extract the radar sweep of interest
+ds = dt["sweep_0"].to_dataset()
+
+# Open directly a single radar sweep into a xradar dataset
 ds = radar_api.open_dataset(filepath, network=network, sweep="sweep_0")
 
-# Open pyart radar object
+# Open all sweeps of a radar volume into a pyart radar object
 radar_obj = radar_api.open_pyart(filepath, network=network)
 
 # Display data with pyart
