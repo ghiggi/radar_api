@@ -55,8 +55,8 @@ license-files = ["LICENSE"]
 [tool.setuptools.packages.find]
 include = ["radar_api*"]
 
-# [tool.setuptools_scm]
-# write_to = "radar_api/_version.py"
+[tool.setuptools_scm]
+write_to = "radar_api/_version.py"
 
 [project.optional-dependencies]
 dev = ["pre-commit", "loghub",
@@ -241,7 +241,7 @@ ignore = ["D001"]
 ignore-words-list = "ges,nd"
 
 [tool.bumpver]
-current_version = "2025.1001-alpha"
+current_version = "2025.1002-alpha"
 version_pattern = "YYYY.BUILD[-TAG]"
 commit_message = "bump version {old_version} -> {new_version}"
 tag_message = "{new_version}"
