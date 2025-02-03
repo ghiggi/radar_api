@@ -27,8 +27,9 @@
 
 RADAR-API provides an easy-to-use python interface to find, download and
 read weather radar data from several meteorological services.
-Data are retrieved directly from cloud buckets.
-Current radar networks supported are: NEXRAD, IDEAM and FMI.
+
+RADAR-API currently provides data access to the following
+radar networks: ``NEXRAD``, ``IDEAM`` and ``FMI``.
 
 The list of available radars can be retrieved using:
 
@@ -41,9 +42,9 @@ radar_api.available_radars(network="NEXRAD")
 ```
 
 Before starting using RADAR-API, we highly suggest to save into a configuration file
-the directory on the local disk where to save the radar dataset of interest.
+the directory on your local disk where to save the radar data of interest.
 
-To facilitate the creation of the configuration file, you can run the following script:
+To facilitate the creation of the RADAR-API configuration file, you can adapt and execute the following script:
 
 ```python
 import radar_api
@@ -62,7 +63,7 @@ ______________________________________________________________________
 
 ### 📥 Download radar data
 
-You can start to download radar data using the following code snippet:
+You can start to download radar data editing the following code example:
 
 ```python
 import radar_api
@@ -85,37 +86,16 @@ ______________________________________________________________________
 
 ### 💫 Open radar files into xarray or pyart
 
-A radar file can be opened into an xarray object or a pyart radar object.
-RADAR-API make use of pyart and xradar readers to open the files.
+RADAR-API allows to read directly radar data from the cloud without the
+need to previously download and save the files on your disk.
+
+RADAR-API make use of pyart and xradar readers to open the files into either
+an xarray object or pyart radar object.
 
 ```python
 import radar_api
 import pyart
 
-# Select the file to open
-filepath = filepaths[0]
-
-# Open xradar datatree
-dt = radar_api.open_datatree(filepath, network=network)
-dt = radar_api.open_datatree(filepath, network=network, chunks={})
-dt["sweep_0"].to_dataset()
-
-# Open xradar dataset (a single radar sweep)
-ds = radar_api.open_dataset(filepath, network=network, sweep="sweep_0")
-
-# Open pyart radar object
-radar_obj = radar_api.open_pyart(filepath, network=network)
-
-# Display data with pyart
-display = pyart.graph.RadarDisplay(radar_obj)
-display.plot("reflectivity")
-display.set_limits((-150, 150), (-150, 150))
-```
-
-RADAR-API allows to read directly radar data from the cloud without the
-need to previously download the files on the local disk.
-
-```python
 # Search for files on cloud bucket
 filepaths = radar_api.find_files(
     network=network,
@@ -125,9 +105,26 @@ filepaths = radar_api.find_files(
     protocol="s3",
 )
 print(filepaths)
+ 
+# Define the file to open
+filepath = filepaths[0]
 
-# Open with xradar datatree
+# Open all sweeps of a radar volume into a xradar datatree
 dt = radar_api.open_datatree(filepath, network=network)
+
+# Extract the radar sweep of interest
+ds = dt["sweep_0"].to_dataset()
+
+# Open directly a single radar sweep into a xradar dataset
+ds = radar_api.open_dataset(filepath, network=network, sweep="sweep_0")
+
+# Open all sweeps of a radar volume into a pyart radar object
+radar_obj = radar_api.open_pyart(filepath, network=network)
+
+# Display the data with pyart
+display = pyart.graph.RadarDisplay(radar_obj)
+display.plot("reflectivity")
+display.set_limits((-150, 150), (-150, 150))
 ```
 
 ______________________________________________________________________
