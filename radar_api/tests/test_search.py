@@ -206,7 +206,7 @@ def test_find_files_on_cloud_bucket():
         verbose=True,
     )
     assert isinstance(filepaths, list)
-    assert len(filepaths) == 12
+    assert len(filepaths) == 10
 
 
 def test_find_files_on_local_disk(tmp_path):

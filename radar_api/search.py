@@ -216,6 +216,7 @@ def find_files(
             ]  # NWS_NEXRAD_NXL2DP or NWS_NEXRAD_NXL2LG tar balls
             fpaths = [fpath for fpath in fpaths if not fpath.endswith(".001")]  # repeated files
             fpaths = [fpath for fpath in fpaths if not fpath.endswith(".Z")]  # corrupted compressed files
+            fpaths = [fpath for fpath in fpaths if not fpath.endswith("_MDM")]
         # Add bucket prefix
         fpaths = [bucket_prefix + fpath for fpath in fpaths]
         # Filter files if necessary

@@ -29,7 +29,7 @@ RADAR-API provides an easy-to-use python interface to find, download and
 read weather radar data from several meteorological services.
 
 RADAR-API currently provides data access to the following
-radar networks: ``NEXRAD``, ``IDEAM`` and ``FMI``.
+radar networks: `NEXRAD`, `IDEAM` and `FMI`.
 
 The list of available radars can be retrieved using:
 
@@ -68,10 +68,10 @@ You can start to download radar data editing the following code example:
 ```python
 import radar_api
 
-start_time = "2021-02-01 12:00:00"
-end_time = "2021-02-01 13:00:00"
+start_time = "2021-09-07 17:00:00"
+end_time = "2021-09-07 17:30:00"
 
-radar = "KABR"
+radar = "KMKX"
 network = "NEXRAD"
 
 filepaths = radar_api.download_files(
@@ -105,7 +105,7 @@ filepaths = radar_api.find_files(
     protocol="s3",
 )
 print(filepaths)
- 
+
 # Define the file to open
 filepath = filepaths[0]
 
@@ -123,7 +123,7 @@ radar_obj = radar_api.open_pyart(filepath, network=network)
 
 # Display the data with pyart
 display = pyart.graph.RadarDisplay(radar_obj)
-display.plot("reflectivity")
+display.plot("reflectivity", cmap="pyart_ChaseSpectral", vmin=-20, vmax=70)
 display.set_limits((-150, 150), (-150, 150))
 ```
 
