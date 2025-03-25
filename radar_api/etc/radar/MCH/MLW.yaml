@@ -1,0 +1,8 @@
+icao: ""
+radar_name: "Weissfluhgipfel"
+start_time: "2019-01-01 00:00:00"
+end_time: ""
+latitude: 46.834972
+longitude: 9.794458
+altitude: 2850
+radar_band: C

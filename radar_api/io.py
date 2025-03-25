@@ -62,7 +62,7 @@ def get_radar_config_filepath(network, radar):
     return filepath
 
 
-def available_networks():
+def available_networks(only_public=True):
     """Get list of available networks."""
     network_config_path = get_network_config_path()
     networks_config_filenames = os.listdir(network_config_path)
@@ -82,10 +82,10 @@ def _get_network_radars(network, start_time=None, end_time=None):
     return radars
 
 
-def available_radars(network=None, start_time=None, end_time=None):
+def available_radars(network=None, start_time=None, end_time=None, only_public=True):
     """Get list of available radars."""
     if network is None:
-        networks = available_networks()
+        networks = available_networks(only_public=only_public)
         list_radars = [
             _get_network_radars(network=network, start_time=start_time, end_time=end_time) for network in networks
         ]
@@ -194,10 +194,10 @@ def is_radar_available(network, radar, start_time=None, end_time=None):
     )
 
 
-def get_network_database(network):
+def get_network_database(network, only_public=True):
     """Retrieve the radar network database."""
     list_info = []
-    for radar in available_radars(network=network):
+    for radar in available_radars(network=network, only_public=only_public):
         try:
             radar_info_path = get_radar_config_filepath(network=network, radar=radar)
             radar_info = read_yaml(radar_info_path)
@@ -211,9 +211,9 @@ def get_network_database(network):
     return pd.DataFrame(list_info)
 
 
-def get_database():
+def get_database(only_public=True):
     """Retrieve the RADAR-API database."""
-    list_df = [get_network_database(network) for network in available_networks()]
+    list_df = [get_network_database(network) for network in available_networks(only_public=only_public)]
     return pd.concat(list_df)
 
 

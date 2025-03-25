@@ -40,8 +40,8 @@ def is_file_within_time(start_time, end_time, file_start_time, file_end_time):
     # - Case 2
     #     s               e
     #     |               |
-    #          --------
-    is_case2 = file_start_time >= start_time and file_end_time < end_time
+    #     (--)---------(--)
+    is_case2 = file_start_time >= start_time and file_end_time <= end_time
     # - Case 3
     #     s               e
     #     |               |

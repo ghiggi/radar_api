@@ -85,7 +85,7 @@ def check_radar(radar, network):
     if not isinstance(radar, str):
         raise TypeError("Specify 'radar' as a string.")
     check_network(network)
-    valid_radars = available_radars()
+    valid_radars = available_radars(only_public=False)
     if radar not in valid_radars:
         raise ValueError(f"Invalid {network} radar {radar}. Available radars: {valid_radars}")
     return radar
@@ -98,7 +98,7 @@ def check_network(network):
     if not isinstance(network, str):
         raise TypeError("Specify 'network' as a string.")
 
-    valid_networks = available_networks()
+    valid_networks = available_networks(only_public=False)
     if network not in valid_networks:
         raise ValueError(f"Invalid network {network}. Available networks: {valid_networks}")
     return network

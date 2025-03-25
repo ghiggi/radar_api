@@ -72,18 +72,29 @@ def get_xradar_datatree_reader(network):
     """Return the xradar datatree reader."""
     import xradar.io
 
-    func = getattr(xradar.io, get_network_info(network)["xradar_reader"])
+    xradar_reader_name = get_network_info(network)["xradar_reader"]
+    if xradar_reader_name is None:
+        raise NotImplementedError(f"No xradar reader is yet available for network {network}.")
+    func = getattr(xradar.io, xradar_reader_name)
     return func
 
 
 def get_pyart_reader(network):
     """Return the pyart reader."""
+    import pyart.aux_io
     import pyart.io
 
+    pyart_reader_name = get_network_info(network)["pyart_reader"]
+    if pyart_reader_name is None:
+        raise NotImplementedError(f"No pyart reader is yet available for network {network}.")
+
     try:
-        func = getattr(pyart.io, get_network_info(network)["pyart_reader"])
+        func = getattr(pyart.io, pyart_reader_name)
     except AttributeError:
-        func = getattr(pyart.aux_io, get_network_info(network)["pyart_reader"])
+        try:
+            func = getattr(pyart.aux_io, pyart_reader_name)
+        except AttributeError:
+            raise NotImplementedError(f"The pyart reader {pyart_reader_name} is not available in your pyart library.")
     return func
 
 

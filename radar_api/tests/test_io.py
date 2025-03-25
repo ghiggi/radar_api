@@ -87,20 +87,24 @@ def test_get_radar_config_filepath(network):
 
 def test_available_networks():
     """Test available_networks."""
-    nets = available_networks()
-    assert "NEXRAD" in nets
+    networks = available_networks()
+    assert isinstance(networks, list)
+    assert len(networks) > 0
+    assert "NEXRAD" in networks
 
 
 def test_available_radars_all_networks():
     """Test available_radars()."""
     radars = available_radars()
     assert isinstance(radars, list)
+    assert len(radars) > 0
 
 
 def test_available_radars_single_network():
     """Test available_radars(network)."""
     radars = available_radars("NEXRAD")
     assert isinstance(radars, list)
+    assert len(radars) > 0
 
 
 def test_get_network_info():

@@ -24,6 +24,8 @@
 # SOFTWARE.
 """This module provides functions for searching files on local disk and cloud buckets."""
 import datetime
+import os
+import zipfile
 
 import pandas as pd
 from trollsift import Parser
@@ -111,12 +113,22 @@ def get_directories_paths(start_time, end_time, network, radar, protocol, base_d
     return paths
 
 
+def _list_files_within_zip(zip_filepath):
+    """Return the paths of files within a zip file."""
+    with zipfile.ZipFile(zip_filepath, "r") as zf:
+        filenames = zf.namelist()
+    filepaths = [os.path.join(zip_filepath, fname) for fname in filenames]
+    return filepaths
+
+
 def _try_list_files(fs, dir_path):
+    """Return filepaths within a given directory (or zip file)."""
     try:
-        fpaths = fs.ls(dir_path)
+        if not dir_path.endswith(".zip"):
+            return fs.ls(dir_path)
+        return _list_files_within_zip(dir_path)
     except Exception:
-        fpaths = []
-    return fpaths
+        return []
 
 
 def find_files(

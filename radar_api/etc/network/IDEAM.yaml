@@ -1,5 +1,6 @@
 network: "IDEAM"
 description: "Colombian weather radar network"
+public_data: True
 cloud_directory_pattern: "s3://s3-radaresideam/l2_data/{time:%Y}/{time:%m}/{time:%d}/{radar:s}"
 local_directory_pattern: "{base_dir}/IDEAM/{time:%Y}/{time:%m}/{time:%d}/{time:%H}/{radar:s}"
 filename_patterns:
