@@ -1,0 +1,8 @@
+icao: ""
+radar_name: "Plaine Morte"
+start_time: "2018-01-01 00:00:00"
+end_time: ""
+latitude: 46.370647
+longitude: 7.486552
+altitude: 2937
+radar_band: C
