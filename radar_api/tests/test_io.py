@@ -26,7 +26,6 @@
 # -----------------------------------------------------------------------------.
 """This module test the I/O routines."""
 import datetime
-from itertools import product
 import os
 
 import fsspec
@@ -35,15 +34,15 @@ import s3fs
 
 from radar_api.io import (
     available_networks,
-    available_radars,
     available_products,
+    available_radars,
     get_bucket_prefix,
     get_directory_pattern,
     get_filesystem,
     get_network_config_path,
-    get_product_filename_patterns,
     get_network_radars_config_path,
     get_product_config_filepath,
+    get_product_filename_patterns,
     get_product_info,
     get_radar_config_filepath,
     get_radar_end_time,

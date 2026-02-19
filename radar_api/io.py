@@ -50,6 +50,14 @@ def get_network_radars_config_path(network):
     return path
 
 
+def get_products_config_path(network):
+    """Get directory path with the network configuration files."""
+    from radar_api import _root_path
+
+    path = os.path.join(_root_path, "radar_api", "etc", "network", network)
+    return path
+
+
 def get_product_config_filepath(network, product):
     """Get filepath of the network product configuration file."""
     filepath = os.path.join(get_network_config_path(), network, f"{product}.yaml")
@@ -62,25 +70,38 @@ def get_radar_config_filepath(network, radar):
     return filepath
 
 
-def available_networks(only_public=True):
+def available_networks(only_online=False):
     """Get list of available networks."""
     network_config_path = get_network_config_path()
-    # TODO Select only directory and not hiddend directories
-    networks = os.listdir(network_config_path)
-    networks = [network for network in networks if not network.startswith(".")]
+    # Select only directory and not hiddend directories
+    networks = [
+        entry.name for entry in os.scandir(network_config_path) if entry.is_dir() and not entry.name.startswith(".")
+    ]
+    # If only_online=True, check if there are available_products online
+    if only_online:
+        networks = [network for network in networks if len(available_products(network, only_online=only_online)) > 0]
     return sorted(networks)
 
 
-def available_products(network, only_public=True):
+def available_products(network, only_online=False):
     """Get list of available products for a given network."""
     network = check_network(network)
-    network_config_path = get_network_config_path()
-    product_config_filenames = os.listdir(os.path.join(network_config_path, network))
+    products_config_path = get_products_config_path(network)
+
     # Select only yaml files and remove hidden files
-    product_config_filenames = [
-        fname for fname in product_config_filenames if fname.endswith(".yaml") and not fname.startswith(".")
+    products = [
+        os.path.splitext(entry.name)[0]
+        for entry in os.scandir(products_config_path)
+        if entry.is_file() and not entry.name.startswith(".") and entry.name.endswith(".yaml")
     ]
-    products = [fname.split(".")[0] for fname in product_config_filenames]
+
+    # If only_online=True, return products where cloud_directory_pattern is specified
+    if only_online:
+        products = [
+            product
+            for product in products
+            if get_product_info(network, product=product).get("cloud_directory_pattern", None) is not None
+        ]
     return sorted(products)
 
 
@@ -96,10 +117,10 @@ def _get_network_radars(network, start_time=None, end_time=None):
     return radars
 
 
-def available_radars(network=None, start_time=None, end_time=None, only_public=True):
+def available_radars(network=None, start_time=None, end_time=None, only_online=False):
     """Get list of available radars."""
     if network is None:
-        networks = available_networks(only_public=only_public)
+        networks = available_networks(only_online=only_online)
         list_radars = [
             _get_network_radars(network=network, start_time=start_time, end_time=end_time) for network in networks
         ]
@@ -208,10 +229,10 @@ def is_radar_available(network, radar, start_time=None, end_time=None):
     )
 
 
-def get_network_database(network, only_public=True):
+def get_network_database(network, only_online=False):
     """Retrieve the radar network database."""
     list_info = []
-    for radar in available_radars(network=network, only_public=only_public):
+    for radar in available_radars(network=network, only_online=only_online):
         try:
             radar_info_path = get_radar_config_filepath(network=network, radar=radar)
             radar_info = read_yaml(radar_info_path)
@@ -225,9 +246,9 @@ def get_network_database(network, only_public=True):
     return pd.DataFrame(list_info)
 
 
-def get_database(only_public=True):
+def get_database(only_online=False):
     """Retrieve the RADAR-API database."""
-    list_df = [get_network_database(network) for network in available_networks(only_public=only_public)]
+    list_df = [get_network_database(network) for network in available_networks(only_online=only_online)]
     return pd.concat(list_df)
 
 

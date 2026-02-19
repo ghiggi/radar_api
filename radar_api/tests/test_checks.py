@@ -39,9 +39,9 @@ from radar_api.checks import (
     check_date,
     check_download_protocol,
     check_network,
+    check_product,
     check_protocol,
     check_radar,
-    check_product,
     check_start_end_time,
     check_time,
     get_current_utc_time,
@@ -153,6 +153,23 @@ def test_check_radar() -> None:
     # Test a satellite that doesn't exist
     with pytest.raises(ValueError):
         check_radar("DUMMY", network="NEXRAD")
+
+
+def test_check_product() -> None:
+    """Test check_product()."""
+    # Check if for a network only one product available, return that
+    assert check_product(network="NEXRAD", product=None) == "NEXRAD_L2"
+
+    # Check raise error for network with more than one product available, when product=None
+    with pytest.raises(ValueError):
+        check_product(network="MCH_LTE", product=None)
+
+    # Check valid product
+    assert check_product(network="NEXRAD", product="NEXRAD_L2") == "NEXRAD_L2"
+
+    # Check invalid product
+    with pytest.raises(ValueError):
+        check_product(network="MCH_LTE", product="INVALID")
 
 
 def test_check_time() -> None:

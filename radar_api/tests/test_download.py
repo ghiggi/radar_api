@@ -127,7 +127,7 @@ def test_define_local_filepath(tmp_path):
     """Test the define_local_filepath function."""
     filename = "KTLX19910605_162126.gz"
     network = "NEXRAD"
-    product=  "NEXRAD_L2"
+    product = "NEXRAD_L2"
     radar = "KTLX"
     base_dir = os.path.join(tmp_path, "RADAR")
     os.makedirs(base_dir, exist_ok=True)

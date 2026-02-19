@@ -82,7 +82,7 @@ def check_radar(radar, network):
     if not isinstance(radar, str):
         raise TypeError("Specify 'radar' as a string.")
     check_network(network)
-    valid_radars = available_radars(only_public=False)
+    valid_radars = available_radars(only_online=False)
     if radar not in valid_radars:
         raise ValueError(f"Invalid {network} radar {radar}. Available radars: {valid_radars}")
     return radar
@@ -95,7 +95,7 @@ def check_network(network):
     if not isinstance(network, str):
         raise TypeError("Specify 'network' as a string.")
 
-    valid_networks = available_networks(only_public=False)
+    valid_networks = available_networks(only_online=False)
     if network not in valid_networks:
         raise ValueError(f"Invalid network {network}. Available networks: {valid_networks}")
     return network
@@ -108,7 +108,7 @@ def check_product(network, product=None):
     """
     from radar_api.io import available_products
 
-    valid_products = available_products(network, only_public=False)
+    valid_products = available_products(network, only_online=False)
     if product is None:
         if len(valid_products) == 1:
             return valid_products[0]

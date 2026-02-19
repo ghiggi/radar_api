@@ -28,7 +28,7 @@
 import datetime
 
 import pytest
-from radar_api.io import available_products
+
 from radar_api.info import (
     FILE_KEYS,
     TIME_KEYS,
@@ -49,7 +49,10 @@ from radar_api.info import (
 SAMPLE_FILES = {
     # <network> : {"product": <product>, "files": [<sample_filenames>]}
     "FMI": {"product": "PVOL", "files": ["202101010100_fiika_PVOL.h5"]},
-    "NEXRAD": {"product": "NEXRAD_L2", "files": ["KFSX19960701_044028.gz", "KABR20100101_000618_V03", "KLIX20211220_160243_V06"]},
+    "NEXRAD": {
+        "product": "NEXRAD_L2",
+        "files": ["KFSX19960701_044028.gz", "KABR20100101_000618_V03", "KLIX20211220_160243_V06"],
+    },
     "IDEAM": {"product": "IDEAM_L2", "files": ["9100SAN-20240202-105624-PPIVol-0d1c.nc", "BAR240201135316.RAWMUAK"]},
 }
 
@@ -164,7 +167,10 @@ def _generate_test_params(sample_dict):
 ####------------------------------------------------------------------------
 
 
-@pytest.mark.parametrize(("network", "product", "filename", "expected_info"), _generate_test_params(SAMPLE_FILES_INFO_DICT))
+@pytest.mark.parametrize(
+    ("network", "product", "filename", "expected_info"),
+    _generate_test_params(SAMPLE_FILES_INFO_DICT),
+)
 def test_get_info_from_filename(network, product, filename, expected_info):
     """Test get_info_from_filename returns the correct parsed info for known filenames."""
     parsed_info = get_info_from_filename(filename, network, product)
@@ -203,7 +209,10 @@ def test_get_info_from_invalid_filepath():
     assert get_info_from_filepath("invalid_filename", network="NEXRAD", product=product, ignore_errors=True) == {}
 
 
-@pytest.mark.parametrize(("network", "product", "filename", "expected_info"), _generate_test_params(SAMPLE_FILES_INFO_DICT))
+@pytest.mark.parametrize(
+    ("network", "product", "filename", "expected_info"),
+    _generate_test_params(SAMPLE_FILES_INFO_DICT),
+)
 def test_get_key_from_filepath_valid(network, product, filename, expected_info):
     """Test get_key_from_filepath returns the requested key value."""
     for key, expected_val in expected_info.items():
@@ -270,7 +279,9 @@ def test_get_versions_from_filepaths() -> None:
     output_version = get_version_from_filepaths(filenames, network="NEXRAD", product=product)
     assert output_version == [None, 3, 6]
 
-    assert get_version_from_filepaths(filenames[0], network="NEXRAD", product=product) == [None]  # input str output list
+    assert get_version_from_filepaths(filenames[0], network="NEXRAD", product=product) == [
+        None,
+    ]  # input str output list
 
 
 def test_check_groups():
@@ -324,7 +335,10 @@ def test_group_filepaths(network):
         assert isinstance(group_filepaths(filepaths, network=network, product=product, groups=key), dict)
 
     # Test multiple groups
-    assert isinstance(group_filepaths([filepaths[0]], network=network, product=product, groups=["radar_acronym", "year", "month"]), dict)
+    assert isinstance(
+        group_filepaths([filepaths[0]], network=network, product=product, groups=["radar_acronym", "year", "month"]),
+        dict,
+    )
 
     # Test all file keys pass
     for key in FILE_KEYS:
@@ -338,9 +352,16 @@ def test_group_filepaths_by_time():
     dummy_filepath = "KABR20100101_000618_V03"
 
     # Test single group
-    assert group_filepaths([dummy_filepath], network=network, product=product, groups="year") == {"2010": [dummy_filepath]}
+    assert group_filepaths([dummy_filepath], network=network, product=product, groups="year") == {
+        "2010": [dummy_filepath],
+    }
 
     # Test multiple groups
-    assert group_filepaths([dummy_filepath], network=network, product=product, groups=["radar_acronym", "year", "month"]) == {
+    assert group_filepaths(
+        [dummy_filepath],
+        network=network,
+        product=product,
+        groups=["radar_acronym", "year", "month"],
+    ) == {
         "KABR/2010/1": [dummy_filepath],
     }
