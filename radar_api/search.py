@@ -56,7 +56,7 @@ def get_pattern_shortest_time_component(directory_pattern):
     if any(s in directory_pattern for s in ["{time:%m}", "{time:%b}", "{time:%B}"]):
         return "MS"
     if any(s in directory_pattern for s in ["{time:%Y}", "{time:%y}"]):
-        return "Y"  # Y-DEC
+        return "YE"  # Y-DEC
     raise NotImplementedError
 
 
@@ -67,7 +67,7 @@ def get_list_timesteps(start_time, end_time, freq):
     end = pd.to_datetime(end_time)
 
     # Round start_time and end_time to the frequency resolution
-    # "Y" --> set month and days to 01 and zero out hour, minute, second
+    # "YE" --> set month and days to 01 and zero out hour, minute, second
     # "MS" --> set day to 01 and zero out hour, minute, second
     # "D" -> zero out hour, minute, second
     # "h" -> zero out minute, second
@@ -87,7 +87,7 @@ def get_list_timesteps(start_time, end_time, freq):
             new_start_year = start.year
         start = pd.to_datetime(datetime.datetime(new_start_year, new_start_month, 1))
         end = pd.to_datetime(datetime.datetime(end.year, end.month, 1))
-    elif freq == "Y":  # Y-DEC
+    elif freq == "YE":  # Y-DEC
         start = pd.to_datetime(datetime.datetime(start.year - 1, 1, 1))
         end = pd.to_datetime(datetime.datetime(end.year, 12, 31))
     else:

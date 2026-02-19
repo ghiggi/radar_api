@@ -69,7 +69,7 @@ class TestIdentifyLastTimeComponent:
         """Test get_pattern_shortest_time_component returns 'Y' for pattern with {time:%Y}."""
         pattern = "some_path/{time:%Y}"
         freq = get_pattern_shortest_time_component(pattern)
-        assert freq == "Y"
+        assert freq == "YE"
 
     def test_not_implemented(self):
         """Test get_pattern_shortest_time_component raises NotImplementedError if unknown format."""
@@ -145,7 +145,7 @@ class TestGetListTimesteps:
         """Test get_list_timesteps with freq='Y' (yearly)."""
         start_time = "2024-06-10"
         end_time = "2026-02-01"
-        times = get_list_timesteps(start_time, end_time, freq="Y")
+        times = get_list_timesteps(start_time, end_time, freq="YE")
         # freq='Y' (YE-DEC) means shift start year back by 1 => 2023,
         assert list(times) == [
             pd.Timestamp("2023-12-31"),
@@ -170,7 +170,7 @@ class TestGetDirectoriesPaths:
         protocol = "s3"
         base_dir = None
 
-        # directory_pattern for protocol="s3" is 's3://noaa-nexrad-level2/{time:%Y}/{time:%m}/{time:%d}/{radar:s}'
+        # directory_pattern for protocol="s3" is 's3://unidata-nexrad-level2/{time:%Y}/{time:%m}/{time:%d}/{radar:s}'
         # => The last time component is {time:%d} => freq='D'
         # => We'll generate times for 2023-06-30, 2023-07-01, 2023-07-02
 
@@ -184,9 +184,9 @@ class TestGetDirectoriesPaths:
         )
         expected = [
             # Because the function does start_time - 1 day, then floors to day ...
-            "s3://noaa-nexrad-level2/2023/06/30/KFSD",
-            "s3://noaa-nexrad-level2/2023/07/01/KFSD",
-            "s3://noaa-nexrad-level2/2023/07/02/KFSD",
+            "s3://unidata-nexrad-level2/2023/06/30/KFSD",
+            "s3://unidata-nexrad-level2/2023/07/01/KFSD",
+            "s3://unidata-nexrad-level2/2023/07/02/KFSD",
         ]
         assert paths == expected
 

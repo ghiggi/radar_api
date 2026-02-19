@@ -42,7 +42,7 @@ from radar_api.readers import (
 
 def test_get_simplecache_file():
     """Test file simple caching with fsspec."""
-    filepath = "s3://noaa-nexrad-level2/2023/01/01/KABR/KABR20230101_000142_V06"
+    filepath = "s3://unidata-nexrad-level2/2023/01/01/KABR/KABR20230101_000142_V06"
     file = get_simplecache_file(filepath)
     assert isinstance(file, str)
 

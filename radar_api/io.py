@@ -228,6 +228,8 @@ def get_directory_pattern(protocol, network):
         directory_pattern = get_network_info(network)["cloud_directory_pattern"]
     else:
         directory_pattern = get_network_info(network)["local_directory_pattern"]
+    if directory_pattern is None:
+        raise NotImplementedError(f"protocol {protocol} is not implemented for {network}.")
     return directory_pattern
 
 

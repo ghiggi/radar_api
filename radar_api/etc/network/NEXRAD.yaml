@@ -1,7 +1,7 @@
 network: "NEXRAD"
 description: "NOAA NEXRAD radar network"
 public_data: True
-cloud_directory_pattern: "s3://noaa-nexrad-level2/{time:%Y}/{time:%m}/{time:%d}/{radar:s}"
+cloud_directory_pattern: "s3://unidata-nexrad-level2/{time:%Y}/{time:%m}/{time:%d}/{radar:s}"
 local_directory_pattern: "{base_dir}/NEXRAD/{time:%Y}/{time:%m}/{time:%d}/{time:%H}/{radar:s}"
 filename_patterns:
   - "{radar_acronym:4s}{start_time:%Y%m%d_%H%M%S}_V0{version:1s}"
