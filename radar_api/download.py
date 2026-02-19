@@ -41,6 +41,7 @@ from radar_api.checks import (
     check_base_dir,
     check_download_protocol,
     check_network,
+    check_product,
     check_radar,
     check_start_end_time,
 )
@@ -115,13 +116,13 @@ def _select_missing_fpaths(local_fpaths, bucket_fpaths):
     return local_fpaths, bucket_fpaths
 
 
-def define_local_filepath(filename, network, radar, base_dir=None):
+def define_local_filepath(filename, network, product, radar, base_dir=None):
     """Define filepath where to save file locally on disk."""
     base_dir = get_base_dir(base_dir)
     base_dir = check_base_dir(base_dir)
     # Get directory pattern
-    directory_pattern = get_directory_pattern(protocol="local", network=network)
-    info_dict = get_info_from_filepath(filename, network=network)
+    directory_pattern = get_directory_pattern(protocol="local", network=network, product=product)
+    info_dict = get_info_from_filepath(filename, network=network, product=product)
     time = info_dict["start_time"]
     # Define local directory path
     parser = Parser(directory_pattern)
@@ -133,10 +134,16 @@ def define_local_filepath(filename, network, radar, base_dir=None):
     return filepath
 
 
-def _get_local_from_bucket_fpaths(base_dir, network, radar, bucket_fpaths):
+def _get_local_from_bucket_fpaths(base_dir, network, product, radar, bucket_fpaths):
     """Convert cloud bucket filepaths to local storage filepaths."""
     fpaths = [
-        define_local_filepath(filename=os.path.basename(fpath), network=network, radar=radar, base_dir=base_dir)
+        define_local_filepath(
+            filename=os.path.basename(fpath),
+            network=network,
+            product=product,
+            radar=radar,
+            base_dir=base_dir,
+        )
         for fpath in bucket_fpaths
     ]
     return fpaths
@@ -236,6 +243,7 @@ def download_files(
     radar,
     start_time,
     end_time,
+    product=None,
     n_threads=20,
     force_download=False,
     check_data_integrity=True,
@@ -256,6 +264,11 @@ def download_files(
     network : str
         The name of the radar network.
         See `radar_api.available_network()` for available radar networks.
+    product: str
+        The product acronym. The default is None.
+        It must be specified if for a given network, multiple products are available
+        through radar_api.
+        See `radar_api.available_products(network)` for available products.
     start_time : datetime.datetime
         The start (inclusive) time of the interval period for retrieving the filepaths.
     end_time : datetime.datetime
@@ -294,6 +307,7 @@ def download_files(
     base_dir = check_base_dir(base_dir)
     network = check_network(network)
     radar = check_radar(radar=radar, network=network)
+    product = check_product(network=network, product=product)
     start_time, end_time = check_start_end_time(start_time, end_time)
 
     # Initialize timing
@@ -323,6 +337,7 @@ def download_files(
             fs_args=fs_args,
             radar=radar,
             network=network,
+            product=product,
             start_time=start_time,
             end_time=end_time,
             base_dir=None,
@@ -339,6 +354,7 @@ def download_files(
             base_dir=base_dir,
             network=network,
             radar=radar,
+            product=product,
             bucket_fpaths=bucket_fpaths,
         )
 

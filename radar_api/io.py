@@ -50,9 +50,9 @@ def get_network_radars_config_path(network):
     return path
 
 
-def get_network_config_filepath(network):
-    """Get filepath of the network configuration file."""
-    filepath = os.path.join(get_network_config_path(), f"{network}.yaml")
+def get_product_config_filepath(network, product):
+    """Get filepath of the network product configuration file."""
+    filepath = os.path.join(get_network_config_path(), network, f"{product}.yaml")
     return filepath
 
 
@@ -65,9 +65,23 @@ def get_radar_config_filepath(network, radar):
 def available_networks(only_public=True):
     """Get list of available networks."""
     network_config_path = get_network_config_path()
-    networks_config_filenames = os.listdir(network_config_path)
-    networks = [fname.split(".")[0] for fname in networks_config_filenames]
+    # TODO Select only directory and not hiddend directories
+    networks = os.listdir(network_config_path)
+    networks = [network for network in networks if not network.startswith(".")]
     return sorted(networks)
+
+
+def available_products(network, only_public=True):
+    """Get list of available products for a given network."""
+    network = check_network(network)
+    network_config_path = get_network_config_path()
+    product_config_filenames = os.listdir(os.path.join(network_config_path, network))
+    # Select only yaml files and remove hidden files
+    product_config_filenames = [
+        fname for fname in product_config_filenames if fname.endswith(".yaml") and not fname.startswith(".")
+    ]
+    products = [fname.split(".")[0] for fname in product_config_filenames]
+    return sorted(products)
 
 
 def _get_network_radars(network, start_time=None, end_time=None):
@@ -97,10 +111,10 @@ def available_radars(network=None, start_time=None, end_time=None, only_public=T
     return sorted(radars)
 
 
-def get_network_info(network):
+def get_product_info(network, product):
     """Get network information."""
-    network_config_path = get_network_config_filepath(network)
-    info_dict = read_yaml(network_config_path)
+    product_config_path = get_product_config_filepath(network, product)
+    info_dict = read_yaml(product_config_path)
     return info_dict
 
 
@@ -217,17 +231,17 @@ def get_database(only_public=True):
     return pd.concat(list_df)
 
 
-def get_network_filename_patterns(network):
+def get_product_filename_patterns(network, product):
     """Get radar filenames patterns."""
-    return get_network_info(network)["filename_patterns"]
+    return get_product_info(network, product)["filename_patterns"]
 
 
-def get_directory_pattern(protocol, network):
+def get_directory_pattern(protocol, network, product):
     """Get directory pattern."""
     if protocol in ["s3", "gcs"]:
-        directory_pattern = get_network_info(network)["cloud_directory_pattern"]
+        directory_pattern = get_product_info(network, product)["cloud_directory_pattern"]
     else:
-        directory_pattern = get_network_info(network)["local_directory_pattern"]
+        directory_pattern = get_product_info(network, product)["local_directory_pattern"]
     if directory_pattern is None:
         raise NotImplementedError(f"protocol {protocol} is not implemented for {network}.")
     return directory_pattern

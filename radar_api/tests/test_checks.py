@@ -41,6 +41,7 @@ from radar_api.checks import (
     check_network,
     check_protocol,
     check_radar,
+    check_product,
     check_start_end_time,
     check_time,
     get_current_utc_time,

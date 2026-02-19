@@ -33,7 +33,8 @@ from collections import defaultdict
 import numpy as np
 from trollsift import Parser
 
-from radar_api.io import get_network_filename_patterns
+from radar_api.checks import check_product
+from radar_api.io import get_product_filename_patterns
 
 # TODO: Create a class all such methods that depend on the filename_patterns and network
 
@@ -77,9 +78,9 @@ DEFAULT_FILE_KEY = {
 ##########################
 
 
-def parse_filename(filename, network):
+def parse_filename(filename, network, product):
     """Try to parse the filename based on the radar network."""
-    filename_patterns = get_network_filename_patterns(network)
+    filename_patterns = get_product_filename_patterns(network, product)
     pattern_identified = False
     for pattern in filename_patterns:
         try:
@@ -95,10 +96,10 @@ def parse_filename(filename, network):
     return info_dict
 
 
-def get_info_from_filename(filename, network, ignore_errors=False):
+def get_info_from_filename(filename, network, product, ignore_errors=False):
     """Retrieve file information dictionary from filename."""
     # Try to parse the filename
-    info_dict = parse_filename(filename, network=network)
+    info_dict = parse_filename(filename, network=network, product=product)
 
     # Raise error if the filename can't be parsed
     if len(info_dict) == 0 and not ignore_errors:
@@ -115,25 +116,27 @@ def get_info_from_filename(filename, network, ignore_errors=False):
     return info_dict
 
 
-def get_info_from_filepath(filepath, network, ignore_errors=False):
+def get_info_from_filepath(filepath, network, product, ignore_errors=False):
     """Retrieve file information dictionary from filepath."""
     if not isinstance(filepath, str):
         raise TypeError("'filepath' must be a string.")
     filename = os.path.basename(filepath)
-    return get_info_from_filename(filename, network=network, ignore_errors=ignore_errors)
+    return get_info_from_filename(filename, network=network, product=product, ignore_errors=ignore_errors)
 
 
-def get_key_from_filepath(filepath, key, network, ignore_errors=False):
+def get_key_from_filepath(filepath, key, network, product, ignore_errors=False):
     """Extract specific key information from a list of filepaths."""
-    return get_info_from_filepath(filepath, network=network, ignore_errors=ignore_errors)[key]
+    return get_info_from_filepath(filepath, network=network, product=product, ignore_errors=ignore_errors)[key]
 
 
-def get_key_from_filepaths(filepaths, key, network, ignore_errors=False):
+def get_key_from_filepaths(filepaths, key, network, product=None, ignore_errors=False):
     """Extract specific key information from a list of filepaths."""
+    product = check_product(network, product=product)
     if isinstance(filepaths, str):
         filepaths = [filepaths]
     return [
-        get_key_from_filepath(filepath, key=key, network=network, ignore_errors=ignore_errors) for filepath in filepaths
+        get_key_from_filepath(filepath, key=key, network=network, product=product, ignore_errors=ignore_errors)
+        for filepath in filepaths
     ]
 
 
@@ -143,26 +146,49 @@ def get_key_from_filepaths(filepaths, key, network, ignore_errors=False):
 #########################################
 
 
-def get_start_time_from_filepaths(filepaths, network, ignore_errors=False):
+def get_start_time_from_filepaths(filepaths, network, product, ignore_errors=False):
     """Infer files ``start_time`` from filenames."""
-    return get_key_from_filepaths(filepaths, key="start_time", network=network, ignore_errors=ignore_errors)
+    return get_key_from_filepaths(
+        filepaths,
+        key="start_time",
+        network=network,
+        product=product,
+        ignore_errors=ignore_errors,
+    )
 
 
-def get_end_time_from_filepaths(filepaths, network, ignore_errors=False):
+def get_end_time_from_filepaths(filepaths, network, product, ignore_errors=False):
     """Infer files ``end_time`` from filenames."""
-    return get_key_from_filepaths(filepaths, key="end_time", network=network, ignore_errors=ignore_errors)
+    return get_key_from_filepaths(
+        filepaths,
+        key="end_time",
+        network=network,
+        product=product,
+        ignore_errors=ignore_errors,
+    )
 
 
-def get_start_end_time_from_filepaths(filepaths, network, ignore_errors=False):
+def get_start_end_time_from_filepaths(filepaths, network, product=None, ignore_errors=False):
     """Infer files ``start_time`` and ``end_time`` from filenames."""
-    list_start_time = get_start_time_from_filepaths(filepaths, network=network, ignore_errors=ignore_errors)
-    list_end_time = get_end_time_from_filepaths(filepaths, network=network, ignore_errors=ignore_errors)
+    product = check_product(network, product=product)
+    list_start_time = get_start_time_from_filepaths(
+        filepaths,
+        network=network,
+        product=product,
+        ignore_errors=ignore_errors,
+    )
+    list_end_time = get_end_time_from_filepaths(
+        filepaths,
+        network=network,
+        product=product,
+        ignore_errors=ignore_errors,
+    )
     return np.array(list_start_time), np.array(list_end_time)
 
 
-def get_version_from_filepath(filepath, network, integer=True):
+def get_version_from_filepath(filepath, network, product, integer=True):
     """Infer file ``version`` from filenames."""
-    version = get_key_from_filepath(filepath, key="version", network=network)
+    version = get_key_from_filepath(filepath, key="version", network=network, product=product)
     if version == "":
         return None
     if integer:
@@ -170,11 +196,14 @@ def get_version_from_filepath(filepath, network, integer=True):
     return version
 
 
-def get_version_from_filepaths(filepaths, network, integer=True):
+def get_version_from_filepaths(filepaths, network, product=None, integer=True):
     """Infer files ``version`` from filenames."""
+    product = check_product(network, product=product)
     if isinstance(filepaths, str):
         filepaths = [filepaths]
-    return [get_version_from_filepath(filepath, integer=integer, network=network) for filepath in filepaths]
+    return [
+        get_version_from_filepath(filepath, integer=integer, network=network, product=product) for filepath in filepaths
+    ]
 
 
 ####--------------------------------------------------------------------------.
@@ -228,7 +257,7 @@ def get_time_component(time, component):
     return str(func_dict[component](time))
 
 
-def _get_groups_value(groups, filepath, network):
+def _get_groups_value(groups, filepath, network, product):
     """Return the value associated to the groups keys.
 
     If multiple keys are specified, the value returned is a string of format: ``<group_value_1>/<group_value_2>/...``
@@ -237,7 +266,7 @@ def _get_groups_value(groups, filepath, network):
     returns a :py:class:`datetime.datetime` object.
     """
     single_key = len(groups) == 1
-    info_dict = get_info_from_filepath(filepath, network=network)
+    info_dict = get_info_from_filepath(filepath, network=network, product=product)
     start_time = info_dict["start_time"]
     list_key_values = []
     for key in groups:
@@ -251,7 +280,7 @@ def _get_groups_value(groups, filepath, network):
     return "/".join(list_key_values)
 
 
-def group_filepaths(filepaths, network, groups=None):
+def group_filepaths(filepaths, network, product=None, groups=None):
     """
     Group filepaths in a dictionary if groups are specified.
 
@@ -276,11 +305,14 @@ def group_filepaths(filepaths, network, groups=None):
         or the original input filepaths (if ``groups=None``)
 
     """
+    product = check_product(network, product=product)
+
     if groups is None:
         return filepaths
     groups = check_groups(groups)
     filepaths_dict = defaultdict(list)
     _ = [
-        filepaths_dict[_get_groups_value(groups, filepath, network=network)].append(filepath) for filepath in filepaths
+        filepaths_dict[_get_groups_value(groups, filepath, network=network, product=product)].append(filepath)
+        for filepath in filepaths
     ]
     return dict(filepaths_dict)

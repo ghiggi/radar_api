@@ -1,0 +1,12 @@
+network: MCH_LTE
+description: MeteoSwiss Rad4Alp network
+public_data: False
+cloud_directory_pattern: null 
+local_directory_pattern: "{base_dir}/MCH/{time:%Y}/{time:%m}/{time:%d}/{time:%H}/{radar:s}"
+filename_patterns:
+  - "{radar_acronym:3s}{start_time:%y%j%H%M}0U.{volume_identifier:3s}"
+pyart_reader: read_metranet
+xradar_reader: null
+xradar_engine: null
+
+

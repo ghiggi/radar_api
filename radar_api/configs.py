@@ -27,6 +27,7 @@
 """RADAR-API configurations settings."""
 import os
 
+import radar_api
 from radar_api.utils.yaml import read_yaml, write_yaml
 
 
@@ -75,6 +76,11 @@ def define_configs(
 
     print(f"The RADAR-API config file has been {action_msg} successfully!")
 
+    # Now read the config file and set it as the active configuration
+    # - This avoid the need to restart a python session to take effect !
+    config_dict = read_configs()
+    radar_api.config.update(config_dict)
+
 
 def read_configs() -> dict[str, str]:
     """Reads the RADAR-API configuration file and returns a dictionary with the configuration settings.
@@ -110,8 +116,6 @@ def read_configs() -> dict[str, str]:
 ####--------------------------------------------------------------------------.
 def _get_config_key(key):
     """Return the config key."""
-    import radar_api
-
     value = radar_api.config.get(key, None)
     if value is None:
         raise ValueError(f"The '{key}' is not specified in the RADAR-API configuration file.")
@@ -120,8 +124,6 @@ def _get_config_key(key):
 
 def get_base_dir(base_dir=None):
     """Return the RADAR-API base directory."""
-    import radar_api
-
     if base_dir is None:
         base_dir = radar_api.config.get("base_dir")
     if base_dir is None:

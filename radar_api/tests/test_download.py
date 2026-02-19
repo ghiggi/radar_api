@@ -127,22 +127,25 @@ def test_define_local_filepath(tmp_path):
     """Test the define_local_filepath function."""
     filename = "KTLX19910605_162126.gz"
     network = "NEXRAD"
+    product=  "NEXRAD_L2"
     radar = "KTLX"
     base_dir = os.path.join(tmp_path, "RADAR")
     os.makedirs(base_dir, exist_ok=True)
-    res = define_local_filepath(filename=filename, network=network, radar=radar, base_dir=base_dir)
+    res = define_local_filepath(filename=filename, network=network, product=product, radar=radar, base_dir=base_dir)
     assert res == os.path.join(base_dir, network, "1991", "06", "05", "16", radar, filename)
 
 
 def test_find_files_on_cloud_bucket(tmp_path):
     """Test the find_files function on the s3 cloud bucket."""
     base_dir = tmp_path
-    radar = "KTLX"
     network = "NEXRAD"
+    product = "NEXRAD_L2"
+    radar = "KTLX"
     start_time = "1991-06-05T16:20:00"
     end_time = "1991-06-05T16:22:00"  # download only the first file available ...
     filepaths = download_files(
         network=network,
+        product=product,
         radar=radar,
         start_time=start_time,
         end_time=end_time,

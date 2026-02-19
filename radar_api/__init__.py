@@ -39,6 +39,7 @@ from radar_api.download import download_files
 from radar_api.info import group_filepaths
 from radar_api.io import (
     available_networks,
+    available_products,
     available_radars,
 )
 from radar_api.readers import (
@@ -52,17 +53,18 @@ _root_path = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
 
 
 __all__ = [
-    "available_radars",
     "available_networks",
+    "available_products",
+    "available_radars",
     "config",
     "define_configs",
-    "read_configs",
+    "download_files",
     "find_files",
     "group_filepaths",
-    "open_datatree",
     "open_dataset",
+    "open_datatree",
     "open_pyart",
-    "download_files",
+    "read_configs",
 ]
 
 # Get version

@@ -28,7 +28,8 @@ from functools import wraps
 
 import fsspec
 
-from radar_api.io import get_network_info
+from radar_api.checks import check_product
+from radar_api.io import get_product_info
 
 
 def get_simplecache_file(filepath):
@@ -68,25 +69,27 @@ def check_software_availability(software, conda_package):
     return decorator
 
 
-def get_xradar_datatree_reader(network):
+def get_xradar_datatree_reader(network, product=None):
     """Return the xradar datatree reader."""
     import xradar.io
 
-    xradar_reader_name = get_network_info(network)["xradar_reader"]
+    product = check_product(network, product=product)
+    xradar_reader_name = get_product_info(network, product)["xradar_reader"]
     if xradar_reader_name is None:
-        raise NotImplementedError(f"No xradar reader is yet available for network {network}.")
+        raise NotImplementedError(f"No xradar reader is yet available for {product} product of network {network}.")
     func = getattr(xradar.io, xradar_reader_name)
     return func
 
 
-def get_pyart_reader(network):
+def get_pyart_reader(network, product=None):
     """Return the pyart reader."""
     import pyart.aux_io
     import pyart.io
 
-    pyart_reader_name = get_network_info(network)["pyart_reader"]
+    product = check_product(network, product=product)
+    pyart_reader_name = get_product_info(network, product)["pyart_reader"]
     if pyart_reader_name is None:
-        raise NotImplementedError(f"No pyart reader is yet available for network {network}.")
+        raise NotImplementedError(f"No pyart reader is yet available for {product} product of network {network}.")
 
     try:
         func = getattr(pyart.io, pyart_reader_name)
@@ -98,9 +101,10 @@ def get_pyart_reader(network):
     return func
 
 
-def get_xradar_engine(network):
+def get_xradar_engine(network, product=None):
     """Return the xradar engine."""
-    return get_network_info(network)["xradar_engine"]
+    product = check_product(network, product=product)
+    return get_product_info(network, product)["xradar_engine"]
 
 
 def _prepare_file(filepath):
@@ -110,29 +114,29 @@ def _prepare_file(filepath):
 
 
 @check_software_availability(software="xradar", conda_package="xradar")
-def open_datatree(filepath, network, **kwargs):
+def open_datatree(filepath, network, product=None, **kwargs):
     """Open a file into an xarray DataTree object using xradar."""
     filepath = _prepare_file(filepath)
-    open_datatree = get_xradar_datatree_reader(network)
+    open_datatree = get_xradar_datatree_reader(network, product)
     dt = open_datatree(filepath, **kwargs)
     return dt
 
 
 @check_software_availability(software="xradar", conda_package="xradar")
-def open_dataset(filepath, network, sweep, **kwargs):
+def open_dataset(filepath, network, sweep, product=None, **kwargs):
     """Open a file into an xarray Dataset object using xradar."""
     import xarray as xr
 
     filepath = _prepare_file(filepath)
-    engine = get_xradar_engine(network)
+    engine = get_xradar_engine(network, product)
     ds = xr.open_dataset(filepath, group=sweep, engine=engine, **kwargs)
     return ds
 
 
 @check_software_availability(software="pyart", conda_package="arm_pyart")
-def open_pyart(filepath, network, **kwargs):
+def open_pyart(filepath, network, product=None, **kwargs):
     """Open a file into a pyart object."""
     filepath = _prepare_file(filepath)
-    pyart_reader = get_pyart_reader(network)
+    pyart_reader = get_pyart_reader(network, product)
     pyart_obj = pyart_reader(filepath, **kwargs)
     return pyart_obj

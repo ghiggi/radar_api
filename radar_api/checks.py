@@ -27,7 +27,6 @@
 import datetime
 import os
 import pathlib
-import sys
 
 import numpy as np
 
@@ -37,9 +36,7 @@ BUCKET_PROTOCOLS = ["s3"]  # "gcs"
 
 def get_current_utc_time():
     """Return current UTC time."""
-    if sys.version_info >= (3, 11):
-        return datetime.datetime.now(datetime.UTC).replace(tzinfo=None)
-    return datetime.datetime.utcnow()
+    return datetime.datetime.now(datetime.UTC).replace(tzinfo=None)
 
 
 def check_protocol(protocol):
@@ -102,6 +99,23 @@ def check_network(network):
     if network not in valid_networks:
         raise ValueError(f"Invalid network {network}. Available networks: {valid_networks}")
     return network
+
+
+def check_product(network, product=None):
+    """Check product validity.
+
+    If only one product available for that network, return that.
+    """
+    from radar_api.io import available_products
+
+    valid_products = available_products(network, only_public=False)
+    if product is None:
+        if len(valid_products) == 1:
+            return valid_products[0]
+        raise ValueError(f"{network} has {valid_products} products available. 'product' must be specified.")
+    if product not in valid_products:
+        raise ValueError(f"Invalid product {product} for {network}. Available products: {valid_products}")
+    return product
 
 
 def check_time(time):

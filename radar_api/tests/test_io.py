@@ -26,6 +26,7 @@
 # -----------------------------------------------------------------------------.
 """This module test the I/O routines."""
 import datetime
+from itertools import product
 import os
 
 import fsspec
@@ -35,14 +36,15 @@ import s3fs
 from radar_api.io import (
     available_networks,
     available_radars,
+    available_products,
     get_bucket_prefix,
     get_directory_pattern,
     get_filesystem,
-    get_network_config_filepath,
     get_network_config_path,
-    get_network_filename_patterns,
-    get_network_info,
+    get_product_filename_patterns,
     get_network_radars_config_path,
+    get_product_config_filepath,
+    get_product_info,
     get_radar_config_filepath,
     get_radar_end_time,
     get_radar_info,
@@ -69,11 +71,13 @@ def test_get_network_radars_config_path():
 
 
 @pytest.mark.parametrize("network", NETWORKS)
-def test_get_network_config_filepath(network):
-    """Test get_network_config_filepath returns the correct .yaml file path."""
-    filepath = get_network_config_filepath(network)
-    assert os.path.isfile(filepath)
-    assert filepath.endswith(f"{network}.yaml")
+def test_get_product_config_filepath(network):
+    """Test get_product_config_filepath returns the correct .yaml file path."""
+    products = available_products(network=network)
+    for product in products:
+        filepath = get_product_config_filepath(network, product)
+        assert os.path.isfile(filepath)
+        assert filepath.endswith(f"{product}.yaml")
 
 
 @pytest.mark.parametrize("network", NETWORKS)
@@ -107,9 +111,9 @@ def test_available_radars_single_network():
     assert len(radars) > 0
 
 
-def test_get_network_info():
-    """Test get_network_info returns the correct dict from NEXRAD.yaml."""
-    info = get_network_info("NEXRAD")
+def test_get_product_info():
+    """Test get_product_info returns the correct dict from NEXRAD.yaml."""
+    info = get_product_info("NEXRAD", product="NEXRAD_L2")
     assert info["xradar_reader"] == "open_nexradlevel2_datatree"
     assert info["pyart_reader"] == "read_nexrad_archive"
 
@@ -166,27 +170,33 @@ def test_is_radar_available(start_time, end_time, expected):
 
 
 @pytest.mark.parametrize("network", NETWORKS)
-def test_get_network_filename_patterns(network):
-    """Test get_network_filename_patterns returns the test pattern."""
-    patterns = get_network_filename_patterns(network)
-    assert isinstance(patterns, list)
+def test_get_product_filename_patterns(network):
+    """Test get_product_filename_patterns returns the test pattern."""
+    products = available_products(network=network)
+    for product in products:
+        patterns = get_product_filename_patterns(network, product=product)
+        assert isinstance(patterns, list)
 
 
 @pytest.mark.parametrize("network", NETWORKS)
 def test_get_directory_pattern_cloud(network):
     """Test get_directory_pattern for a cloud protocol (e.g. s3)."""
-    try:
-        pattern = get_directory_pattern(protocol="s3", network=network)
-    except NotImplementedError:
-        pytest.skip(f"protocol s3 is not implemented for network {network}")
-    assert isinstance(pattern, str)
+    products = available_products(network=network)
+    for product in products:
+        try:
+            pattern = get_directory_pattern(protocol="s3", network=network, product=product)
+        except NotImplementedError:
+            pytest.skip(f"protocol s3 is not implemented for product {product} of {network} network")
+        assert isinstance(pattern, str)
 
 
 @pytest.mark.parametrize("network", NETWORKS)
 def test_get_directory_pattern_local(network):
     """Test get_directory_pattern for local protocol."""
-    pattern = get_directory_pattern(protocol="file", network=network)
-    assert isinstance(pattern, str)
+    products = available_products(network=network)
+    for product in products:
+        pattern = get_directory_pattern(protocol="file", network=network, product=product)
+        assert isinstance(pattern, str)
 
 
 def test_get_filesystem_s3():

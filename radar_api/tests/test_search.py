@@ -167,6 +167,7 @@ class TestGetDirectoriesPaths:
         end_time = "2023-07-02T01:00:00"
         network = "NEXRAD"
         radar = "KFSD"
+        product = "NEXRAD_L2"
         protocol = "s3"
         base_dir = None
 
@@ -178,6 +179,7 @@ class TestGetDirectoriesPaths:
             start_time=start_time,
             end_time=end_time,
             network=network,
+            product=product,
             radar=radar,
             protocol=protocol,
             base_dir=base_dir,

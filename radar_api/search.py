@@ -33,6 +33,7 @@ from trollsift import Parser
 from radar_api.checks import (
     check_base_dir,
     check_network,
+    check_product,
     check_protocol,
     check_radar,
     check_start_end_time,
@@ -99,10 +100,10 @@ def get_list_timesteps(start_time, end_time, freq):
     return timesteps
 
 
-def get_directories_paths(start_time, end_time, network, radar, protocol, base_dir):
+def get_directories_paths(start_time, end_time, network, product, radar, protocol, base_dir):
     """Returns a list of the directory paths to scan."""
     # Get directory pattern
-    directory_pattern = get_directory_pattern(protocol, network)
+    directory_pattern = get_directory_pattern(protocol, network, product)
     # Identify frequency
     freq = get_pattern_shortest_time_component(directory_pattern)
     # Create list of time directories
@@ -138,6 +139,7 @@ def find_files(
     end_time,
     base_dir=None,
     protocol="s3",
+    product=None,
     fs_args={},
     verbose=False,
 ):
@@ -165,6 +167,10 @@ def find_files(
     radar : str
         The name of the radar.
         Use `radar_api.available_radars()` to retrieve the available satellites.
+    product: str
+        The product acronym. The default is None.
+        It must be specified if for a given network, multiple products are available
+        through radar_api.
     network : str
         The name of the radar network.
         See `radar_api.available_network()` for available radar networks.
@@ -194,6 +200,7 @@ def find_files(
     base_dir = check_base_dir(base_dir)
     network = check_network(network)
     radar = check_radar(radar=radar, network=network)
+    product = check_product(network=network, product=product)
     start_time, end_time = check_start_end_time(start_time, end_time)
 
     # Get filesystem
@@ -206,6 +213,7 @@ def find_files(
         end_time=end_time,
         network=network,
         radar=radar,
+        product=product,
         protocol=protocol,
         base_dir=base_dir,
     )
@@ -231,8 +239,10 @@ def find_files(
             fpaths = [fpath for fpath in fpaths if not fpath.endswith("_MDM")]
         # Add bucket prefix
         fpaths = [bucket_prefix + fpath for fpath in fpaths]
-        # Filter files if necessary
-        fpaths = filter_files(fpaths, network=network, start_time=start_time, end_time=end_time)
+        # Filter files
+        # - Keep only files with expected filename structure
+        # - Subset by time
+        fpaths = filter_files(fpaths, network=network, product=product, start_time=start_time, end_time=end_time)
         list_fpaths += fpaths
 
     # Flat the list of filepaths and return it
