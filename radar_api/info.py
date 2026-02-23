@@ -42,6 +42,7 @@ from radar_api.io import get_product_filename_patterns
 FILE_KEYS = [
     "radar_acronym",
     "volume_identifier",
+    "sweep_identifier",
     "start_time",
     "end_time",
     "version",
@@ -65,6 +66,7 @@ TIME_KEYS = [
 DEFAULT_FILE_KEY = {
     "radar_acronym": "",
     "volume_identifier": "",
+    "sweep_identifier": "",
     "start_time": None,
     "end_time": None,
     "version": "",
@@ -291,7 +293,9 @@ def group_filepaths(filepaths, network, product=None, groups=None):
     groups: list or str
         The group keys by which to group the filepaths.
         Valid group keys are
-        ``start_time``, ``end_time``, ``version``, ``volume_identifier``, ``radar_acronym``, ``extension``,
+        ``start_time``, ``end_time``, ``version``,
+        ``volume_identifier``, ``sweep_identifier``,
+        ``radar_acronym``, ``extension``,
         ``year``, ``month``, ``day``,  ``doy``, ``dow``, ``hour``, ``minute``, ``second``,
         ``month_name``, ``quarter``, ``season``.
         The time components are extracted from ``start_time`` !
