@@ -28,11 +28,11 @@
 
 import datetime
 import os
+from zoneinfo import ZoneInfo
 
 import numpy as np
 import pandas as pd
 import pytest
-import pytz
 
 from radar_api.checks import (
     check_base_dir,
@@ -256,11 +256,11 @@ def test_check_time() -> None:
     for timezone in ["Europe/Zurich", "Australia/Melbourne"]:
         with pytest.raises(ValueError):
             check_time(
-                datetime.datetime(2014, 12, 31, 12, 30, 30, 300, tzinfo=pytz.timezone(timezone)),
+                datetime.datetime(2014, 12, 31, 12, 30, 30, 300, tzinfo=ZoneInfo(timezone)),
             )
 
     # Check UTC timezone info is removed
-    res = check_time(datetime.datetime(2014, 12, 31, 12, 30, 30, 300, tzinfo=pytz.utc))
+    res = check_time(datetime.datetime(2014, 12, 31, 12, 30, 30, 300, tzinfo=ZoneInfo("UTC")))
     assert isinstance(res.tzinfo, type(None))
 
 
