@@ -12,6 +12,7 @@ dependencies:
   - pandas
   - matplotlib
   - netcdf4
+  - pyproj
   - pytest
   - pytest-cov
   - pytest-mock

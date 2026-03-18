@@ -48,6 +48,11 @@ from radar_api.readers import (
     open_pyart,
 )
 from radar_api.search import find_files
+from radar_api.utilities import (
+    available_radars_around_point,
+    available_radars_within_extent,
+    read_database,
+)
 
 _root_path = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
 
@@ -55,7 +60,9 @@ _root_path = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
 __all__ = [
     "available_networks",
     "available_products",
+    "available_radars_around_point",
     "available_radars",
+    "available_radars_within_extent",
     "config",
     "define_configs",
     "download_files",
@@ -65,6 +72,7 @@ __all__ = [
     "open_datatree",
     "open_pyart",
     "read_configs",
+    "read_database",
 ]
 
 # Get version

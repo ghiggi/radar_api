@@ -12,6 +12,7 @@ dependencies:
   - xradar
   - arm_pyart
   - matplotlib
+  - pyproj
   - netcdf4
   - pytest
   - pytest-cov
