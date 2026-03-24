@@ -60,8 +60,8 @@ _root_path = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
 __all__ = [
     "available_networks",
     "available_products",
-    "available_radars_around_point",
     "available_radars",
+    "available_radars_around_point",
     "available_radars_within_extent",
     "config",
     "define_configs",
